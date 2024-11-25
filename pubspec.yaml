@@ -1,7 +1,6 @@
 name: river_delta
 description: "A new Flutter package project."
 version: 0.0.1
-homepage:
 
 environment:
   sdk: '>=3.4.3 <4.0.0'
@@ -16,7 +15,9 @@ dependencies:
   freezed_annotation: ^2.4.4
   devtools_app_shared: ^0.2.2
   json_annotation: ^4.9.0
-  collection: ^1.19.0
+  collection: ^1.18.0
+  mockito: ^5.4.4
+  vm_service: ^14.2.5
 
 dev_dependencies:
   flutter_test:

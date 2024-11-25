@@ -1,14 +1,12 @@
 import 'dart:developer';
 
-import 'package:flutter/foundation.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:freezed_annotation/freezed_annotation.dart';
 
 import 'dto_models.dart';
 
 class DeltaObserver extends ProviderObserver {
-  @protected
-  DeltaObserver() : super();
+
+  const DeltaObserver._();
 
   static DeltaObserver? _instance;
 
@@ -17,7 +15,7 @@ class DeltaObserver extends ProviderObserver {
     if (localInstance != null) {
       return localInstance;
     }
-    _instance = DeltaObserver();
+    _instance = const DeltaObserver._();
     return _instance!;
   }
 
@@ -49,7 +47,9 @@ class DeltaObserver extends ProviderObserver {
 
   @override
   void didDisposeProvider(
-      ProviderBase<Object?> provider, ProviderContainer container) {
+    ProviderBase<Object?> provider,
+    ProviderContainer container,
+  ) {
     final elements = container.getAllProviderElementsInOrder();
     final providers = elements.map((element) {
       final dependencies = <String>[];
