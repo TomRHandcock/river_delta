@@ -180,7 +180,9 @@ ProviderDto _$ProviderDtoFromJson(Map<String, dynamic> json) {
 /// @nodoc
 mixin _$ProviderDto {
   String get name => throw _privateConstructorUsedError;
-  List<String> get dependencies => throw _privateConstructorUsedError;
+  dynamic get argument => throw _privateConstructorUsedError;
+  List<ProviderDependencyDto> get dependencies =>
+      throw _privateConstructorUsedError;
 
   /// Serializes this ProviderDto to a JSON map.
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
@@ -198,7 +200,10 @@ abstract class $ProviderDtoCopyWith<$Res> {
           ProviderDto value, $Res Function(ProviderDto) then) =
       _$ProviderDtoCopyWithImpl<$Res, ProviderDto>;
   @useResult
-  $Res call({String name, List<String> dependencies});
+  $Res call(
+      {String name,
+      dynamic argument,
+      List<ProviderDependencyDto> dependencies});
 }
 
 /// @nodoc
@@ -217,6 +222,7 @@ class _$ProviderDtoCopyWithImpl<$Res, $Val extends ProviderDto>
   @override
   $Res call({
     Object? name = null,
+    Object? argument = freezed,
     Object? dependencies = null,
   }) {
     return _then(_value.copyWith(
@@ -224,10 +230,14 @@ class _$ProviderDtoCopyWithImpl<$Res, $Val extends ProviderDto>
           ? _value.name
           : name // ignore: cast_nullable_to_non_nullable
               as String,
+      argument: freezed == argument
+          ? _value.argument
+          : argument // ignore: cast_nullable_to_non_nullable
+              as dynamic,
       dependencies: null == dependencies
           ? _value.dependencies
           : dependencies // ignore: cast_nullable_to_non_nullable
-              as List<String>,
+              as List<ProviderDependencyDto>,
     ) as $Val);
   }
 }
@@ -240,7 +250,10 @@ abstract class _$$ProviderDtoImplCopyWith<$Res>
       __$$ProviderDtoImplCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({String name, List<String> dependencies});
+  $Res call(
+      {String name,
+      dynamic argument,
+      List<ProviderDependencyDto> dependencies});
 }
 
 /// @nodoc
@@ -257,6 +270,7 @@ class __$$ProviderDtoImplCopyWithImpl<$Res>
   @override
   $Res call({
     Object? name = null,
+    Object? argument = freezed,
     Object? dependencies = null,
   }) {
     return _then(_$ProviderDtoImpl(
@@ -264,10 +278,14 @@ class __$$ProviderDtoImplCopyWithImpl<$Res>
           ? _value.name
           : name // ignore: cast_nullable_to_non_nullable
               as String,
+      argument: freezed == argument
+          ? _value.argument
+          : argument // ignore: cast_nullable_to_non_nullable
+              as dynamic,
       dependencies: null == dependencies
           ? _value._dependencies
           : dependencies // ignore: cast_nullable_to_non_nullable
-              as List<String>,
+              as List<ProviderDependencyDto>,
     ));
   }
 }
@@ -276,7 +294,9 @@ class __$$ProviderDtoImplCopyWithImpl<$Res>
 @JsonSerializable()
 class _$ProviderDtoImpl implements _ProviderDto {
   const _$ProviderDtoImpl(
-      {required this.name, final List<String> dependencies = const []})
+      {required this.name,
+      this.argument,
+      final List<ProviderDependencyDto> dependencies = const []})
       : _dependencies = dependencies;
 
   factory _$ProviderDtoImpl.fromJson(Map<String, dynamic> json) =>
@@ -284,10 +304,12 @@ class _$ProviderDtoImpl implements _ProviderDto {
 
   @override
   final String name;
-  final List<String> _dependencies;
+  @override
+  final dynamic argument;
+  final List<ProviderDependencyDto> _dependencies;
   @override
   @JsonKey()
-  List<String> get dependencies {
+  List<ProviderDependencyDto> get dependencies {
     if (_dependencies is EqualUnmodifiableListView) return _dependencies;
     // ignore: implicit_dynamic_type
     return EqualUnmodifiableListView(_dependencies);
@@ -295,7 +317,7 @@ class _$ProviderDtoImpl implements _ProviderDto {
 
   @override
   String toString() {
-    return 'ProviderDto(name: $name, dependencies: $dependencies)';
+    return 'ProviderDto(name: $name, argument: $argument, dependencies: $dependencies)';
   }
 
   @override
@@ -304,6 +326,7 @@ class _$ProviderDtoImpl implements _ProviderDto {
         (other.runtimeType == runtimeType &&
             other is _$ProviderDtoImpl &&
             (identical(other.name, name) || other.name == name) &&
+            const DeepCollectionEquality().equals(other.argument, argument) &&
             const DeepCollectionEquality()
                 .equals(other._dependencies, _dependencies));
   }
@@ -311,7 +334,10 @@ class _$ProviderDtoImpl implements _ProviderDto {
   @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   int get hashCode => Object.hash(
-      runtimeType, name, const DeepCollectionEquality().hash(_dependencies));
+      runtimeType,
+      name,
+      const DeepCollectionEquality().hash(argument),
+      const DeepCollectionEquality().hash(_dependencies));
 
   /// Create a copy of ProviderDto
   /// with the given fields replaced by the non-null parameter values.
@@ -332,7 +358,8 @@ class _$ProviderDtoImpl implements _ProviderDto {
 abstract class _ProviderDto implements ProviderDto {
   const factory _ProviderDto(
       {required final String name,
-      final List<String> dependencies}) = _$ProviderDtoImpl;
+      final dynamic argument,
+      final List<ProviderDependencyDto> dependencies}) = _$ProviderDtoImpl;
 
   factory _ProviderDto.fromJson(Map<String, dynamic> json) =
       _$ProviderDtoImpl.fromJson;
@@ -340,7 +367,9 @@ abstract class _ProviderDto implements ProviderDto {
   @override
   String get name;
   @override
-  List<String> get dependencies;
+  dynamic get argument;
+  @override
+  List<ProviderDependencyDto> get dependencies;
 
   /// Create a copy of ProviderDto
   /// with the given fields replaced by the non-null parameter values.
@@ -348,4 +377,177 @@ abstract class _ProviderDto implements ProviderDto {
   @JsonKey(includeFromJson: false, includeToJson: false)
   _$$ProviderDtoImplCopyWith<_$ProviderDtoImpl> get copyWith =>
       throw _privateConstructorUsedError;
+}
+
+ProviderDependencyDto _$ProviderDependencyDtoFromJson(
+    Map<String, dynamic> json) {
+  return _ProviderDependencyDto.fromJson(json);
+}
+
+/// @nodoc
+mixin _$ProviderDependencyDto {
+  String get name => throw _privateConstructorUsedError;
+  dynamic get argument => throw _privateConstructorUsedError;
+
+  /// Serializes this ProviderDependencyDto to a JSON map.
+  Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
+
+  /// Create a copy of ProviderDependencyDto
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  $ProviderDependencyDtoCopyWith<ProviderDependencyDto> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class $ProviderDependencyDtoCopyWith<$Res> {
+  factory $ProviderDependencyDtoCopyWith(ProviderDependencyDto value,
+          $Res Function(ProviderDependencyDto) then) =
+      _$ProviderDependencyDtoCopyWithImpl<$Res, ProviderDependencyDto>;
+  @useResult
+  $Res call({String name, dynamic argument});
+}
+
+/// @nodoc
+class _$ProviderDependencyDtoCopyWithImpl<$Res,
+        $Val extends ProviderDependencyDto>
+    implements $ProviderDependencyDtoCopyWith<$Res> {
+  _$ProviderDependencyDtoCopyWithImpl(this._value, this._then);
+
+  // ignore: unused_field
+  final $Val _value;
+  // ignore: unused_field
+  final $Res Function($Val) _then;
+
+  /// Create a copy of ProviderDependencyDto
+  /// with the given fields replaced by the non-null parameter values.
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? name = null,
+    Object? argument = freezed,
+  }) {
+    return _then(_value.copyWith(
+      name: null == name
+          ? _value.name
+          : name // ignore: cast_nullable_to_non_nullable
+              as String,
+      argument: freezed == argument
+          ? _value.argument
+          : argument // ignore: cast_nullable_to_non_nullable
+              as dynamic,
+    ) as $Val);
+  }
+}
+
+/// @nodoc
+abstract class _$$ProviderDependencyDtoImplCopyWith<$Res>
+    implements $ProviderDependencyDtoCopyWith<$Res> {
+  factory _$$ProviderDependencyDtoImplCopyWith(
+          _$ProviderDependencyDtoImpl value,
+          $Res Function(_$ProviderDependencyDtoImpl) then) =
+      __$$ProviderDependencyDtoImplCopyWithImpl<$Res>;
+  @override
+  @useResult
+  $Res call({String name, dynamic argument});
+}
+
+/// @nodoc
+class __$$ProviderDependencyDtoImplCopyWithImpl<$Res>
+    extends _$ProviderDependencyDtoCopyWithImpl<$Res,
+        _$ProviderDependencyDtoImpl>
+    implements _$$ProviderDependencyDtoImplCopyWith<$Res> {
+  __$$ProviderDependencyDtoImplCopyWithImpl(_$ProviderDependencyDtoImpl _value,
+      $Res Function(_$ProviderDependencyDtoImpl) _then)
+      : super(_value, _then);
+
+  /// Create a copy of ProviderDependencyDto
+  /// with the given fields replaced by the non-null parameter values.
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? name = null,
+    Object? argument = freezed,
+  }) {
+    return _then(_$ProviderDependencyDtoImpl(
+      name: null == name
+          ? _value.name
+          : name // ignore: cast_nullable_to_non_nullable
+              as String,
+      argument: freezed == argument
+          ? _value.argument
+          : argument // ignore: cast_nullable_to_non_nullable
+              as dynamic,
+    ));
+  }
+}
+
+/// @nodoc
+@JsonSerializable()
+class _$ProviderDependencyDtoImpl implements _ProviderDependencyDto {
+  const _$ProviderDependencyDtoImpl({required this.name, this.argument});
+
+  factory _$ProviderDependencyDtoImpl.fromJson(Map<String, dynamic> json) =>
+      _$$ProviderDependencyDtoImplFromJson(json);
+
+  @override
+  final String name;
+  @override
+  final dynamic argument;
+
+  @override
+  String toString() {
+    return 'ProviderDependencyDto(name: $name, argument: $argument)';
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$ProviderDependencyDtoImpl &&
+            (identical(other.name, name) || other.name == name) &&
+            const DeepCollectionEquality().equals(other.argument, argument));
+  }
+
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  @override
+  int get hashCode => Object.hash(
+      runtimeType, name, const DeepCollectionEquality().hash(argument));
+
+  /// Create a copy of ProviderDependencyDto
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$ProviderDependencyDtoImplCopyWith<_$ProviderDependencyDtoImpl>
+      get copyWith => __$$ProviderDependencyDtoImplCopyWithImpl<
+          _$ProviderDependencyDtoImpl>(this, _$identity);
+
+  @override
+  Map<String, dynamic> toJson() {
+    return _$$ProviderDependencyDtoImplToJson(
+      this,
+    );
+  }
+}
+
+abstract class _ProviderDependencyDto implements ProviderDependencyDto {
+  const factory _ProviderDependencyDto(
+      {required final String name,
+      final dynamic argument}) = _$ProviderDependencyDtoImpl;
+
+  factory _ProviderDependencyDto.fromJson(Map<String, dynamic> json) =
+      _$ProviderDependencyDtoImpl.fromJson;
+
+  @override
+  String get name;
+  @override
+  dynamic get argument;
+
+  /// Create a copy of ProviderDependencyDto
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  _$$ProviderDependencyDtoImplCopyWith<_$ProviderDependencyDtoImpl>
+      get copyWith => throw _privateConstructorUsedError;
 }
