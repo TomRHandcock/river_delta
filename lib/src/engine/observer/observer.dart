@@ -1,5 +1,6 @@
 import 'dart:developer';
 
+import 'package:collection/collection.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import 'dto_models.dart';
@@ -23,7 +24,10 @@ class DeltaObserver extends ProviderObserver {
     ProviderContainer container,
   ) {
     final dependencies = <ProviderElementBase>{};
-    container.readProviderElement(provider).visitAncestors((ancestor) {
+    container
+        .getAllProviderElements()
+        .firstWhereOrNull((it) => it.provider.name == provider.name)
+        ?.visitAncestors((ancestor) {
       final name = ancestor.provider.name;
       if (name != null) {
         dependencies.add(ancestor);
@@ -36,7 +40,8 @@ class DeltaObserver extends ProviderObserver {
   }
 
   @override
-  void didAddProvider(ProviderBase<Object?> provider, Object? value, ProviderContainer container) {
+  void didAddProvider(ProviderBase<Object?> provider, Object? value,
+      ProviderContainer container) {
     final dependencies = _fetchDependenciesForProvider(provider, container);
     postEvent(
       "ext.river_delta.add",
