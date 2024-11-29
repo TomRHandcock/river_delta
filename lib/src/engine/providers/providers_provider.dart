@@ -19,24 +19,31 @@ class ProvidersProvider extends _$ProvidersProvider {
         case "ext.river_delta.add":
           final provider = ProviderDto.fromJson(event.extensionData!.data);
           _providers = _providers + [provider];
+          _emit(_providers);
         case "ext.river_delta.update":
           final provider = ProviderDto.fromJson(event.extensionData!.data);
           _providers = _providers
               .whereNot((it) =>
                   it.name == provider.name && it.argument == provider.argument)
               .toList() + [provider];
+          _emit(_providers);
         case "ext.river_delta.dispose":
           final provider = ProviderDto.fromJson(event.extensionData!.data);
           _providers = _providers
               .whereNot((it) =>
           it.name == provider.name && it.argument == provider.argument)
               .toList();
+          _emit(_providers);
       }
-      ref.notifyListeners();
     });
     ref.onDispose(() {
       subscription.cancel();
     });
     return _providers;
+  }
+
+  void _emit(List<ProviderDto> providers) {
+    state = AsyncData(_providers);
+    ref.notifyListeners();
   }
 }
