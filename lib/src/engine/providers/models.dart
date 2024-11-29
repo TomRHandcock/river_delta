@@ -9,7 +9,8 @@ class DeltaProvider with _$DeltaProvider {
 
   const factory DeltaProvider({
     required String name,
-    @Default([]) List<String> dependencies,
+    Object? argument,
+    @Default([]) List<DeltaProviderDependency> dependencies,
   }) = _DeltaProvider;
 
   bool get isRoot => dependencies.isEmpty;
@@ -17,8 +18,11 @@ class DeltaProvider with _$DeltaProvider {
   static DeltaProvider _getDeltaProvider(
     Set<DeltaProvider> allProviders,
     String name,
+    Object? argument,
   ) =>
-      allProviders.firstWhere((provider) => provider.name == name);
+      allProviders.firstWhere(
+        (provider) => provider.name == name && provider.argument == argument,
+      );
 
   int distanceToRoot(
       {required Set<DeltaProvider> allProviders,
@@ -27,31 +31,41 @@ class DeltaProvider with _$DeltaProvider {
     if (isRoot) {
       return 0;
     }
-    if(recursionDepth > 10) {
+    if (recursionDepth > 10) {
       return 10;
     }
     try {
       final dependencyDistances = dependencies
-          .map((provider) => _getDeltaProvider(allProviders, provider))
           .map(
-            (dependency) =>
-            dependency.distanceToRoot(
+            (provider) => _getDeltaProvider(
+                allProviders, provider.name, provider.argument),
+          )
+          .map(
+            (dependency) => dependency.distanceToRoot(
                 allProviders: allProviders,
                 longestPath: longestPath,
                 recursionDepth: recursionDepth + 1),
-      );
+          );
       if (longestPath) {
         return dependencyDistances.max + 1;
       } else {
         return dependencyDistances.min + 1;
       }
-    } catch(_) {
+    } catch (_) {
       return 0;
     }
   }
 
   bool isLeaf(Set<DeltaProvider> allProviders) => allProviders.fold(
-        <String>[],
+        <DeltaProviderDependency>[],
         (acc, provider) => provider.dependencies + acc,
-      ).contains(name);
+      ).contains(DeltaProviderDependency(name: name, argument: argument));
+}
+
+@freezed
+class DeltaProviderDependency with _$DeltaProviderDependency {
+  const factory DeltaProviderDependency({
+    required String name,
+    Object? argument,
+  }) = _DeltaProviderDependency;
 }
