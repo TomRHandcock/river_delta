@@ -6,12 +6,12 @@ part of 'graph_viewmodel.dart';
 // RiverpodGenerator
 // **************************************************************************
 
-String _$graphViewmodelHash() => r'1d967ed2f91ff834b32ed707d7f3a7e9b0c9a6d8';
+String _$graphViewmodelHash() => r'fbea8476b7200c1d6464fe059a3324ef57f1b86b';
 
 /// See also [GraphViewmodel].
 @ProviderFor(GraphViewmodel)
 final graphViewmodelProvider =
-    AutoDisposeNotifierProvider<GraphViewmodel, GraphState>.internal(
+    AutoDisposeAsyncNotifierProvider<GraphViewmodel, GraphState>.internal(
   GraphViewmodel.new,
   name: r'graphViewmodelProvider',
   debugGetCreateSourceHash: const bool.fromEnvironment('dart.vm.product')
@@ -21,6 +21,6 @@ final graphViewmodelProvider =
   allTransitiveDependencies: null,
 );
 
-typedef _$GraphViewmodel = AutoDisposeNotifier<GraphState>;
+typedef _$GraphViewmodel = AutoDisposeAsyncNotifier<GraphState>;
 // ignore_for_file: type=lint
 // ignore_for_file: subtype_of_sealed_class, invalid_use_of_internal_member, invalid_use_of_visible_for_testing_member

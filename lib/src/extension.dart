@@ -3,6 +3,7 @@ import 'package:devtools_extensions/devtools_extensions.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:river_delta/src/ui/graph/custom_graph_widget.dart';
+import 'package:river_delta/src/ui/graph/viewmodel/graph_state.dart';
 import 'package:river_delta/src/ui/graph/viewmodel/graph_viewmodel.dart';
 
 class RiverDeltaExtension extends StatelessWidget {
@@ -22,32 +23,36 @@ class GraphWrapper extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final state = ref.watch(graphViewmodelProvider);
-    final providers = state.nodes.map((node) => node.provider).toSet();
-    return SplitPane(
-      axis: Axis.vertical,
-      initialFractions: const [0.5, 0.5],
-      children: [
-        InteractiveViewer(
+    return DeltaContent(state: state);
+  }
+}
+
+class DeltaContent extends StatelessWidget {
+  final AsyncValue<GraphState> state;
+
+  const DeltaContent({
+    super.key,
+    required this.state,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    return switch (state) {
+      AsyncValue(:final valueOrNull?) => InteractiveViewer(
           constrained: false,
-          boundaryMargin: EdgeInsets.all(32),
+          boundaryMargin: const EdgeInsets.all(32),
           minScale: 0.1,
           child: CustomGraphWidget(
-            graph: state,
+            graph: valueOrNull,
             backgroundColor: Theme.of(context).scaffoldBackgroundColor,
           ),
         ),
-        ListView.builder(
-          itemBuilder: (_, int index) {
-            final node = state.nodes.toList()[index];
-            return Padding(
-              padding: const EdgeInsets.all(8),
-              child: Text("Node: ${node.provider.name}, "
-                  "distance to root: ${node.distanceToRoot(providers, longest: true)}"),
-            );
-          },
-          itemCount: state.nodes.length,
+      AsyncError(:final error) => Center(
+          child: Text("An error occurred, error:\n$error"),
         ),
-      ],
-    );
+      _ => const Center(
+          child: CircularProgressIndicator(),
+        )
+    };
   }
 }

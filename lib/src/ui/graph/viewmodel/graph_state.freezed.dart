@@ -361,8 +361,8 @@ abstract class _GraphNode extends GraphNode {
 
 /// @nodoc
 mixin _$GraphEdge {
-  String get from => throw _privateConstructorUsedError;
-  String get to => throw _privateConstructorUsedError;
+  DeltaProvider get from => throw _privateConstructorUsedError;
+  DeltaProvider get to => throw _privateConstructorUsedError;
 
   /// Create a copy of GraphEdge
   /// with the given fields replaced by the non-null parameter values.
@@ -376,7 +376,10 @@ abstract class $GraphEdgeCopyWith<$Res> {
   factory $GraphEdgeCopyWith(GraphEdge value, $Res Function(GraphEdge) then) =
       _$GraphEdgeCopyWithImpl<$Res, GraphEdge>;
   @useResult
-  $Res call({String from, String to});
+  $Res call({DeltaProvider from, DeltaProvider to});
+
+  $DeltaProviderCopyWith<$Res> get from;
+  $DeltaProviderCopyWith<$Res> get to;
 }
 
 /// @nodoc
@@ -401,12 +404,32 @@ class _$GraphEdgeCopyWithImpl<$Res, $Val extends GraphEdge>
       from: null == from
           ? _value.from
           : from // ignore: cast_nullable_to_non_nullable
-              as String,
+              as DeltaProvider,
       to: null == to
           ? _value.to
           : to // ignore: cast_nullable_to_non_nullable
-              as String,
+              as DeltaProvider,
     ) as $Val);
+  }
+
+  /// Create a copy of GraphEdge
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @pragma('vm:prefer-inline')
+  $DeltaProviderCopyWith<$Res> get from {
+    return $DeltaProviderCopyWith<$Res>(_value.from, (value) {
+      return _then(_value.copyWith(from: value) as $Val);
+    });
+  }
+
+  /// Create a copy of GraphEdge
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @pragma('vm:prefer-inline')
+  $DeltaProviderCopyWith<$Res> get to {
+    return $DeltaProviderCopyWith<$Res>(_value.to, (value) {
+      return _then(_value.copyWith(to: value) as $Val);
+    });
   }
 }
 
@@ -418,7 +441,12 @@ abstract class _$$GraphEdgeImplCopyWith<$Res>
       __$$GraphEdgeImplCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({String from, String to});
+  $Res call({DeltaProvider from, DeltaProvider to});
+
+  @override
+  $DeltaProviderCopyWith<$Res> get from;
+  @override
+  $DeltaProviderCopyWith<$Res> get to;
 }
 
 /// @nodoc
@@ -441,11 +469,11 @@ class __$$GraphEdgeImplCopyWithImpl<$Res>
       from: null == from
           ? _value.from
           : from // ignore: cast_nullable_to_non_nullable
-              as String,
+              as DeltaProvider,
       to: null == to
           ? _value.to
           : to // ignore: cast_nullable_to_non_nullable
-              as String,
+              as DeltaProvider,
     ));
   }
 }
@@ -456,9 +484,9 @@ class _$GraphEdgeImpl extends _GraphEdge {
   const _$GraphEdgeImpl({required this.from, required this.to}) : super._();
 
   @override
-  final String from;
+  final DeltaProvider from;
   @override
-  final String to;
+  final DeltaProvider to;
 
   @override
   String toString() {
@@ -488,13 +516,14 @@ class _$GraphEdgeImpl extends _GraphEdge {
 
 abstract class _GraphEdge extends GraphEdge {
   const factory _GraphEdge(
-      {required final String from, required final String to}) = _$GraphEdgeImpl;
+      {required final DeltaProvider from,
+      required final DeltaProvider to}) = _$GraphEdgeImpl;
   const _GraphEdge._() : super._();
 
   @override
-  String get from;
+  DeltaProvider get from;
   @override
-  String get to;
+  DeltaProvider get to;
 
   /// Create a copy of GraphEdge
   /// with the given fields replaced by the non-null parameter values.

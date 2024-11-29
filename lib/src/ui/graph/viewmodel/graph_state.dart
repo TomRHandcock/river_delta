@@ -33,13 +33,15 @@ class GraphEdge with _$GraphEdge {
   const GraphEdge._();
 
   const factory GraphEdge({
-    required String from,
-    required String to,
+    required DeltaProvider from,
+    required DeltaProvider to,
   }) = _GraphEdge;
 
   DeltaProvider getDependency(Set<DeltaProvider> providers) =>
-      providers.firstWhere((provider) => provider.name == from);
+      providers.firstWhere((provider) =>
+          provider.name == from.name && provider.argument == from.argument);
 
   DeltaProvider getDependent(Set<DeltaProvider> providers) =>
-      providers.firstWhere((provider) => provider.name == to);
+      providers.firstWhere((provider) =>
+          provider.name == to.name && provider.argument == to.argument);
 }
