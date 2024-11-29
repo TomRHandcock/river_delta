@@ -30,3 +30,8 @@ build/
 
 .flutter-plugins
 .flutter-plugins-dependencies
+
+# Generated code
+*.freezed.dart
+*.g.dart
+*.mocks.dart
