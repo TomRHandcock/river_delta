@@ -15,7 +15,7 @@ class CustomGraphWidget extends MultiChildRenderObjectWidget {
   @override
   List<Widget> get children => graph.nodes
       .map((node) {
-        final localArgument = node.provider.arguments;
+        final localArguments = node.provider.arguments;
         return CustomGraphParentDataWidget(
             node: node,
             child: Container(
@@ -32,9 +32,7 @@ class CustomGraphWidget extends MultiChildRenderObjectWidget {
                 mainAxisSize: MainAxisSize.min,
                 children: [
                   Text(node.provider.name),
-                  // Text("Dependencies: ${node.provider.dependencies}"),
-                  if(localArgument != null)
-                    Text(localArgument.toString())
+                  Text(localArguments.toString())
                 ],
               ),
             ),
