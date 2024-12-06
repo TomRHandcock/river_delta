@@ -32,7 +32,7 @@ class CustomGraphWidget extends MultiChildRenderObjectWidget {
                 mainAxisSize: MainAxisSize.min,
                 children: [
                   Text(node.provider.name),
-                  Text("Dependencies: ${node.provider.dependencies}"),
+                  // Text("Dependencies: ${node.provider.dependencies}"),
                   if(localArgument != null)
                     Text(localArgument.toString())
                 ],

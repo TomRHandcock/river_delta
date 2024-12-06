@@ -20,7 +20,7 @@ class DeltaObserver extends ProviderObserver {
     return _instance!;
   }
 
-  Iterable<ProviderDependencyDto> _fetchDependenciesForProvider(
+  Iterable<ProviderSlimDependencyDto> _fetchDependenciesForProvider(
     ProviderBase<Object?> provider,
     ProviderContainer container,
   ) {
@@ -34,9 +34,12 @@ class DeltaObserver extends ProviderObserver {
         dependencies.add(ancestor);
       }
     });
-    return dependencies.map((dependency) => ProviderDependencyDto(
-          name: dependency.provider.name ?? "Unknown dependency",
-        ));
+    return dependencies.map(
+      (dependency) => ProviderSlimDependencyDto(
+        name: dependency.provider.name!,
+        objectId: Service.getObjectId(dependency.provider)!,
+      ),
+    );
   }
 
   @override
@@ -49,7 +52,7 @@ class DeltaObserver extends ProviderObserver {
         name: provider.name ?? "Unknown provider",
         objectId: Service.getObjectId(provider)!,
         isolateId: Service.getIsolateId(Isolate.current)!,
-        dependencies: dependencies.toList(),
+        dependencies: dependencies.toSet(),
       ).toJson(),
     );
     super.didAddProvider(provider, value, container);
@@ -69,7 +72,7 @@ class DeltaObserver extends ProviderObserver {
         name: provider.name ?? "Unknown provider",
         objectId: Service.getObjectId(provider)!,
         isolateId: Service.getIsolateId(Isolate.current)!,
-        dependencies: dependencies.toList(),
+        dependencies: dependencies.toSet(),
       ).toJson(),
     );
     super.didUpdateProvider(provider, previousValue, newValue, container);
@@ -87,7 +90,7 @@ class DeltaObserver extends ProviderObserver {
         name: provider.name ?? "Unknown provider",
         objectId: Service.getObjectId(provider)!,
         isolateId: Service.getIsolateId(Isolate.current)!,
-        dependencies: dependencies.toList(),
+        dependencies: dependencies.toSet(),
       ).toJson(),
     );
     super.didDisposeProvider(provider, container);

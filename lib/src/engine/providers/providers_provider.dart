@@ -15,24 +15,23 @@ class ProvidersProvider extends _$ProvidersProvider {
 
   Future<Set<String>?> _extractFamilyArguments(
     VmService vmService,
-    ProviderDto provider,
+    String isolateId,
+    String objectId,
   ) async {
-    final instance =
-        await vmService.getObject(provider.isolateId, provider.objectId);
+    final instance = await vmService.getObject(isolateId, objectId);
     final classId = instance.classRef?.id;
     if (classId == null) {
       return null;
     }
     final providerClass =
-        (await vmService.getObject(provider.isolateId, classId))
-            .asOrNull<Class>();
+        (await vmService.getObject(isolateId, classId)).asOrNull<Class>();
     final fieldNames = providerClass?.fields?.map((it) => it.name);
     if (fieldNames == null || fieldNames.isEmpty) {
       return null;
     }
     final parameters = await Future.wait(fieldNames.map((field) async {
-      final value = await vmService.evaluate(
-          provider.isolateId, provider.objectId, "this.$field");
+      final value =
+          await vmService.evaluate(isolateId, objectId, "this.$field");
       if (value is InstanceRef) {
         return value.valueAsString;
       } else {
@@ -51,35 +50,63 @@ class ProvidersProvider extends _$ProvidersProvider {
           case "ext.river_delta.add":
             final provider = ProviderDto.fromJson(event.extensionData!.data);
             final arguments = await _extractFamilyArguments(
-                vmService, provider);
-            _providers = _providers + [provider.copyWith(arguments: arguments)];
+                vmService, provider.isolateId, provider.objectId);
+            final resolvedDependencies = await Future.wait(
+              provider.dependencies.map(
+                (it) => _extractFamilyArguments(
+                        vmService, provider.isolateId, it.objectId)
+                    .then(
+                  (arguments) => ProviderDependencyDto(
+                      name: it.name, arguments: arguments),
+                ),
+              ),
+            );
+            _providers = _providers +
+                [
+                  provider.copyWith(
+                    arguments: arguments,
+                    resolvedDependencies: resolvedDependencies.toSet(),
+                  )
+                ];
             _emit(_providers);
           case "ext.river_delta.update":
             final provider = ProviderDto.fromJson(event.extensionData!.data);
             final arguments = await _extractFamilyArguments(
-                vmService, provider);
-            final providerWithArgs = provider.copyWith(arguments: arguments);
+                vmService, provider.isolateId, provider.objectId);
+            final resolvedDependencies = await Future.wait(
+              provider.dependencies.map(
+                (it) => _extractFamilyArguments(
+                        vmService, provider.isolateId, it.objectId)
+                    .then(
+                  (arguments) => ProviderDependencyDto(
+                      name: it.name, arguments: arguments),
+                ),
+              ),
+            );
+            final providerWithArgs = provider.copyWith(
+              arguments: arguments,
+              resolvedDependencies: resolvedDependencies.toSet(),
+            );
             _providers = _providers.whereNot((it) {
-              return it.name == providerWithArgs.name &&
-                  _listEquality.equals(it.arguments?.toSet(),
-                      providerWithArgs.arguments?.toSet());
-            }).toList() +
+                  return it.name == providerWithArgs.name &&
+                      _listEquality.equals(it.arguments?.toSet(),
+                          providerWithArgs.arguments?.toSet());
+                }).toList() +
                 [providerWithArgs];
             _emit(_providers);
           case "ext.river_delta.dispose":
             final provider = ProviderDto.fromJson(event.extensionData!.data);
             final arguments = await _extractFamilyArguments(
-                vmService, provider);
+                vmService, provider.isolateId, provider.objectId);
             final providerWithArgs = provider.copyWith(arguments: arguments);
             _providers = _providers.whereNot((it) {
-              return it.name == providerWithArgs.name &&
-                  _listEquality.equals(it.arguments?.toSet(),
-                      providerWithArgs.arguments?.toSet());
-            }).toList() +
-                [providerWithArgs];
+                  return it.name == providerWithArgs.name &&
+                      _listEquality.equals(it.arguments?.toSet(),
+                          providerWithArgs.arguments?.toSet());
+                }).toList();
             _emit(_providers);
         }
-      } catch(e) {
+      } catch (e) {
         e;
       }
     });

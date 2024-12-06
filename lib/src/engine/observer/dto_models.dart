@@ -20,12 +20,24 @@ class ProviderDto with _$ProviderDto {
     required String name,
     required String objectId,
     required String isolateId,
-    Set<String>? arguments,
-    @Default([]) List<ProviderDependencyDto> dependencies,
+    @Default({}) Set<String>? arguments,
+    @Default({}) Set<ProviderSlimDependencyDto> dependencies,
+    @Default({}) Set<ProviderDependencyDto> resolvedDependencies,
   }) = _ProviderDto;
 
   factory ProviderDto.fromJson(Map<String, dynamic> json) =>
       _$ProviderDtoFromJson(json);
+}
+
+@freezed
+class ProviderSlimDependencyDto with _$ProviderSlimDependencyDto {
+  const factory ProviderSlimDependencyDto({
+    required String name,
+    required String objectId,
+  }) = _ProviderSlimDependencyDto;
+
+  factory ProviderSlimDependencyDto.fromJson(Map<String, dynamic> json) =>
+      _$ProviderSlimDependencyDtoFromJson(json);
 }
 
 @freezed

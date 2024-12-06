@@ -6,7 +6,7 @@ part of 'graph_viewmodel.dart';
 // RiverpodGenerator
 // **************************************************************************
 
-String _$graphViewmodelHash() => r'dad3f687ae175bf14206b78ed465fbbad06e9800';
+String _$graphViewmodelHash() => r'c3aca57b99becd82558a2fc8d8060f9ebc9c74e5';
 
 /// See also [GraphViewmodel].
 @ProviderFor(GraphViewmodel)

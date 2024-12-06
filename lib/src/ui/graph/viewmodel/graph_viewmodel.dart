@@ -24,7 +24,7 @@ class GraphViewmodel extends _$GraphViewmodel {
   Future<GraphState> build() async {
     final dtos = await ref.watch(providersProviderProvider.future);
     final providers = dtos.map((dto) {
-      final dependencies = dto.dependencies
+      final dependencies = dto.resolvedDependencies
           .map((dependency) => DeltaProviderDependency(
                 name: dependency.name,
                 arguments: dependency.arguments ?? {},
