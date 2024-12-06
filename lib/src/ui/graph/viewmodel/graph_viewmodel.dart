@@ -1,10 +1,10 @@
+import 'dart:math' as math;
+
 import 'package:collection/collection.dart';
-import 'package:river_delta/src/engine/providers/models.dart';
 import 'package:river_delta/src/engine/providers/providers_provider.dart';
 import 'package:river_delta/src/engine/utils/utils.dart';
 import 'package:river_delta/src/ui/graph/viewmodel/graph_state.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
-import 'dart:math' as math;
 
 part 'graph_viewmodel.g.dart';
 
@@ -24,15 +24,15 @@ class GraphViewmodel extends _$GraphViewmodel {
   Future<GraphState> build() async {
     final dtos = await ref.watch(providersProviderProvider.future);
     final providers = dtos.map((dto) {
-      final dependencies = dto.resolvedDependencies
+      final dependencies = dto.dependencies
           .map((dependency) => DeltaProviderDependency(
                 name: dependency.name,
-                arguments: dependency.arguments ?? {},
+                arguments: dependency.arguments,
               ))
           .toList();
       return DeltaProvider(
         name: dto.name,
-        arguments: dto.arguments ?? {},
+        arguments: dto.arguments,
         dependencies: dependencies,
       );
     }).toSet();

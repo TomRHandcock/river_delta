@@ -20,9 +20,7 @@ class ProviderDto with _$ProviderDto {
     required String name,
     required String objectId,
     required String isolateId,
-    @Default({}) Set<String>? arguments,
     @Default({}) Set<ProviderSlimDependencyDto> dependencies,
-    @Default({}) Set<ProviderDependencyDto> resolvedDependencies,
   }) = _ProviderDto;
 
   factory ProviderDto.fromJson(Map<String, dynamic> json) =>
@@ -38,15 +36,4 @@ class ProviderSlimDependencyDto with _$ProviderSlimDependencyDto {
 
   factory ProviderSlimDependencyDto.fromJson(Map<String, dynamic> json) =>
       _$ProviderSlimDependencyDtoFromJson(json);
-}
-
-@freezed
-class ProviderDependencyDto with _$ProviderDependencyDto {
-  const factory ProviderDependencyDto({
-    required String name,
-    Set<String>? arguments,
-  }) = _ProviderDependencyDto;
-
-  factory ProviderDependencyDto.fromJson(Map<String, dynamic> json) =>
-      _$ProviderDependencyDtoFromJson(json);
 }

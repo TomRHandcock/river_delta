@@ -182,10 +182,7 @@ mixin _$ProviderDto {
   String get name => throw _privateConstructorUsedError;
   String get objectId => throw _privateConstructorUsedError;
   String get isolateId => throw _privateConstructorUsedError;
-  Set<String>? get arguments => throw _privateConstructorUsedError;
   Set<ProviderSlimDependencyDto> get dependencies =>
-      throw _privateConstructorUsedError;
-  Set<ProviderDependencyDto> get resolvedDependencies =>
       throw _privateConstructorUsedError;
 
   /// Serializes this ProviderDto to a JSON map.
@@ -208,9 +205,7 @@ abstract class $ProviderDtoCopyWith<$Res> {
       {String name,
       String objectId,
       String isolateId,
-      Set<String>? arguments,
-      Set<ProviderSlimDependencyDto> dependencies,
-      Set<ProviderDependencyDto> resolvedDependencies});
+      Set<ProviderSlimDependencyDto> dependencies});
 }
 
 /// @nodoc
@@ -231,9 +226,7 @@ class _$ProviderDtoCopyWithImpl<$Res, $Val extends ProviderDto>
     Object? name = null,
     Object? objectId = null,
     Object? isolateId = null,
-    Object? arguments = freezed,
     Object? dependencies = null,
-    Object? resolvedDependencies = null,
   }) {
     return _then(_value.copyWith(
       name: null == name
@@ -248,18 +241,10 @@ class _$ProviderDtoCopyWithImpl<$Res, $Val extends ProviderDto>
           ? _value.isolateId
           : isolateId // ignore: cast_nullable_to_non_nullable
               as String,
-      arguments: freezed == arguments
-          ? _value.arguments
-          : arguments // ignore: cast_nullable_to_non_nullable
-              as Set<String>?,
       dependencies: null == dependencies
           ? _value.dependencies
           : dependencies // ignore: cast_nullable_to_non_nullable
               as Set<ProviderSlimDependencyDto>,
-      resolvedDependencies: null == resolvedDependencies
-          ? _value.resolvedDependencies
-          : resolvedDependencies // ignore: cast_nullable_to_non_nullable
-              as Set<ProviderDependencyDto>,
     ) as $Val);
   }
 }
@@ -276,9 +261,7 @@ abstract class _$$ProviderDtoImplCopyWith<$Res>
       {String name,
       String objectId,
       String isolateId,
-      Set<String>? arguments,
-      Set<ProviderSlimDependencyDto> dependencies,
-      Set<ProviderDependencyDto> resolvedDependencies});
+      Set<ProviderSlimDependencyDto> dependencies});
 }
 
 /// @nodoc
@@ -297,9 +280,7 @@ class __$$ProviderDtoImplCopyWithImpl<$Res>
     Object? name = null,
     Object? objectId = null,
     Object? isolateId = null,
-    Object? arguments = freezed,
     Object? dependencies = null,
-    Object? resolvedDependencies = null,
   }) {
     return _then(_$ProviderDtoImpl(
       name: null == name
@@ -314,18 +295,10 @@ class __$$ProviderDtoImplCopyWithImpl<$Res>
           ? _value.isolateId
           : isolateId // ignore: cast_nullable_to_non_nullable
               as String,
-      arguments: freezed == arguments
-          ? _value._arguments
-          : arguments // ignore: cast_nullable_to_non_nullable
-              as Set<String>?,
       dependencies: null == dependencies
           ? _value._dependencies
           : dependencies // ignore: cast_nullable_to_non_nullable
               as Set<ProviderSlimDependencyDto>,
-      resolvedDependencies: null == resolvedDependencies
-          ? _value._resolvedDependencies
-          : resolvedDependencies // ignore: cast_nullable_to_non_nullable
-              as Set<ProviderDependencyDto>,
     ));
   }
 }
@@ -337,12 +310,8 @@ class _$ProviderDtoImpl implements _ProviderDto {
       {required this.name,
       required this.objectId,
       required this.isolateId,
-      final Set<String>? arguments = const {},
-      final Set<ProviderSlimDependencyDto> dependencies = const {},
-      final Set<ProviderDependencyDto> resolvedDependencies = const {}})
-      : _arguments = arguments,
-        _dependencies = dependencies,
-        _resolvedDependencies = resolvedDependencies;
+      final Set<ProviderSlimDependencyDto> dependencies = const {}})
+      : _dependencies = dependencies;
 
   factory _$ProviderDtoImpl.fromJson(Map<String, dynamic> json) =>
       _$$ProviderDtoImplFromJson(json);
@@ -353,17 +322,6 @@ class _$ProviderDtoImpl implements _ProviderDto {
   final String objectId;
   @override
   final String isolateId;
-  final Set<String>? _arguments;
-  @override
-  @JsonKey()
-  Set<String>? get arguments {
-    final value = _arguments;
-    if (value == null) return null;
-    if (_arguments is EqualUnmodifiableSetView) return _arguments;
-    // ignore: implicit_dynamic_type
-    return EqualUnmodifiableSetView(value);
-  }
-
   final Set<ProviderSlimDependencyDto> _dependencies;
   @override
   @JsonKey()
@@ -373,19 +331,9 @@ class _$ProviderDtoImpl implements _ProviderDto {
     return EqualUnmodifiableSetView(_dependencies);
   }
 
-  final Set<ProviderDependencyDto> _resolvedDependencies;
-  @override
-  @JsonKey()
-  Set<ProviderDependencyDto> get resolvedDependencies {
-    if (_resolvedDependencies is EqualUnmodifiableSetView)
-      return _resolvedDependencies;
-    // ignore: implicit_dynamic_type
-    return EqualUnmodifiableSetView(_resolvedDependencies);
-  }
-
   @override
   String toString() {
-    return 'ProviderDto(name: $name, objectId: $objectId, isolateId: $isolateId, arguments: $arguments, dependencies: $dependencies, resolvedDependencies: $resolvedDependencies)';
+    return 'ProviderDto(name: $name, objectId: $objectId, isolateId: $isolateId, dependencies: $dependencies)';
   }
 
   @override
@@ -399,23 +347,13 @@ class _$ProviderDtoImpl implements _ProviderDto {
             (identical(other.isolateId, isolateId) ||
                 other.isolateId == isolateId) &&
             const DeepCollectionEquality()
-                .equals(other._arguments, _arguments) &&
-            const DeepCollectionEquality()
-                .equals(other._dependencies, _dependencies) &&
-            const DeepCollectionEquality()
-                .equals(other._resolvedDependencies, _resolvedDependencies));
+                .equals(other._dependencies, _dependencies));
   }
 
   @JsonKey(includeFromJson: false, includeToJson: false)
   @override
-  int get hashCode => Object.hash(
-      runtimeType,
-      name,
-      objectId,
-      isolateId,
-      const DeepCollectionEquality().hash(_arguments),
-      const DeepCollectionEquality().hash(_dependencies),
-      const DeepCollectionEquality().hash(_resolvedDependencies));
+  int get hashCode => Object.hash(runtimeType, name, objectId, isolateId,
+      const DeepCollectionEquality().hash(_dependencies));
 
   /// Create a copy of ProviderDto
   /// with the given fields replaced by the non-null parameter values.
@@ -435,13 +373,10 @@ class _$ProviderDtoImpl implements _ProviderDto {
 
 abstract class _ProviderDto implements ProviderDto {
   const factory _ProviderDto(
-          {required final String name,
-          required final String objectId,
-          required final String isolateId,
-          final Set<String>? arguments,
-          final Set<ProviderSlimDependencyDto> dependencies,
-          final Set<ProviderDependencyDto> resolvedDependencies}) =
-      _$ProviderDtoImpl;
+      {required final String name,
+      required final String objectId,
+      required final String isolateId,
+      final Set<ProviderSlimDependencyDto> dependencies}) = _$ProviderDtoImpl;
 
   factory _ProviderDto.fromJson(Map<String, dynamic> json) =
       _$ProviderDtoImpl.fromJson;
@@ -453,11 +388,7 @@ abstract class _ProviderDto implements ProviderDto {
   @override
   String get isolateId;
   @override
-  Set<String>? get arguments;
-  @override
   Set<ProviderSlimDependencyDto> get dependencies;
-  @override
-  Set<ProviderDependencyDto> get resolvedDependencies;
 
   /// Create a copy of ProviderDto
   /// with the given fields replaced by the non-null parameter values.
@@ -639,188 +570,5 @@ abstract class _ProviderSlimDependencyDto implements ProviderSlimDependencyDto {
   @override
   @JsonKey(includeFromJson: false, includeToJson: false)
   _$$ProviderSlimDependencyDtoImplCopyWith<_$ProviderSlimDependencyDtoImpl>
-      get copyWith => throw _privateConstructorUsedError;
-}
-
-ProviderDependencyDto _$ProviderDependencyDtoFromJson(
-    Map<String, dynamic> json) {
-  return _ProviderDependencyDto.fromJson(json);
-}
-
-/// @nodoc
-mixin _$ProviderDependencyDto {
-  String get name => throw _privateConstructorUsedError;
-  Set<String>? get arguments => throw _privateConstructorUsedError;
-
-  /// Serializes this ProviderDependencyDto to a JSON map.
-  Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
-
-  /// Create a copy of ProviderDependencyDto
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
-  $ProviderDependencyDtoCopyWith<ProviderDependencyDto> get copyWith =>
-      throw _privateConstructorUsedError;
-}
-
-/// @nodoc
-abstract class $ProviderDependencyDtoCopyWith<$Res> {
-  factory $ProviderDependencyDtoCopyWith(ProviderDependencyDto value,
-          $Res Function(ProviderDependencyDto) then) =
-      _$ProviderDependencyDtoCopyWithImpl<$Res, ProviderDependencyDto>;
-  @useResult
-  $Res call({String name, Set<String>? arguments});
-}
-
-/// @nodoc
-class _$ProviderDependencyDtoCopyWithImpl<$Res,
-        $Val extends ProviderDependencyDto>
-    implements $ProviderDependencyDtoCopyWith<$Res> {
-  _$ProviderDependencyDtoCopyWithImpl(this._value, this._then);
-
-  // ignore: unused_field
-  final $Val _value;
-  // ignore: unused_field
-  final $Res Function($Val) _then;
-
-  /// Create a copy of ProviderDependencyDto
-  /// with the given fields replaced by the non-null parameter values.
-  @pragma('vm:prefer-inline')
-  @override
-  $Res call({
-    Object? name = null,
-    Object? arguments = freezed,
-  }) {
-    return _then(_value.copyWith(
-      name: null == name
-          ? _value.name
-          : name // ignore: cast_nullable_to_non_nullable
-              as String,
-      arguments: freezed == arguments
-          ? _value.arguments
-          : arguments // ignore: cast_nullable_to_non_nullable
-              as Set<String>?,
-    ) as $Val);
-  }
-}
-
-/// @nodoc
-abstract class _$$ProviderDependencyDtoImplCopyWith<$Res>
-    implements $ProviderDependencyDtoCopyWith<$Res> {
-  factory _$$ProviderDependencyDtoImplCopyWith(
-          _$ProviderDependencyDtoImpl value,
-          $Res Function(_$ProviderDependencyDtoImpl) then) =
-      __$$ProviderDependencyDtoImplCopyWithImpl<$Res>;
-  @override
-  @useResult
-  $Res call({String name, Set<String>? arguments});
-}
-
-/// @nodoc
-class __$$ProviderDependencyDtoImplCopyWithImpl<$Res>
-    extends _$ProviderDependencyDtoCopyWithImpl<$Res,
-        _$ProviderDependencyDtoImpl>
-    implements _$$ProviderDependencyDtoImplCopyWith<$Res> {
-  __$$ProviderDependencyDtoImplCopyWithImpl(_$ProviderDependencyDtoImpl _value,
-      $Res Function(_$ProviderDependencyDtoImpl) _then)
-      : super(_value, _then);
-
-  /// Create a copy of ProviderDependencyDto
-  /// with the given fields replaced by the non-null parameter values.
-  @pragma('vm:prefer-inline')
-  @override
-  $Res call({
-    Object? name = null,
-    Object? arguments = freezed,
-  }) {
-    return _then(_$ProviderDependencyDtoImpl(
-      name: null == name
-          ? _value.name
-          : name // ignore: cast_nullable_to_non_nullable
-              as String,
-      arguments: freezed == arguments
-          ? _value._arguments
-          : arguments // ignore: cast_nullable_to_non_nullable
-              as Set<String>?,
-    ));
-  }
-}
-
-/// @nodoc
-@JsonSerializable()
-class _$ProviderDependencyDtoImpl implements _ProviderDependencyDto {
-  const _$ProviderDependencyDtoImpl(
-      {required this.name, final Set<String>? arguments})
-      : _arguments = arguments;
-
-  factory _$ProviderDependencyDtoImpl.fromJson(Map<String, dynamic> json) =>
-      _$$ProviderDependencyDtoImplFromJson(json);
-
-  @override
-  final String name;
-  final Set<String>? _arguments;
-  @override
-  Set<String>? get arguments {
-    final value = _arguments;
-    if (value == null) return null;
-    if (_arguments is EqualUnmodifiableSetView) return _arguments;
-    // ignore: implicit_dynamic_type
-    return EqualUnmodifiableSetView(value);
-  }
-
-  @override
-  String toString() {
-    return 'ProviderDependencyDto(name: $name, arguments: $arguments)';
-  }
-
-  @override
-  bool operator ==(Object other) {
-    return identical(this, other) ||
-        (other.runtimeType == runtimeType &&
-            other is _$ProviderDependencyDtoImpl &&
-            (identical(other.name, name) || other.name == name) &&
-            const DeepCollectionEquality()
-                .equals(other._arguments, _arguments));
-  }
-
-  @JsonKey(includeFromJson: false, includeToJson: false)
-  @override
-  int get hashCode => Object.hash(
-      runtimeType, name, const DeepCollectionEquality().hash(_arguments));
-
-  /// Create a copy of ProviderDependencyDto
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
-  @override
-  @pragma('vm:prefer-inline')
-  _$$ProviderDependencyDtoImplCopyWith<_$ProviderDependencyDtoImpl>
-      get copyWith => __$$ProviderDependencyDtoImplCopyWithImpl<
-          _$ProviderDependencyDtoImpl>(this, _$identity);
-
-  @override
-  Map<String, dynamic> toJson() {
-    return _$$ProviderDependencyDtoImplToJson(
-      this,
-    );
-  }
-}
-
-abstract class _ProviderDependencyDto implements ProviderDependencyDto {
-  const factory _ProviderDependencyDto(
-      {required final String name,
-      final Set<String>? arguments}) = _$ProviderDependencyDtoImpl;
-
-  factory _ProviderDependencyDto.fromJson(Map<String, dynamic> json) =
-      _$ProviderDependencyDtoImpl.fromJson;
-
-  @override
-  String get name;
-  @override
-  Set<String>? get arguments;
-
-  /// Create a copy of ProviderDependencyDto
-  /// with the given fields replaced by the non-null parameter values.
-  @override
-  @JsonKey(includeFromJson: false, includeToJson: false)
-  _$$ProviderDependencyDtoImplCopyWith<_$ProviderDependencyDtoImpl>
       get copyWith => throw _privateConstructorUsedError;
 }

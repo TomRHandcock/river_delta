@@ -1,5 +1,6 @@
 import 'package:collection/collection.dart';
 import 'package:river_delta/src/engine/providers/extension_receiver.dart';
+import 'package:river_delta/src/engine/providers/models.dart';
 import 'package:river_delta/src/engine/utils/utils.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 import 'package:vm_service/vm_service.dart';
@@ -10,7 +11,7 @@ part 'providers_provider.g.dart';
 
 @riverpod
 class ProvidersProvider extends _$ProvidersProvider {
-  List<ProviderDto> _providers = List.empty();
+  List<ProviderModel> _providers = List.empty();
   final _listEquality = const SetEquality();
 
   Future<Set<String>?> _extractFamilyArguments(
@@ -42,7 +43,7 @@ class ProvidersProvider extends _$ProvidersProvider {
   }
 
   @override
-  Future<List<ProviderDto>> build() async {
+  Future<List<ProviderModel>> build() async {
     final vmService = await ref.watch(vmServiceProvider.future);
     final subscription = vmService.onExtensionEvent.listen((event) async {
       try {
@@ -56,17 +57,20 @@ class ProvidersProvider extends _$ProvidersProvider {
                 (it) => _extractFamilyArguments(
                         vmService, provider.isolateId, it.objectId)
                     .then(
-                  (arguments) => ProviderDependencyDto(
-                      name: it.name, arguments: arguments),
+                  (arguments) => ProviderDependencyModel(
+                    name: it.name,
+                    arguments: arguments ?? {},
+                  ),
                 ),
               ),
             );
             _providers = _providers +
                 [
-                  provider.copyWith(
-                    arguments: arguments,
-                    resolvedDependencies: resolvedDependencies.toSet(),
-                  )
+                  ProviderModel(
+                    name: provider.name,
+                    arguments: arguments ?? {},
+                    dependencies: resolvedDependencies.toSet(),
+                  ),
                 ];
             _emit(_providers);
           case "ext.river_delta.update":
@@ -78,19 +82,20 @@ class ProvidersProvider extends _$ProvidersProvider {
                 (it) => _extractFamilyArguments(
                         vmService, provider.isolateId, it.objectId)
                     .then(
-                  (arguments) => ProviderDependencyDto(
-                      name: it.name, arguments: arguments),
+                  (arguments) => ProviderDependencyModel(
+                      name: it.name, arguments: arguments ?? {}),
                 ),
               ),
             );
-            final providerWithArgs = provider.copyWith(
-              arguments: arguments,
-              resolvedDependencies: resolvedDependencies.toSet(),
+            final providerWithArgs = ProviderModel(
+              name: provider.name,
+              arguments: arguments ?? {},
+              dependencies: resolvedDependencies.toSet(),
             );
             _providers = _providers.whereNot((it) {
                   return it.name == providerWithArgs.name &&
-                      _listEquality.equals(it.arguments?.toSet(),
-                          providerWithArgs.arguments?.toSet());
+                      _listEquality.equals(it.arguments.toSet(),
+                          providerWithArgs.arguments.toSet());
                 }).toList() +
                 [providerWithArgs];
             _emit(_providers);
@@ -98,12 +103,15 @@ class ProvidersProvider extends _$ProvidersProvider {
             final provider = ProviderDto.fromJson(event.extensionData!.data);
             final arguments = await _extractFamilyArguments(
                 vmService, provider.isolateId, provider.objectId);
-            final providerWithArgs = provider.copyWith(arguments: arguments);
+            final providerWithArgs = ProviderModel(
+              name: provider.name,
+              arguments: arguments ?? {},
+            );
             _providers = _providers.whereNot((it) {
-                  return it.name == providerWithArgs.name &&
-                      _listEquality.equals(it.arguments?.toSet(),
-                          providerWithArgs.arguments?.toSet());
-                }).toList();
+              return it.name == providerWithArgs.name &&
+                  _listEquality.equals(
+                      it.arguments.toSet(), providerWithArgs.arguments.toSet());
+            }).toList();
             _emit(_providers);
         }
       } catch (e) {
@@ -116,7 +124,7 @@ class ProvidersProvider extends _$ProvidersProvider {
     return _providers;
   }
 
-  void _emit(List<ProviderDto> providers) {
+  void _emit(List<ProviderModel> providers) {
     state = AsyncData(_providers);
     ref.notifyListeners();
   }
