@@ -1,5 +1,7 @@
+import 'package:collection/collection.dart';
 import 'package:river_delta/src/engine/providers/models.dart';
 import 'package:river_delta/src/engine/providers/providers_provider.dart';
+import 'package:river_delta/src/engine/utils/utils.dart';
 import 'package:river_delta/src/ui/graph/viewmodel/graph_state.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 import 'dart:math' as math;
@@ -7,10 +9,13 @@ import 'dart:math' as math;
 part 'graph_viewmodel.g.dart';
 
 extension on Set<DeltaProvider> {
-  DeltaProvider getProvider(DeltaProviderDependency dependency) =>
-      firstWhere((provider) =>
-          provider.name == dependency.name &&
-          provider.argument == provider.argument);
+  DeltaProvider? getProvider(DeltaProviderDependency dependency) =>
+      firstWhereOrNull((provider) {
+        const listEquality = SetEquality();
+        return provider.name == dependency.name &&
+            listEquality.equals(
+                provider.arguments?.toSet(), dependency.arguments?.toSet());
+      });
 }
 
 @riverpod
@@ -22,12 +27,12 @@ class GraphViewmodel extends _$GraphViewmodel {
       final dependencies = dto.dependencies
           .map((dependency) => DeltaProviderDependency(
                 name: dependency.name,
-                argument: dependency.argument,
+                arguments: dependency.arguments ?? {},
               ))
           .toList();
       return DeltaProvider(
         name: dto.name,
-        argument: dto.argument,
+        arguments: dto.arguments ?? {},
         dependencies: dependencies,
       );
     }).toSet();
@@ -35,10 +40,12 @@ class GraphViewmodel extends _$GraphViewmodel {
       <GraphEdge>[],
       (acc, cur) =>
           cur.dependencies
-              .map((dependency) => GraphEdge(
-                    from: cur,
-                    to: providers.getProvider(dependency),
-                  ))
+              .map((dependency) =>
+                  providers.getProvider(dependency)?.let((it) => GraphEdge(
+                        from: cur,
+                        to: it,
+                      )))
+              .whereNotNull()
               .toList() +
           acc,
     ).toSet();

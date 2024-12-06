@@ -1,3 +1,4 @@
+import 'package:collection/collection.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:river_delta/src/engine/providers/models.dart';
 
@@ -37,11 +38,27 @@ class GraphEdge with _$GraphEdge {
     required DeltaProvider to,
   }) = _GraphEdge;
 
-  DeltaProvider getDependency(Set<DeltaProvider> providers) =>
-      providers.firstWhere((provider) =>
-          provider.name == from.name && provider.argument == from.argument);
+  DeltaProvider getDependency(Set<DeltaProvider> providers) {
+    const setEquality = SetEquality();
+    return providers.firstWhere(
+      (provider) =>
+          provider.name == from.name &&
+          setEquality.equals(
+            provider.arguments?.toSet(),
+            from.arguments?.toSet(),
+          ),
+    );
+  }
 
-  DeltaProvider getDependent(Set<DeltaProvider> providers) =>
-      providers.firstWhere((provider) =>
-          provider.name == to.name && provider.argument == to.argument);
+  DeltaProvider getDependent(Set<DeltaProvider> providers) {
+    const setEquality = SetEquality();
+    return providers.firstWhere(
+      (provider) =>
+          provider.name == to.name &&
+          setEquality.equals(
+            provider.arguments?.toSet(),
+            to.arguments?.toSet(),
+          ),
+    );
+  }
 }

@@ -38,15 +38,24 @@ class DeltaContent extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return switch (state) {
-      AsyncValue(:final valueOrNull?) => InteractiveViewer(
-          constrained: false,
-          boundaryMargin: const EdgeInsets.all(32),
-          minScale: 0.1,
-          child: CustomGraphWidget(
-            graph: valueOrNull,
-            backgroundColor: Theme.of(context).scaffoldBackgroundColor,
+      AsyncValue(:final valueOrNull?) => Column(
+        crossAxisAlignment: CrossAxisAlignment.stretch,
+        mainAxisSize: MainAxisSize.max,
+        children: [
+          Expanded(
+            child: InteractiveViewer(
+                constrained: false,
+                boundaryMargin: const EdgeInsets.all(32),
+                minScale: 0.1,
+                child: CustomGraphWidget(
+                  graph: valueOrNull,
+                  backgroundColor: Theme.of(context).scaffoldBackgroundColor,
+                ),
+              ),
           ),
-        ),
+          Text("Number of known providers: ${valueOrNull.nodes.length}"),
+        ],
+      ),
       AsyncError(:final error) => Center(
           child: Text("An error occurred, error:\n$error"),
         ),

@@ -1,5 +1,5 @@
+import 'package:collection/collection.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
-import 'package:river_delta/src/engine/utils/utils.dart';
 
 part 'models.freezed.dart';
 
@@ -9,25 +9,30 @@ class DeltaProvider with _$DeltaProvider {
 
   const factory DeltaProvider({
     required String name,
-    Object? argument,
+    @Default({}) Set<String> arguments,
     @Default([]) List<DeltaProviderDependency> dependencies,
   }) = _DeltaProvider;
 
   bool get isRoot => dependencies.isEmpty;
 
-  static DeltaProvider _getDeltaProvider(
+  static DeltaProvider? _getDeltaProvider(
     Set<DeltaProvider> allProviders,
     String name,
-    Object? argument,
-  ) =>
-      allProviders.firstWhere(
-        (provider) => provider.name == name && provider.argument == argument,
-      );
+    Set<String> arguments,
+  ) {
+    const setEquality = SetEquality();
+    return allProviders.firstWhereOrNull(
+      (provider) =>
+          provider.name == name &&
+          setEquality.equals(provider.arguments.toSet(), arguments?.toSet()),
+    );
+  }
 
-  int distanceToRoot(
-      {required Set<DeltaProvider> allProviders,
-      bool longestPath = false,
-      int recursionDepth = 0}) {
+  int distanceToRoot({
+    required Set<DeltaProvider> allProviders,
+    bool longestPath = false,
+    int recursionDepth = 0,
+  }) {
     if (isRoot) {
       return 0;
     }
@@ -35,17 +40,24 @@ class DeltaProvider with _$DeltaProvider {
       return 10;
     }
     try {
-      final dependencyDistances = dependencies
+      final dependencyProviders = dependencies.toSet()
           .map(
             (provider) => _getDeltaProvider(
-                allProviders, provider.name, provider.argument),
-          )
+          allProviders,
+          provider.name,
+          provider.arguments.toSet(),
+        ),
+      ).toList();
+      final dependencyDistances = dependencyProviders
           .map(
-            (dependency) => dependency.distanceToRoot(
+            (dependency) => dependency?.distanceToRoot(
                 allProviders: allProviders,
                 longestPath: longestPath,
                 recursionDepth: recursionDepth + 1),
-          );
+          ).whereNotNull().toList();
+      if(dependencyDistances.isEmpty) {
+        return 0;
+      }
       if (longestPath) {
         return dependencyDistances.max + 1;
       } else {
@@ -59,13 +71,13 @@ class DeltaProvider with _$DeltaProvider {
   bool isLeaf(Set<DeltaProvider> allProviders) => allProviders.fold(
         <DeltaProviderDependency>[],
         (acc, provider) => provider.dependencies + acc,
-      ).contains(DeltaProviderDependency(name: name, argument: argument));
+      ).contains(DeltaProviderDependency(name: name, arguments: arguments));
 }
 
 @freezed
 class DeltaProviderDependency with _$DeltaProviderDependency {
   const factory DeltaProviderDependency({
     required String name,
-    Object? argument,
+    @Default({}) Set<String> arguments,
   }) = _DeltaProviderDependency;
 }

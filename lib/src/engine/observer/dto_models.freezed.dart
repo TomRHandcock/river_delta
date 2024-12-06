@@ -180,7 +180,9 @@ ProviderDto _$ProviderDtoFromJson(Map<String, dynamic> json) {
 /// @nodoc
 mixin _$ProviderDto {
   String get name => throw _privateConstructorUsedError;
-  dynamic get argument => throw _privateConstructorUsedError;
+  String get objectId => throw _privateConstructorUsedError;
+  String get isolateId => throw _privateConstructorUsedError;
+  Set<String>? get arguments => throw _privateConstructorUsedError;
   List<ProviderDependencyDto> get dependencies =>
       throw _privateConstructorUsedError;
 
@@ -202,7 +204,9 @@ abstract class $ProviderDtoCopyWith<$Res> {
   @useResult
   $Res call(
       {String name,
-      dynamic argument,
+      String objectId,
+      String isolateId,
+      Set<String>? arguments,
       List<ProviderDependencyDto> dependencies});
 }
 
@@ -222,7 +226,9 @@ class _$ProviderDtoCopyWithImpl<$Res, $Val extends ProviderDto>
   @override
   $Res call({
     Object? name = null,
-    Object? argument = freezed,
+    Object? objectId = null,
+    Object? isolateId = null,
+    Object? arguments = freezed,
     Object? dependencies = null,
   }) {
     return _then(_value.copyWith(
@@ -230,10 +236,18 @@ class _$ProviderDtoCopyWithImpl<$Res, $Val extends ProviderDto>
           ? _value.name
           : name // ignore: cast_nullable_to_non_nullable
               as String,
-      argument: freezed == argument
-          ? _value.argument
-          : argument // ignore: cast_nullable_to_non_nullable
-              as dynamic,
+      objectId: null == objectId
+          ? _value.objectId
+          : objectId // ignore: cast_nullable_to_non_nullable
+              as String,
+      isolateId: null == isolateId
+          ? _value.isolateId
+          : isolateId // ignore: cast_nullable_to_non_nullable
+              as String,
+      arguments: freezed == arguments
+          ? _value.arguments
+          : arguments // ignore: cast_nullable_to_non_nullable
+              as Set<String>?,
       dependencies: null == dependencies
           ? _value.dependencies
           : dependencies // ignore: cast_nullable_to_non_nullable
@@ -252,7 +266,9 @@ abstract class _$$ProviderDtoImplCopyWith<$Res>
   @useResult
   $Res call(
       {String name,
-      dynamic argument,
+      String objectId,
+      String isolateId,
+      Set<String>? arguments,
       List<ProviderDependencyDto> dependencies});
 }
 
@@ -270,7 +286,9 @@ class __$$ProviderDtoImplCopyWithImpl<$Res>
   @override
   $Res call({
     Object? name = null,
-    Object? argument = freezed,
+    Object? objectId = null,
+    Object? isolateId = null,
+    Object? arguments = freezed,
     Object? dependencies = null,
   }) {
     return _then(_$ProviderDtoImpl(
@@ -278,10 +296,18 @@ class __$$ProviderDtoImplCopyWithImpl<$Res>
           ? _value.name
           : name // ignore: cast_nullable_to_non_nullable
               as String,
-      argument: freezed == argument
-          ? _value.argument
-          : argument // ignore: cast_nullable_to_non_nullable
-              as dynamic,
+      objectId: null == objectId
+          ? _value.objectId
+          : objectId // ignore: cast_nullable_to_non_nullable
+              as String,
+      isolateId: null == isolateId
+          ? _value.isolateId
+          : isolateId // ignore: cast_nullable_to_non_nullable
+              as String,
+      arguments: freezed == arguments
+          ? _value._arguments
+          : arguments // ignore: cast_nullable_to_non_nullable
+              as Set<String>?,
       dependencies: null == dependencies
           ? _value._dependencies
           : dependencies // ignore: cast_nullable_to_non_nullable
@@ -295,9 +321,12 @@ class __$$ProviderDtoImplCopyWithImpl<$Res>
 class _$ProviderDtoImpl implements _ProviderDto {
   const _$ProviderDtoImpl(
       {required this.name,
-      this.argument,
+      required this.objectId,
+      required this.isolateId,
+      final Set<String>? arguments,
       final List<ProviderDependencyDto> dependencies = const []})
-      : _dependencies = dependencies;
+      : _arguments = arguments,
+        _dependencies = dependencies;
 
   factory _$ProviderDtoImpl.fromJson(Map<String, dynamic> json) =>
       _$$ProviderDtoImplFromJson(json);
@@ -305,7 +334,19 @@ class _$ProviderDtoImpl implements _ProviderDto {
   @override
   final String name;
   @override
-  final dynamic argument;
+  final String objectId;
+  @override
+  final String isolateId;
+  final Set<String>? _arguments;
+  @override
+  Set<String>? get arguments {
+    final value = _arguments;
+    if (value == null) return null;
+    if (_arguments is EqualUnmodifiableSetView) return _arguments;
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableSetView(value);
+  }
+
   final List<ProviderDependencyDto> _dependencies;
   @override
   @JsonKey()
@@ -317,7 +358,7 @@ class _$ProviderDtoImpl implements _ProviderDto {
 
   @override
   String toString() {
-    return 'ProviderDto(name: $name, argument: $argument, dependencies: $dependencies)';
+    return 'ProviderDto(name: $name, objectId: $objectId, isolateId: $isolateId, arguments: $arguments, dependencies: $dependencies)';
   }
 
   @override
@@ -326,7 +367,12 @@ class _$ProviderDtoImpl implements _ProviderDto {
         (other.runtimeType == runtimeType &&
             other is _$ProviderDtoImpl &&
             (identical(other.name, name) || other.name == name) &&
-            const DeepCollectionEquality().equals(other.argument, argument) &&
+            (identical(other.objectId, objectId) ||
+                other.objectId == objectId) &&
+            (identical(other.isolateId, isolateId) ||
+                other.isolateId == isolateId) &&
+            const DeepCollectionEquality()
+                .equals(other._arguments, _arguments) &&
             const DeepCollectionEquality()
                 .equals(other._dependencies, _dependencies));
   }
@@ -336,7 +382,9 @@ class _$ProviderDtoImpl implements _ProviderDto {
   int get hashCode => Object.hash(
       runtimeType,
       name,
-      const DeepCollectionEquality().hash(argument),
+      objectId,
+      isolateId,
+      const DeepCollectionEquality().hash(_arguments),
       const DeepCollectionEquality().hash(_dependencies));
 
   /// Create a copy of ProviderDto
@@ -358,7 +406,9 @@ class _$ProviderDtoImpl implements _ProviderDto {
 abstract class _ProviderDto implements ProviderDto {
   const factory _ProviderDto(
       {required final String name,
-      final dynamic argument,
+      required final String objectId,
+      required final String isolateId,
+      final Set<String>? arguments,
       final List<ProviderDependencyDto> dependencies}) = _$ProviderDtoImpl;
 
   factory _ProviderDto.fromJson(Map<String, dynamic> json) =
@@ -367,7 +417,11 @@ abstract class _ProviderDto implements ProviderDto {
   @override
   String get name;
   @override
-  dynamic get argument;
+  String get objectId;
+  @override
+  String get isolateId;
+  @override
+  Set<String>? get arguments;
   @override
   List<ProviderDependencyDto> get dependencies;
 
@@ -387,7 +441,7 @@ ProviderDependencyDto _$ProviderDependencyDtoFromJson(
 /// @nodoc
 mixin _$ProviderDependencyDto {
   String get name => throw _privateConstructorUsedError;
-  dynamic get argument => throw _privateConstructorUsedError;
+  Set<String>? get arguments => throw _privateConstructorUsedError;
 
   /// Serializes this ProviderDependencyDto to a JSON map.
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
@@ -405,7 +459,7 @@ abstract class $ProviderDependencyDtoCopyWith<$Res> {
           $Res Function(ProviderDependencyDto) then) =
       _$ProviderDependencyDtoCopyWithImpl<$Res, ProviderDependencyDto>;
   @useResult
-  $Res call({String name, dynamic argument});
+  $Res call({String name, Set<String>? arguments});
 }
 
 /// @nodoc
@@ -425,17 +479,17 @@ class _$ProviderDependencyDtoCopyWithImpl<$Res,
   @override
   $Res call({
     Object? name = null,
-    Object? argument = freezed,
+    Object? arguments = freezed,
   }) {
     return _then(_value.copyWith(
       name: null == name
           ? _value.name
           : name // ignore: cast_nullable_to_non_nullable
               as String,
-      argument: freezed == argument
-          ? _value.argument
-          : argument // ignore: cast_nullable_to_non_nullable
-              as dynamic,
+      arguments: freezed == arguments
+          ? _value.arguments
+          : arguments // ignore: cast_nullable_to_non_nullable
+              as Set<String>?,
     ) as $Val);
   }
 }
@@ -449,7 +503,7 @@ abstract class _$$ProviderDependencyDtoImplCopyWith<$Res>
       __$$ProviderDependencyDtoImplCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({String name, dynamic argument});
+  $Res call({String name, Set<String>? arguments});
 }
 
 /// @nodoc
@@ -467,17 +521,17 @@ class __$$ProviderDependencyDtoImplCopyWithImpl<$Res>
   @override
   $Res call({
     Object? name = null,
-    Object? argument = freezed,
+    Object? arguments = freezed,
   }) {
     return _then(_$ProviderDependencyDtoImpl(
       name: null == name
           ? _value.name
           : name // ignore: cast_nullable_to_non_nullable
               as String,
-      argument: freezed == argument
-          ? _value.argument
-          : argument // ignore: cast_nullable_to_non_nullable
-              as dynamic,
+      arguments: freezed == arguments
+          ? _value._arguments
+          : arguments // ignore: cast_nullable_to_non_nullable
+              as Set<String>?,
     ));
   }
 }
@@ -485,19 +539,28 @@ class __$$ProviderDependencyDtoImplCopyWithImpl<$Res>
 /// @nodoc
 @JsonSerializable()
 class _$ProviderDependencyDtoImpl implements _ProviderDependencyDto {
-  const _$ProviderDependencyDtoImpl({required this.name, this.argument});
+  const _$ProviderDependencyDtoImpl(
+      {required this.name, final Set<String>? arguments})
+      : _arguments = arguments;
 
   factory _$ProviderDependencyDtoImpl.fromJson(Map<String, dynamic> json) =>
       _$$ProviderDependencyDtoImplFromJson(json);
 
   @override
   final String name;
+  final Set<String>? _arguments;
   @override
-  final dynamic argument;
+  Set<String>? get arguments {
+    final value = _arguments;
+    if (value == null) return null;
+    if (_arguments is EqualUnmodifiableSetView) return _arguments;
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableSetView(value);
+  }
 
   @override
   String toString() {
-    return 'ProviderDependencyDto(name: $name, argument: $argument)';
+    return 'ProviderDependencyDto(name: $name, arguments: $arguments)';
   }
 
   @override
@@ -506,13 +569,14 @@ class _$ProviderDependencyDtoImpl implements _ProviderDependencyDto {
         (other.runtimeType == runtimeType &&
             other is _$ProviderDependencyDtoImpl &&
             (identical(other.name, name) || other.name == name) &&
-            const DeepCollectionEquality().equals(other.argument, argument));
+            const DeepCollectionEquality()
+                .equals(other._arguments, _arguments));
   }
 
   @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   int get hashCode => Object.hash(
-      runtimeType, name, const DeepCollectionEquality().hash(argument));
+      runtimeType, name, const DeepCollectionEquality().hash(_arguments));
 
   /// Create a copy of ProviderDependencyDto
   /// with the given fields replaced by the non-null parameter values.
@@ -534,7 +598,7 @@ class _$ProviderDependencyDtoImpl implements _ProviderDependencyDto {
 abstract class _ProviderDependencyDto implements ProviderDependencyDto {
   const factory _ProviderDependencyDto(
       {required final String name,
-      final dynamic argument}) = _$ProviderDependencyDtoImpl;
+      final Set<String>? arguments}) = _$ProviderDependencyDtoImpl;
 
   factory _ProviderDependencyDto.fromJson(Map<String, dynamic> json) =
       _$ProviderDependencyDtoImpl.fromJson;
@@ -542,7 +606,7 @@ abstract class _ProviderDependencyDto implements ProviderDependencyDto {
   @override
   String get name;
   @override
-  dynamic get argument;
+  Set<String>? get arguments;
 
   /// Create a copy of ProviderDependencyDto
   /// with the given fields replaced by the non-null parameter values.

@@ -18,7 +18,9 @@ class ProviderListDto with _$ProviderListDto {
 class ProviderDto with _$ProviderDto {
   const factory ProviderDto({
     required String name,
-    dynamic argument,
+    required String objectId,
+    required String isolateId,
+    Set<String>? arguments,
     @Default([]) List<ProviderDependencyDto> dependencies,
   }) = _ProviderDto;
 
@@ -30,7 +32,7 @@ class ProviderDto with _$ProviderDto {
 class ProviderDependencyDto with _$ProviderDependencyDto {
   const factory ProviderDependencyDto({
     required String name,
-    dynamic argument,
+    Set<String>? arguments,
   }) = _ProviderDependencyDto;
 
   factory ProviderDependencyDto.fromJson(Map<String, dynamic> json) =>

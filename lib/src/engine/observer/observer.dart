@@ -1,4 +1,5 @@
 import 'dart:developer';
+import 'dart:isolate';
 
 import 'package:collection/collection.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
@@ -35,7 +36,6 @@ class DeltaObserver extends ProviderObserver {
     });
     return dependencies.map((dependency) => ProviderDependencyDto(
           name: dependency.provider.name ?? "Unknown dependency",
-          argument: dependency.provider.argument,
         ));
   }
 
@@ -47,7 +47,8 @@ class DeltaObserver extends ProviderObserver {
       "ext.river_delta.add",
       ProviderDto(
         name: provider.name ?? "Unknown provider",
-        argument: provider.argument,
+        objectId: Service.getObjectId(provider)!,
+        isolateId: Service.getIsolateId(Isolate.current)!,
         dependencies: dependencies.toList(),
       ).toJson(),
     );
@@ -66,7 +67,8 @@ class DeltaObserver extends ProviderObserver {
       "ext.river_delta.update",
       ProviderDto(
         name: provider.name ?? "Unknown provider",
-        argument: provider.argument,
+        objectId: Service.getObjectId(provider)!,
+        isolateId: Service.getIsolateId(Isolate.current)!,
         dependencies: dependencies.toList(),
       ).toJson(),
     );
@@ -83,7 +85,8 @@ class DeltaObserver extends ProviderObserver {
       "ext.river_delta.dispose",
       ProviderDto(
         name: provider.name ?? "Unknown provider",
-        argument: provider.argument,
+        objectId: Service.getObjectId(provider)!,
+        isolateId: Service.getIsolateId(Isolate.current)!,
         dependencies: dependencies.toList(),
       ).toJson(),
     );

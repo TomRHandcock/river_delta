@@ -14,7 +14,9 @@ class CustomGraphWidget extends MultiChildRenderObjectWidget {
 
   @override
   List<Widget> get children => graph.nodes
-      .map((node) => CustomGraphParentDataWidget(
+      .map((node) {
+        final localArgument = node.provider.arguments;
+        return CustomGraphParentDataWidget(
             node: node,
             child: Container(
               decoration: BoxDecoration(
@@ -25,9 +27,19 @@ class CustomGraphWidget extends MultiChildRenderObjectWidget {
                 color: backgroundColor,
               ),
               padding: const EdgeInsets.all(8),
-              child: Text(node.provider.name),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.center,
+                mainAxisSize: MainAxisSize.min,
+                children: [
+                  Text(node.provider.name),
+                  Text("Dependencies: ${node.provider.dependencies}"),
+                  if(localArgument != null)
+                    Text(localArgument.toString())
+                ],
+              ),
             ),
-          ))
+          );
+      })
       .toList();
 
   @override

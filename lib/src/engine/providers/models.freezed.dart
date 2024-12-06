@@ -17,7 +17,7 @@ final _privateConstructorUsedError = UnsupportedError(
 /// @nodoc
 mixin _$DeltaProvider {
   String get name => throw _privateConstructorUsedError;
-  Object? get argument => throw _privateConstructorUsedError;
+  Set<String> get arguments => throw _privateConstructorUsedError;
   List<DeltaProviderDependency> get dependencies =>
       throw _privateConstructorUsedError;
 
@@ -36,7 +36,7 @@ abstract class $DeltaProviderCopyWith<$Res> {
   @useResult
   $Res call(
       {String name,
-      Object? argument,
+      Set<String> arguments,
       List<DeltaProviderDependency> dependencies});
 }
 
@@ -56,7 +56,7 @@ class _$DeltaProviderCopyWithImpl<$Res, $Val extends DeltaProvider>
   @override
   $Res call({
     Object? name = null,
-    Object? argument = freezed,
+    Object? arguments = null,
     Object? dependencies = null,
   }) {
     return _then(_value.copyWith(
@@ -64,7 +64,10 @@ class _$DeltaProviderCopyWithImpl<$Res, $Val extends DeltaProvider>
           ? _value.name
           : name // ignore: cast_nullable_to_non_nullable
               as String,
-      argument: freezed == argument ? _value.argument : argument,
+      arguments: null == arguments
+          ? _value.arguments
+          : arguments // ignore: cast_nullable_to_non_nullable
+              as Set<String>,
       dependencies: null == dependencies
           ? _value.dependencies
           : dependencies // ignore: cast_nullable_to_non_nullable
@@ -83,7 +86,7 @@ abstract class _$$DeltaProviderImplCopyWith<$Res>
   @useResult
   $Res call(
       {String name,
-      Object? argument,
+      Set<String> arguments,
       List<DeltaProviderDependency> dependencies});
 }
 
@@ -101,7 +104,7 @@ class __$$DeltaProviderImplCopyWithImpl<$Res>
   @override
   $Res call({
     Object? name = null,
-    Object? argument = freezed,
+    Object? arguments = null,
     Object? dependencies = null,
   }) {
     return _then(_$DeltaProviderImpl(
@@ -109,7 +112,10 @@ class __$$DeltaProviderImplCopyWithImpl<$Res>
           ? _value.name
           : name // ignore: cast_nullable_to_non_nullable
               as String,
-      argument: freezed == argument ? _value.argument : argument,
+      arguments: null == arguments
+          ? _value._arguments
+          : arguments // ignore: cast_nullable_to_non_nullable
+              as Set<String>,
       dependencies: null == dependencies
           ? _value._dependencies
           : dependencies // ignore: cast_nullable_to_non_nullable
@@ -123,15 +129,23 @@ class __$$DeltaProviderImplCopyWithImpl<$Res>
 class _$DeltaProviderImpl extends _DeltaProvider {
   const _$DeltaProviderImpl(
       {required this.name,
-      this.argument,
+      final Set<String> arguments = const {},
       final List<DeltaProviderDependency> dependencies = const []})
-      : _dependencies = dependencies,
+      : _arguments = arguments,
+        _dependencies = dependencies,
         super._();
 
   @override
   final String name;
+  final Set<String> _arguments;
   @override
-  final Object? argument;
+  @JsonKey()
+  Set<String> get arguments {
+    if (_arguments is EqualUnmodifiableSetView) return _arguments;
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableSetView(_arguments);
+  }
+
   final List<DeltaProviderDependency> _dependencies;
   @override
   @JsonKey()
@@ -143,7 +157,7 @@ class _$DeltaProviderImpl extends _DeltaProvider {
 
   @override
   String toString() {
-    return 'DeltaProvider(name: $name, argument: $argument, dependencies: $dependencies)';
+    return 'DeltaProvider(name: $name, arguments: $arguments, dependencies: $dependencies)';
   }
 
   @override
@@ -152,7 +166,8 @@ class _$DeltaProviderImpl extends _DeltaProvider {
         (other.runtimeType == runtimeType &&
             other is _$DeltaProviderImpl &&
             (identical(other.name, name) || other.name == name) &&
-            const DeepCollectionEquality().equals(other.argument, argument) &&
+            const DeepCollectionEquality()
+                .equals(other._arguments, _arguments) &&
             const DeepCollectionEquality()
                 .equals(other._dependencies, _dependencies));
   }
@@ -161,7 +176,7 @@ class _$DeltaProviderImpl extends _DeltaProvider {
   int get hashCode => Object.hash(
       runtimeType,
       name,
-      const DeepCollectionEquality().hash(argument),
+      const DeepCollectionEquality().hash(_arguments),
       const DeepCollectionEquality().hash(_dependencies));
 
   /// Create a copy of DeltaProvider
@@ -176,14 +191,14 @@ class _$DeltaProviderImpl extends _DeltaProvider {
 abstract class _DeltaProvider extends DeltaProvider {
   const factory _DeltaProvider(
       {required final String name,
-      final Object? argument,
+      final Set<String> arguments,
       final List<DeltaProviderDependency> dependencies}) = _$DeltaProviderImpl;
   const _DeltaProvider._() : super._();
 
   @override
   String get name;
   @override
-  Object? get argument;
+  Set<String> get arguments;
   @override
   List<DeltaProviderDependency> get dependencies;
 
@@ -198,7 +213,7 @@ abstract class _DeltaProvider extends DeltaProvider {
 /// @nodoc
 mixin _$DeltaProviderDependency {
   String get name => throw _privateConstructorUsedError;
-  Object? get argument => throw _privateConstructorUsedError;
+  Set<String> get arguments => throw _privateConstructorUsedError;
 
   /// Create a copy of DeltaProviderDependency
   /// with the given fields replaced by the non-null parameter values.
@@ -213,7 +228,7 @@ abstract class $DeltaProviderDependencyCopyWith<$Res> {
           $Res Function(DeltaProviderDependency) then) =
       _$DeltaProviderDependencyCopyWithImpl<$Res, DeltaProviderDependency>;
   @useResult
-  $Res call({String name, Object? argument});
+  $Res call({String name, Set<String> arguments});
 }
 
 /// @nodoc
@@ -233,14 +248,17 @@ class _$DeltaProviderDependencyCopyWithImpl<$Res,
   @override
   $Res call({
     Object? name = null,
-    Object? argument = freezed,
+    Object? arguments = null,
   }) {
     return _then(_value.copyWith(
       name: null == name
           ? _value.name
           : name // ignore: cast_nullable_to_non_nullable
               as String,
-      argument: freezed == argument ? _value.argument : argument,
+      arguments: null == arguments
+          ? _value.arguments
+          : arguments // ignore: cast_nullable_to_non_nullable
+              as Set<String>,
     ) as $Val);
   }
 }
@@ -254,7 +272,7 @@ abstract class _$$DeltaProviderDependencyImplCopyWith<$Res>
       __$$DeltaProviderDependencyImplCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({String name, Object? argument});
+  $Res call({String name, Set<String> arguments});
 }
 
 /// @nodoc
@@ -273,14 +291,17 @@ class __$$DeltaProviderDependencyImplCopyWithImpl<$Res>
   @override
   $Res call({
     Object? name = null,
-    Object? argument = freezed,
+    Object? arguments = null,
   }) {
     return _then(_$DeltaProviderDependencyImpl(
       name: null == name
           ? _value.name
           : name // ignore: cast_nullable_to_non_nullable
               as String,
-      argument: freezed == argument ? _value.argument : argument,
+      arguments: null == arguments
+          ? _value._arguments
+          : arguments // ignore: cast_nullable_to_non_nullable
+              as Set<String>,
     ));
   }
 }
@@ -288,16 +309,24 @@ class __$$DeltaProviderDependencyImplCopyWithImpl<$Res>
 /// @nodoc
 
 class _$DeltaProviderDependencyImpl implements _DeltaProviderDependency {
-  const _$DeltaProviderDependencyImpl({required this.name, this.argument});
+  const _$DeltaProviderDependencyImpl(
+      {required this.name, final Set<String> arguments = const {}})
+      : _arguments = arguments;
 
   @override
   final String name;
+  final Set<String> _arguments;
   @override
-  final Object? argument;
+  @JsonKey()
+  Set<String> get arguments {
+    if (_arguments is EqualUnmodifiableSetView) return _arguments;
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableSetView(_arguments);
+  }
 
   @override
   String toString() {
-    return 'DeltaProviderDependency(name: $name, argument: $argument)';
+    return 'DeltaProviderDependency(name: $name, arguments: $arguments)';
   }
 
   @override
@@ -306,12 +335,13 @@ class _$DeltaProviderDependencyImpl implements _DeltaProviderDependency {
         (other.runtimeType == runtimeType &&
             other is _$DeltaProviderDependencyImpl &&
             (identical(other.name, name) || other.name == name) &&
-            const DeepCollectionEquality().equals(other.argument, argument));
+            const DeepCollectionEquality()
+                .equals(other._arguments, _arguments));
   }
 
   @override
   int get hashCode => Object.hash(
-      runtimeType, name, const DeepCollectionEquality().hash(argument));
+      runtimeType, name, const DeepCollectionEquality().hash(_arguments));
 
   /// Create a copy of DeltaProviderDependency
   /// with the given fields replaced by the non-null parameter values.
@@ -326,12 +356,12 @@ class _$DeltaProviderDependencyImpl implements _DeltaProviderDependency {
 abstract class _DeltaProviderDependency implements DeltaProviderDependency {
   const factory _DeltaProviderDependency(
       {required final String name,
-      final Object? argument}) = _$DeltaProviderDependencyImpl;
+      final Set<String> arguments}) = _$DeltaProviderDependencyImpl;
 
   @override
   String get name;
   @override
-  Object? get argument;
+  Set<String> get arguments;
 
   /// Create a copy of DeltaProviderDependency
   /// with the given fields replaced by the non-null parameter values.
