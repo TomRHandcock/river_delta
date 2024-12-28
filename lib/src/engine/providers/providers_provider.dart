@@ -1,6 +1,6 @@
 import 'package:collection/collection.dart';
-import 'package:river_delta/src/engine/providers/extension_receiver.dart';
 import 'package:river_delta/src/engine/providers/models.dart';
+import 'package:river_delta/src/engine/providers/vm_service.dart';
 import 'package:river_delta/src/engine/utils/utils.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 import 'package:vm_service/vm_service.dart';

@@ -1,6 +1,5 @@
 import 'package:collection/collection.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
-import 'package:river_delta/src/engine/providers/models.dart';
 
 part 'graph_state.freezed.dart';
 
@@ -18,8 +17,6 @@ class GraphNode with _$GraphNode {
 
   const factory GraphNode({
     required DeltaProvider provider,
-    required double x,
-    required double y,
   }) = _GraphNode;
 
   int distanceToRoot(Set<DeltaProvider> allProviders, {bool longest = false}) =>

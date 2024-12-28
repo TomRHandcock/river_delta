@@ -1,5 +1,3 @@
-import 'dart:math' as math;
-
 import 'package:collection/collection.dart';
 import 'package:river_delta/src/engine/providers/providers_provider.dart';
 import 'package:river_delta/src/engine/utils/utils.dart';
@@ -49,13 +47,9 @@ class GraphViewmodel extends _$GraphViewmodel {
               .toList() +
           acc,
     ).toSet();
-    final random = math.Random();
     final nodes = providers
         .map(
-          (provider) => GraphNode(
-              provider: provider,
-              x: random.nextDouble() * 10,
-              y: random.nextDouble() * 10),
+          (provider) => GraphNode(provider: provider),
         )
         .toSet();
     return GraphState(nodes: nodes, edges: edges);

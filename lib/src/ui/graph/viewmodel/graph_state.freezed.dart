@@ -181,8 +181,6 @@ abstract class _GraphState implements GraphState {
 /// @nodoc
 mixin _$GraphNode {
   DeltaProvider get provider => throw _privateConstructorUsedError;
-  double get x => throw _privateConstructorUsedError;
-  double get y => throw _privateConstructorUsedError;
 
   /// Create a copy of GraphNode
   /// with the given fields replaced by the non-null parameter values.
@@ -196,7 +194,7 @@ abstract class $GraphNodeCopyWith<$Res> {
   factory $GraphNodeCopyWith(GraphNode value, $Res Function(GraphNode) then) =
       _$GraphNodeCopyWithImpl<$Res, GraphNode>;
   @useResult
-  $Res call({DeltaProvider provider, double x, double y});
+  $Res call({DeltaProvider provider});
 
   $DeltaProviderCopyWith<$Res> get provider;
 }
@@ -217,22 +215,12 @@ class _$GraphNodeCopyWithImpl<$Res, $Val extends GraphNode>
   @override
   $Res call({
     Object? provider = null,
-    Object? x = null,
-    Object? y = null,
   }) {
     return _then(_value.copyWith(
       provider: null == provider
           ? _value.provider
           : provider // ignore: cast_nullable_to_non_nullable
               as DeltaProvider,
-      x: null == x
-          ? _value.x
-          : x // ignore: cast_nullable_to_non_nullable
-              as double,
-      y: null == y
-          ? _value.y
-          : y // ignore: cast_nullable_to_non_nullable
-              as double,
     ) as $Val);
   }
 
@@ -255,7 +243,7 @@ abstract class _$$GraphNodeImplCopyWith<$Res>
       __$$GraphNodeImplCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({DeltaProvider provider, double x, double y});
+  $Res call({DeltaProvider provider});
 
   @override
   $DeltaProviderCopyWith<$Res> get provider;
@@ -275,22 +263,12 @@ class __$$GraphNodeImplCopyWithImpl<$Res>
   @override
   $Res call({
     Object? provider = null,
-    Object? x = null,
-    Object? y = null,
   }) {
     return _then(_$GraphNodeImpl(
       provider: null == provider
           ? _value.provider
           : provider // ignore: cast_nullable_to_non_nullable
               as DeltaProvider,
-      x: null == x
-          ? _value.x
-          : x // ignore: cast_nullable_to_non_nullable
-              as double,
-      y: null == y
-          ? _value.y
-          : y // ignore: cast_nullable_to_non_nullable
-              as double,
     ));
   }
 }
@@ -298,20 +276,14 @@ class __$$GraphNodeImplCopyWithImpl<$Res>
 /// @nodoc
 
 class _$GraphNodeImpl extends _GraphNode {
-  const _$GraphNodeImpl(
-      {required this.provider, required this.x, required this.y})
-      : super._();
+  const _$GraphNodeImpl({required this.provider}) : super._();
 
   @override
   final DeltaProvider provider;
-  @override
-  final double x;
-  @override
-  final double y;
 
   @override
   String toString() {
-    return 'GraphNode(provider: $provider, x: $x, y: $y)';
+    return 'GraphNode(provider: $provider)';
   }
 
   @override
@@ -320,13 +292,11 @@ class _$GraphNodeImpl extends _GraphNode {
         (other.runtimeType == runtimeType &&
             other is _$GraphNodeImpl &&
             (identical(other.provider, provider) ||
-                other.provider == provider) &&
-            (identical(other.x, x) || other.x == x) &&
-            (identical(other.y, y) || other.y == y));
+                other.provider == provider));
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, provider, x, y);
+  int get hashCode => Object.hash(runtimeType, provider);
 
   /// Create a copy of GraphNode
   /// with the given fields replaced by the non-null parameter values.
@@ -338,18 +308,12 @@ class _$GraphNodeImpl extends _GraphNode {
 }
 
 abstract class _GraphNode extends GraphNode {
-  const factory _GraphNode(
-      {required final DeltaProvider provider,
-      required final double x,
-      required final double y}) = _$GraphNodeImpl;
+  const factory _GraphNode({required final DeltaProvider provider}) =
+      _$GraphNodeImpl;
   const _GraphNode._() : super._();
 
   @override
   DeltaProvider get provider;
-  @override
-  double get x;
-  @override
-  double get y;
 
   /// Create a copy of GraphNode
   /// with the given fields replaced by the non-null parameter values.
