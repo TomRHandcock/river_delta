@@ -6,6 +6,10 @@ import 'package:vm_service/vm_service_io.dart';
 
 class PlatformVmAccessor implements VmAccessor {
 
+  static void register() {
+    VmAccessor.instance = PlatformVmAccessor();
+  }
+
   @override
   Future<VmService> connectToVm() {
     final serviceUri = Platform.environment["VM_SERVICE_URL"];
