@@ -1,0 +1,1 @@
+Future<void> tick() => Future.delayed(Duration.zero);

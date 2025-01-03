@@ -25,6 +25,6 @@ final _addEvent = Event(
         name: "Provider",
         objectId: "object/0",
         isolateId: "isolate/0",
-      ),
+      ).toJson(),
     ),
 );
