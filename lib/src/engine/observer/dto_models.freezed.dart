@@ -182,6 +182,7 @@ mixin _$ProviderDto {
   String get name => throw _privateConstructorUsedError;
   String get objectId => throw _privateConstructorUsedError;
   String get isolateId => throw _privateConstructorUsedError;
+  @JsonKey(toJson: ProviderDto.dependenciesToJson)
   Set<ProviderSlimDependencyDto> get dependencies =>
       throw _privateConstructorUsedError;
 
@@ -205,6 +206,7 @@ abstract class $ProviderDtoCopyWith<$Res> {
       {String name,
       String objectId,
       String isolateId,
+      @JsonKey(toJson: ProviderDto.dependenciesToJson)
       Set<ProviderSlimDependencyDto> dependencies});
 }
 
@@ -261,6 +263,7 @@ abstract class _$$ProviderDtoImplCopyWith<$Res>
       {String name,
       String objectId,
       String isolateId,
+      @JsonKey(toJson: ProviderDto.dependenciesToJson)
       Set<ProviderSlimDependencyDto> dependencies});
 }
 
@@ -310,6 +313,7 @@ class _$ProviderDtoImpl implements _ProviderDto {
       {required this.name,
       required this.objectId,
       required this.isolateId,
+      @JsonKey(toJson: ProviderDto.dependenciesToJson)
       final Set<ProviderSlimDependencyDto> dependencies = const {}})
       : _dependencies = dependencies;
 
@@ -324,7 +328,7 @@ class _$ProviderDtoImpl implements _ProviderDto {
   final String isolateId;
   final Set<ProviderSlimDependencyDto> _dependencies;
   @override
-  @JsonKey()
+  @JsonKey(toJson: ProviderDto.dependenciesToJson)
   Set<ProviderSlimDependencyDto> get dependencies {
     if (_dependencies is EqualUnmodifiableSetView) return _dependencies;
     // ignore: implicit_dynamic_type
@@ -376,6 +380,7 @@ abstract class _ProviderDto implements ProviderDto {
       {required final String name,
       required final String objectId,
       required final String isolateId,
+      @JsonKey(toJson: ProviderDto.dependenciesToJson)
       final Set<ProviderSlimDependencyDto> dependencies}) = _$ProviderDtoImpl;
 
   factory _ProviderDto.fromJson(Map<String, dynamic> json) =
@@ -388,6 +393,7 @@ abstract class _ProviderDto implements ProviderDto {
   @override
   String get isolateId;
   @override
+  @JsonKey(toJson: ProviderDto.dependenciesToJson)
   Set<ProviderSlimDependencyDto> get dependencies;
 
   /// Create a copy of ProviderDto

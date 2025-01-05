@@ -37,7 +37,7 @@ Map<String, dynamic> _$$ProviderDtoImplToJson(_$ProviderDtoImpl instance) =>
       'name': instance.name,
       'objectId': instance.objectId,
       'isolateId': instance.isolateId,
-      'dependencies': instance.dependencies.toList(),
+      'dependencies': ProviderDto.dependenciesToJson(instance.dependencies),
     };
 
 _$ProviderSlimDependencyDtoImpl _$$ProviderSlimDependencyDtoImplFromJson(

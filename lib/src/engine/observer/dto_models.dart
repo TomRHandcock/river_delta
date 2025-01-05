@@ -20,11 +20,17 @@ class ProviderDto with _$ProviderDto {
     required String name,
     required String objectId,
     required String isolateId,
-    @Default({}) Set<ProviderSlimDependencyDto> dependencies,
+    @Default({})
+    @JsonKey(toJson: ProviderDto.dependenciesToJson)
+    Set<ProviderSlimDependencyDto> dependencies,
   }) = _ProviderDto;
 
   factory ProviderDto.fromJson(Map<String, dynamic> json) =>
       _$ProviderDtoFromJson(json);
+
+  static List<Map<String, dynamic>> dependenciesToJson(
+          Set<ProviderSlimDependencyDto> dependencies) =>
+      dependencies.map((it) => it.toJson()).toList();
 }
 
 @freezed
