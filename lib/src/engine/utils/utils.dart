@@ -9,3 +9,15 @@ extension CollectionUtils<T extends Comparable> on Iterable<T> {
     _ => a,
   });
 }
+
+extension ObjectUtils<T> on T {
+  S? asOrNull<S>() {
+    if(this is S) {
+      return this as S;
+    } else {
+      return null;
+    }
+  }
+
+  S let<S>(S Function(T it) transform) => transform(this);
+}

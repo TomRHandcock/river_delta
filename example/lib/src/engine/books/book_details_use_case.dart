@@ -5,7 +5,7 @@ import 'models.dart';
 
 part 'book_details_use_case.g.dart';
 
-@Riverpod(dependencies: [booksRepository])
+@Riverpod()
 Future<Book> bookDetailsUseCase(BookDetailsUseCaseRef ref, String id) async {
   final books = await ref.watch(booksRepositoryProvider.future);
   final book = books.books.firstWhere((book) => book.id == id);

@@ -15,42 +15,48 @@ final _privateConstructorUsedError = UnsupportedError(
     'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#adding-getters-and-methods-to-our-models');
 
 /// @nodoc
-mixin _$DeltaProvider {
+mixin _$ProviderModel {
   String get name => throw _privateConstructorUsedError;
-  List<String> get dependencies => throw _privateConstructorUsedError;
+  Set<String> get arguments => throw _privateConstructorUsedError;
+  Set<ProviderDependencyModel> get dependencies =>
+      throw _privateConstructorUsedError;
 
-  /// Create a copy of DeltaProvider
+  /// Create a copy of ProviderModel
   /// with the given fields replaced by the non-null parameter values.
   @JsonKey(includeFromJson: false, includeToJson: false)
-  $DeltaProviderCopyWith<DeltaProvider> get copyWith =>
+  $ProviderModelCopyWith<ProviderModel> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-abstract class $DeltaProviderCopyWith<$Res> {
-  factory $DeltaProviderCopyWith(
-          DeltaProvider value, $Res Function(DeltaProvider) then) =
-      _$DeltaProviderCopyWithImpl<$Res, DeltaProvider>;
+abstract class $ProviderModelCopyWith<$Res> {
+  factory $ProviderModelCopyWith(
+          ProviderModel value, $Res Function(ProviderModel) then) =
+      _$ProviderModelCopyWithImpl<$Res, ProviderModel>;
   @useResult
-  $Res call({String name, List<String> dependencies});
+  $Res call(
+      {String name,
+      Set<String> arguments,
+      Set<ProviderDependencyModel> dependencies});
 }
 
 /// @nodoc
-class _$DeltaProviderCopyWithImpl<$Res, $Val extends DeltaProvider>
-    implements $DeltaProviderCopyWith<$Res> {
-  _$DeltaProviderCopyWithImpl(this._value, this._then);
+class _$ProviderModelCopyWithImpl<$Res, $Val extends ProviderModel>
+    implements $ProviderModelCopyWith<$Res> {
+  _$ProviderModelCopyWithImpl(this._value, this._then);
 
   // ignore: unused_field
   final $Val _value;
   // ignore: unused_field
   final $Res Function($Val) _then;
 
-  /// Create a copy of DeltaProvider
+  /// Create a copy of ProviderModel
   /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
     Object? name = null,
+    Object? arguments = null,
     Object? dependencies = null,
   }) {
     return _then(_value.copyWith(
@@ -58,116 +64,307 @@ class _$DeltaProviderCopyWithImpl<$Res, $Val extends DeltaProvider>
           ? _value.name
           : name // ignore: cast_nullable_to_non_nullable
               as String,
+      arguments: null == arguments
+          ? _value.arguments
+          : arguments // ignore: cast_nullable_to_non_nullable
+              as Set<String>,
       dependencies: null == dependencies
           ? _value.dependencies
           : dependencies // ignore: cast_nullable_to_non_nullable
-              as List<String>,
+              as Set<ProviderDependencyModel>,
     ) as $Val);
   }
 }
 
 /// @nodoc
-abstract class _$$DeltaProviderImplCopyWith<$Res>
-    implements $DeltaProviderCopyWith<$Res> {
-  factory _$$DeltaProviderImplCopyWith(
-          _$DeltaProviderImpl value, $Res Function(_$DeltaProviderImpl) then) =
-      __$$DeltaProviderImplCopyWithImpl<$Res>;
+abstract class _$$ProviderModelImplCopyWith<$Res>
+    implements $ProviderModelCopyWith<$Res> {
+  factory _$$ProviderModelImplCopyWith(
+          _$ProviderModelImpl value, $Res Function(_$ProviderModelImpl) then) =
+      __$$ProviderModelImplCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({String name, List<String> dependencies});
+  $Res call(
+      {String name,
+      Set<String> arguments,
+      Set<ProviderDependencyModel> dependencies});
 }
 
 /// @nodoc
-class __$$DeltaProviderImplCopyWithImpl<$Res>
-    extends _$DeltaProviderCopyWithImpl<$Res, _$DeltaProviderImpl>
-    implements _$$DeltaProviderImplCopyWith<$Res> {
-  __$$DeltaProviderImplCopyWithImpl(
-      _$DeltaProviderImpl _value, $Res Function(_$DeltaProviderImpl) _then)
+class __$$ProviderModelImplCopyWithImpl<$Res>
+    extends _$ProviderModelCopyWithImpl<$Res, _$ProviderModelImpl>
+    implements _$$ProviderModelImplCopyWith<$Res> {
+  __$$ProviderModelImplCopyWithImpl(
+      _$ProviderModelImpl _value, $Res Function(_$ProviderModelImpl) _then)
       : super(_value, _then);
 
-  /// Create a copy of DeltaProvider
+  /// Create a copy of ProviderModel
   /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
     Object? name = null,
+    Object? arguments = null,
     Object? dependencies = null,
   }) {
-    return _then(_$DeltaProviderImpl(
+    return _then(_$ProviderModelImpl(
       name: null == name
           ? _value.name
           : name // ignore: cast_nullable_to_non_nullable
               as String,
+      arguments: null == arguments
+          ? _value._arguments
+          : arguments // ignore: cast_nullable_to_non_nullable
+              as Set<String>,
       dependencies: null == dependencies
           ? _value._dependencies
           : dependencies // ignore: cast_nullable_to_non_nullable
-              as List<String>,
+              as Set<ProviderDependencyModel>,
     ));
   }
 }
 
 /// @nodoc
 
-class _$DeltaProviderImpl extends _DeltaProvider {
-  const _$DeltaProviderImpl(
-      {required this.name, final List<String> dependencies = const []})
-      : _dependencies = dependencies,
-        super._();
+class _$ProviderModelImpl implements _ProviderModel {
+  const _$ProviderModelImpl(
+      {required this.name,
+      final Set<String> arguments = const {},
+      final Set<ProviderDependencyModel> dependencies = const {}})
+      : _arguments = arguments,
+        _dependencies = dependencies;
 
   @override
   final String name;
-  final List<String> _dependencies;
+  final Set<String> _arguments;
   @override
   @JsonKey()
-  List<String> get dependencies {
-    if (_dependencies is EqualUnmodifiableListView) return _dependencies;
+  Set<String> get arguments {
+    if (_arguments is EqualUnmodifiableSetView) return _arguments;
     // ignore: implicit_dynamic_type
-    return EqualUnmodifiableListView(_dependencies);
+    return EqualUnmodifiableSetView(_arguments);
+  }
+
+  final Set<ProviderDependencyModel> _dependencies;
+  @override
+  @JsonKey()
+  Set<ProviderDependencyModel> get dependencies {
+    if (_dependencies is EqualUnmodifiableSetView) return _dependencies;
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableSetView(_dependencies);
   }
 
   @override
   String toString() {
-    return 'DeltaProvider(name: $name, dependencies: $dependencies)';
+    return 'ProviderModel(name: $name, arguments: $arguments, dependencies: $dependencies)';
   }
 
   @override
   bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$DeltaProviderImpl &&
+            other is _$ProviderModelImpl &&
             (identical(other.name, name) || other.name == name) &&
+            const DeepCollectionEquality()
+                .equals(other._arguments, _arguments) &&
             const DeepCollectionEquality()
                 .equals(other._dependencies, _dependencies));
   }
 
   @override
   int get hashCode => Object.hash(
-      runtimeType, name, const DeepCollectionEquality().hash(_dependencies));
+      runtimeType,
+      name,
+      const DeepCollectionEquality().hash(_arguments),
+      const DeepCollectionEquality().hash(_dependencies));
 
-  /// Create a copy of DeltaProvider
+  /// Create a copy of ProviderModel
   /// with the given fields replaced by the non-null parameter values.
   @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
-  _$$DeltaProviderImplCopyWith<_$DeltaProviderImpl> get copyWith =>
-      __$$DeltaProviderImplCopyWithImpl<_$DeltaProviderImpl>(this, _$identity);
+  _$$ProviderModelImplCopyWith<_$ProviderModelImpl> get copyWith =>
+      __$$ProviderModelImplCopyWithImpl<_$ProviderModelImpl>(this, _$identity);
 }
 
-abstract class _DeltaProvider extends DeltaProvider {
-  const factory _DeltaProvider(
+abstract class _ProviderModel implements ProviderModel {
+  const factory _ProviderModel(
       {required final String name,
-      final List<String> dependencies}) = _$DeltaProviderImpl;
-  const _DeltaProvider._() : super._();
+      final Set<String> arguments,
+      final Set<ProviderDependencyModel> dependencies}) = _$ProviderModelImpl;
 
   @override
   String get name;
   @override
-  List<String> get dependencies;
+  Set<String> get arguments;
+  @override
+  Set<ProviderDependencyModel> get dependencies;
 
-  /// Create a copy of DeltaProvider
+  /// Create a copy of ProviderModel
   /// with the given fields replaced by the non-null parameter values.
   @override
   @JsonKey(includeFromJson: false, includeToJson: false)
-  _$$DeltaProviderImplCopyWith<_$DeltaProviderImpl> get copyWith =>
+  _$$ProviderModelImplCopyWith<_$ProviderModelImpl> get copyWith =>
       throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+mixin _$ProviderDependencyModel {
+  String get name => throw _privateConstructorUsedError;
+  Set<String> get arguments => throw _privateConstructorUsedError;
+
+  /// Create a copy of ProviderDependencyModel
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  $ProviderDependencyModelCopyWith<ProviderDependencyModel> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class $ProviderDependencyModelCopyWith<$Res> {
+  factory $ProviderDependencyModelCopyWith(ProviderDependencyModel value,
+          $Res Function(ProviderDependencyModel) then) =
+      _$ProviderDependencyModelCopyWithImpl<$Res, ProviderDependencyModel>;
+  @useResult
+  $Res call({String name, Set<String> arguments});
+}
+
+/// @nodoc
+class _$ProviderDependencyModelCopyWithImpl<$Res,
+        $Val extends ProviderDependencyModel>
+    implements $ProviderDependencyModelCopyWith<$Res> {
+  _$ProviderDependencyModelCopyWithImpl(this._value, this._then);
+
+  // ignore: unused_field
+  final $Val _value;
+  // ignore: unused_field
+  final $Res Function($Val) _then;
+
+  /// Create a copy of ProviderDependencyModel
+  /// with the given fields replaced by the non-null parameter values.
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? name = null,
+    Object? arguments = null,
+  }) {
+    return _then(_value.copyWith(
+      name: null == name
+          ? _value.name
+          : name // ignore: cast_nullable_to_non_nullable
+              as String,
+      arguments: null == arguments
+          ? _value.arguments
+          : arguments // ignore: cast_nullable_to_non_nullable
+              as Set<String>,
+    ) as $Val);
+  }
+}
+
+/// @nodoc
+abstract class _$$ProviderDependencyModelImplCopyWith<$Res>
+    implements $ProviderDependencyModelCopyWith<$Res> {
+  factory _$$ProviderDependencyModelImplCopyWith(
+          _$ProviderDependencyModelImpl value,
+          $Res Function(_$ProviderDependencyModelImpl) then) =
+      __$$ProviderDependencyModelImplCopyWithImpl<$Res>;
+  @override
+  @useResult
+  $Res call({String name, Set<String> arguments});
+}
+
+/// @nodoc
+class __$$ProviderDependencyModelImplCopyWithImpl<$Res>
+    extends _$ProviderDependencyModelCopyWithImpl<$Res,
+        _$ProviderDependencyModelImpl>
+    implements _$$ProviderDependencyModelImplCopyWith<$Res> {
+  __$$ProviderDependencyModelImplCopyWithImpl(
+      _$ProviderDependencyModelImpl _value,
+      $Res Function(_$ProviderDependencyModelImpl) _then)
+      : super(_value, _then);
+
+  /// Create a copy of ProviderDependencyModel
+  /// with the given fields replaced by the non-null parameter values.
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? name = null,
+    Object? arguments = null,
+  }) {
+    return _then(_$ProviderDependencyModelImpl(
+      name: null == name
+          ? _value.name
+          : name // ignore: cast_nullable_to_non_nullable
+              as String,
+      arguments: null == arguments
+          ? _value._arguments
+          : arguments // ignore: cast_nullable_to_non_nullable
+              as Set<String>,
+    ));
+  }
+}
+
+/// @nodoc
+
+class _$ProviderDependencyModelImpl implements _ProviderDependencyModel {
+  const _$ProviderDependencyModelImpl(
+      {required this.name, final Set<String> arguments = const {}})
+      : _arguments = arguments;
+
+  @override
+  final String name;
+  final Set<String> _arguments;
+  @override
+  @JsonKey()
+  Set<String> get arguments {
+    if (_arguments is EqualUnmodifiableSetView) return _arguments;
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableSetView(_arguments);
+  }
+
+  @override
+  String toString() {
+    return 'ProviderDependencyModel(name: $name, arguments: $arguments)';
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$ProviderDependencyModelImpl &&
+            (identical(other.name, name) || other.name == name) &&
+            const DeepCollectionEquality()
+                .equals(other._arguments, _arguments));
+  }
+
+  @override
+  int get hashCode => Object.hash(
+      runtimeType, name, const DeepCollectionEquality().hash(_arguments));
+
+  /// Create a copy of ProviderDependencyModel
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$ProviderDependencyModelImplCopyWith<_$ProviderDependencyModelImpl>
+      get copyWith => __$$ProviderDependencyModelImplCopyWithImpl<
+          _$ProviderDependencyModelImpl>(this, _$identity);
+}
+
+abstract class _ProviderDependencyModel implements ProviderDependencyModel {
+  const factory _ProviderDependencyModel(
+      {required final String name,
+      final Set<String> arguments}) = _$ProviderDependencyModelImpl;
+
+  @override
+  String get name;
+  @override
+  Set<String> get arguments;
+
+  /// Create a copy of ProviderDependencyModel
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  _$$ProviderDependencyModelImplCopyWith<_$ProviderDependencyModelImpl>
+      get copyWith => throw _privateConstructorUsedError;
 }

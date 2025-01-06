@@ -1,10 +1,6 @@
-import 'dart:math';
-
 import 'package:collection/collection.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
-import 'package:river_delta/src/engine/providers/models.dart';
-import 'package:river_delta/src/engine/observer/observer.dart';
 import 'package:river_delta/src/ui/graph/viewmodel/graph_state.dart';
 
 class CustomGraphWidgetParentData extends ContainerBoxParentData<RenderBox> {
@@ -92,9 +88,9 @@ class RenderCustomGraphWidget extends RenderBox
       ..style = PaintingStyle.stroke;
     for (final edge in _graph.edges) {
       final startNode =
-          _graph.nodes.firstWhere((it) => it.provider.name == edge.from);
+          _graph.nodes.firstWhere((it) => it.provider.name == edge.from.name);
       final endNode =
-          _graph.nodes.firstWhere((it) => it.provider.name == edge.to);
+          _graph.nodes.firstWhere((it) => it.provider.name == edge.to.name);
       final startOffset = childSizes[startNode]?.center ?? Offset.zero;
       final endOffset = childSizes[endNode]?.center ?? Offset.zero;
       final edgeRect = Rect.fromPoints(startOffset, endOffset);
