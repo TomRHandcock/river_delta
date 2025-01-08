@@ -5,40 +5,48 @@ import 'package:river_delta/src/ui/graph/viewmodel/graph_state.dart';
 class CustomGraphWidget extends MultiChildRenderObjectWidget {
   final GraphState graph;
   final Color backgroundColor;
+  final Function(DeltaProvider provider)? onProviderSelected;
 
   const CustomGraphWidget({
     super.key,
     required this.graph,
     required this.backgroundColor,
+    this.onProviderSelected,
   });
 
   @override
-  List<Widget> get children => graph.nodes
-      .map((node) {
+  List<Widget> get children => graph.nodes.map((node) {
         final localArguments = node.provider.arguments;
         return CustomGraphParentDataWidget(
-            node: node,
-            child: Container(
-              decoration: BoxDecoration(
-                border: Border.all(
-                  color: Colors.greenAccent,
+          node: node,
+          child: Material(
+            child: InkWell(
+              onTap: () {
+                print("Provider tap");
+                onProviderSelected?.call(node.provider);
+              },
+              child: Container(
+                decoration: BoxDecoration(
+                  border: Border.all(
+                    color: Colors.greenAccent,
+                  ),
+                  borderRadius: BorderRadius.circular(8),
+                  color: backgroundColor,
                 ),
-                borderRadius: BorderRadius.circular(8),
-                color: backgroundColor,
-              ),
-              padding: const EdgeInsets.all(8),
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.center,
-                mainAxisSize: MainAxisSize.min,
-                children: [
-                  Text(node.provider.name),
-                  Text(localArguments.toString())
-                ],
+                padding: const EdgeInsets.all(8),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.center,
+                  mainAxisSize: MainAxisSize.min,
+                  children: [
+                    Text(node.provider.name),
+                    Text(localArguments.toString())
+                  ],
+                ),
               ),
             ),
-          );
-      })
-      .toList();
+          ),
+        );
+      }).toList();
 
   @override
   RenderCustomGraphWidget createRenderObject(BuildContext context) =>

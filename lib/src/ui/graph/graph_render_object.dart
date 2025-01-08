@@ -1,6 +1,7 @@
 import 'package:collection/collection.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
+import 'package:river_delta/src/engine/utils/utils.dart';
 import 'package:river_delta/src/ui/graph/viewmodel/graph_state.dart';
 
 class CustomGraphWidgetParentData extends ContainerBoxParentData<RenderBox> {
@@ -15,6 +16,7 @@ class RenderCustomGraphWidget extends RenderBox
         DebugOverflowIndicatorMixin {
   GraphState _graph;
   late List<List<GraphNode>> _layeredTree;
+  Map<GraphNode, Rect> _cachedChildRects = {};
 
   RenderCustomGraphWidget({required GraphState graph}) : _graph = graph {
     _layeredTree = _buildLayeredTree(graph);
@@ -57,6 +59,21 @@ class RenderCustomGraphWidget extends RenderBox
   }
 
   @override
+  bool hitTestSelf(Offset position) => size.contains(position);
+
+  @override
+  bool hitTestChildren(BoxHitTestResult result, {required Offset position}) {
+    RenderBox? child = firstChild;
+    bool hit = false;
+    while (child != null) {
+      final childPosition = child.globalToLocal(position);
+      hit = hit || child.hitTest(result, position: childPosition);
+      child = childAfter(child);
+    }
+    return hit;
+  }
+
+  @override
   void performLayout() {
     RenderBox? child = firstChild;
     while (child != null) {
@@ -68,8 +85,8 @@ class RenderCustomGraphWidget extends RenderBox
 
   @override
   void paint(PaintingContext context, Offset offset) {
+    _cachedChildRects.clear();
     final allProviders = graph.nodes.map((node) => node.provider).toSet();
-    final childSizes = <GraphNode, Rect>{};
     RenderBox? child = firstChild;
     while (child != null) {
       final parentData = child.parentData as CustomGraphWidgetParentData;
@@ -77,7 +94,7 @@ class RenderCustomGraphWidget extends RenderBox
       if (graphNode != null) {
         final offset = _getOffsetForGraphNode(graphNode, allProviders);
         final rect = Rect.fromCenter(center: offset, width: child.size.width, height: child.size.height);
-        childSizes[graphNode] = rect;
+        _cachedChildRects[graphNode] = rect;
       }
       child = childAfter(child);
     }
@@ -91,8 +108,8 @@ class RenderCustomGraphWidget extends RenderBox
           _graph.nodes.firstWhere((it) => it.provider.name == edge.from.name);
       final endNode =
           _graph.nodes.firstWhere((it) => it.provider.name == edge.to.name);
-      final startOffset = childSizes[startNode]?.center ?? Offset.zero;
-      final endOffset = childSizes[endNode]?.center ?? Offset.zero;
+      final startOffset = _cachedChildRects[startNode]?.center ?? Offset.zero;
+      final endOffset = _cachedChildRects[endNode]?.center ?? Offset.zero;
       final edgeRect = Rect.fromPoints(startOffset, endOffset);
       final oneNodeIsTopLeft = startOffset == edgeRect.topLeft || endOffset == edgeRect.topLeft;
       final edgePath = switch(oneNodeIsTopLeft) {
@@ -132,10 +149,24 @@ class RenderCustomGraphWidget extends RenderBox
       final parentData = child.parentData as CustomGraphWidgetParentData;
       final graphNode = parentData.node;
       if (graphNode != null) {
-        final offset = childSizes[graphNode]?.topLeft ?? Offset.zero;
+        final offset = _cachedChildRects[graphNode]?.topLeft ?? Offset.zero;
         child.paint(context, offset);
       }
       child = childAfter(child);
     }
+  }
+
+  @override
+  void applyPaintTransform(covariant RenderObject child, Matrix4 transform) {
+    final node = child.parentData?.asOrNull<CustomGraphWidgetParentData>()?.node;
+    if(node == null) {
+      return;
+    }
+    final rect = _cachedChildRects[node];
+    if(rect == null) {
+      return;
+    }
+    // TODO: This offset accounts for the `boundaryMargin`, remove this hard-coded value!
+    transform.translate(rect.left - 32, rect.top - 32);
   }
 }
