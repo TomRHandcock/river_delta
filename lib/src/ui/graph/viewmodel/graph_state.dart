@@ -8,6 +8,7 @@ class GraphState with _$GraphState {
   const factory GraphState({
     required Set<GraphNode> nodes,
     required Set<GraphEdge> edges,
+    DeltaProvider? selectedProvider,
   }) = _GraphState;
 }
 

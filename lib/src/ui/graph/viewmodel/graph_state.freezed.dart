@@ -18,6 +18,7 @@ final _privateConstructorUsedError = UnsupportedError(
 mixin _$GraphState {
   Set<GraphNode> get nodes => throw _privateConstructorUsedError;
   Set<GraphEdge> get edges => throw _privateConstructorUsedError;
+  DeltaProvider? get selectedProvider => throw _privateConstructorUsedError;
 
   /// Create a copy of GraphState
   /// with the given fields replaced by the non-null parameter values.
@@ -32,7 +33,12 @@ abstract class $GraphStateCopyWith<$Res> {
           GraphState value, $Res Function(GraphState) then) =
       _$GraphStateCopyWithImpl<$Res, GraphState>;
   @useResult
-  $Res call({Set<GraphNode> nodes, Set<GraphEdge> edges});
+  $Res call(
+      {Set<GraphNode> nodes,
+      Set<GraphEdge> edges,
+      DeltaProvider? selectedProvider});
+
+  $DeltaProviderCopyWith<$Res>? get selectedProvider;
 }
 
 /// @nodoc
@@ -52,6 +58,7 @@ class _$GraphStateCopyWithImpl<$Res, $Val extends GraphState>
   $Res call({
     Object? nodes = null,
     Object? edges = null,
+    Object? selectedProvider = freezed,
   }) {
     return _then(_value.copyWith(
       nodes: null == nodes
@@ -62,7 +69,25 @@ class _$GraphStateCopyWithImpl<$Res, $Val extends GraphState>
           ? _value.edges
           : edges // ignore: cast_nullable_to_non_nullable
               as Set<GraphEdge>,
+      selectedProvider: freezed == selectedProvider
+          ? _value.selectedProvider
+          : selectedProvider // ignore: cast_nullable_to_non_nullable
+              as DeltaProvider?,
     ) as $Val);
+  }
+
+  /// Create a copy of GraphState
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @pragma('vm:prefer-inline')
+  $DeltaProviderCopyWith<$Res>? get selectedProvider {
+    if (_value.selectedProvider == null) {
+      return null;
+    }
+
+    return $DeltaProviderCopyWith<$Res>(_value.selectedProvider!, (value) {
+      return _then(_value.copyWith(selectedProvider: value) as $Val);
+    });
   }
 }
 
@@ -74,7 +99,13 @@ abstract class _$$GraphStateImplCopyWith<$Res>
       __$$GraphStateImplCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({Set<GraphNode> nodes, Set<GraphEdge> edges});
+  $Res call(
+      {Set<GraphNode> nodes,
+      Set<GraphEdge> edges,
+      DeltaProvider? selectedProvider});
+
+  @override
+  $DeltaProviderCopyWith<$Res>? get selectedProvider;
 }
 
 /// @nodoc
@@ -92,6 +123,7 @@ class __$$GraphStateImplCopyWithImpl<$Res>
   $Res call({
     Object? nodes = null,
     Object? edges = null,
+    Object? selectedProvider = freezed,
   }) {
     return _then(_$GraphStateImpl(
       nodes: null == nodes
@@ -102,6 +134,10 @@ class __$$GraphStateImplCopyWithImpl<$Res>
           ? _value._edges
           : edges // ignore: cast_nullable_to_non_nullable
               as Set<GraphEdge>,
+      selectedProvider: freezed == selectedProvider
+          ? _value.selectedProvider
+          : selectedProvider // ignore: cast_nullable_to_non_nullable
+              as DeltaProvider?,
     ));
   }
 }
@@ -111,7 +147,8 @@ class __$$GraphStateImplCopyWithImpl<$Res>
 class _$GraphStateImpl implements _GraphState {
   const _$GraphStateImpl(
       {required final Set<GraphNode> nodes,
-      required final Set<GraphEdge> edges})
+      required final Set<GraphEdge> edges,
+      this.selectedProvider})
       : _nodes = nodes,
         _edges = edges;
 
@@ -132,8 +169,11 @@ class _$GraphStateImpl implements _GraphState {
   }
 
   @override
+  final DeltaProvider? selectedProvider;
+
+  @override
   String toString() {
-    return 'GraphState(nodes: $nodes, edges: $edges)';
+    return 'GraphState(nodes: $nodes, edges: $edges, selectedProvider: $selectedProvider)';
   }
 
   @override
@@ -142,14 +182,17 @@ class _$GraphStateImpl implements _GraphState {
         (other.runtimeType == runtimeType &&
             other is _$GraphStateImpl &&
             const DeepCollectionEquality().equals(other._nodes, _nodes) &&
-            const DeepCollectionEquality().equals(other._edges, _edges));
+            const DeepCollectionEquality().equals(other._edges, _edges) &&
+            (identical(other.selectedProvider, selectedProvider) ||
+                other.selectedProvider == selectedProvider));
   }
 
   @override
   int get hashCode => Object.hash(
       runtimeType,
       const DeepCollectionEquality().hash(_nodes),
-      const DeepCollectionEquality().hash(_edges));
+      const DeepCollectionEquality().hash(_edges),
+      selectedProvider);
 
   /// Create a copy of GraphState
   /// with the given fields replaced by the non-null parameter values.
@@ -163,12 +206,15 @@ class _$GraphStateImpl implements _GraphState {
 abstract class _GraphState implements GraphState {
   const factory _GraphState(
       {required final Set<GraphNode> nodes,
-      required final Set<GraphEdge> edges}) = _$GraphStateImpl;
+      required final Set<GraphEdge> edges,
+      final DeltaProvider? selectedProvider}) = _$GraphStateImpl;
 
   @override
   Set<GraphNode> get nodes;
   @override
   Set<GraphEdge> get edges;
+  @override
+  DeltaProvider? get selectedProvider;
 
   /// Create a copy of GraphState
   /// with the given fields replaced by the non-null parameter values.
