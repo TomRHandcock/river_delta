@@ -3,17 +3,17 @@ description: "A new Flutter package project."
 version: 0.0.1
 
 environment:
-  sdk: '>=3.4.3 <4.0.0'
+  sdk: '>=3.6.0 <4.0.0'
   flutter: ">=1.17.0"
 
 dependencies:
   flutter:
     sdk: flutter
-  devtools_extensions: ^0.2.2
+  devtools_extensions: ^0.3.0
   flutter_riverpod: ^2.5.1
   riverpod_annotation: ^2.3.5
   freezed_annotation: ^2.4.4
-  devtools_app_shared: ^0.2.2
+  devtools_app_shared: ^0.3.0
   json_annotation: ^4.9.0
   collection: ^1.18.0
   mockito: ^5.4.4
