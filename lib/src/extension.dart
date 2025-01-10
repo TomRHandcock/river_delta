@@ -2,10 +2,12 @@ import 'package:devtools_app_shared/ui.dart';
 import 'package:devtools_extensions/devtools_extensions.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:river_delta/src/engine/utils/utils.dart';
 import 'package:river_delta/src/ui/graph/custom_graph_widget.dart';
 import 'package:river_delta/src/ui/graph/viewmodel/graph_state.dart';
 import 'package:river_delta/src/ui/graph/viewmodel/graph_viewmodel.dart';
 import 'package:river_delta/src/ui/graph/widgets/provider_details.dart';
+import 'package:devtools_app_shared/ui.dart';
 
 class RiverDeltaExtension extends StatelessWidget {
   const RiverDeltaExtension({super.key});
@@ -51,8 +53,8 @@ class DeltaContent extends StatelessWidget {
       AsyncValue(:final valueOrNull?) => SplitPane(
           axis: Axis.horizontal,
           initialFractions: [
-            0.85,
-            0.15,
+            0.7,
+            0.3,
           ],
           children: [
             Column(
@@ -75,12 +77,9 @@ class DeltaContent extends StatelessWidget {
                 Text("Number of known providers: ${valueOrNull.nodes.length}"),
               ],
             ),
-            if (valueOrNull.selectedProvider != null)
-              ProviderDetails(provider: valueOrNull.selectedProvider!)
-            else
-              Center(
-                child: Text("Select a provider"),
-              )
+            _ProviderDetailsPane(
+              selectedProvider: state.valueOrNull?.selectedProvider,
+            )
           ],
         ),
       AsyncError(:final error) => Center(
@@ -90,5 +89,24 @@ class DeltaContent extends StatelessWidget {
           child: CircularProgressIndicator(),
         )
     };
+  }
+}
+
+class _ProviderDetailsPane extends StatelessWidget {
+  final DeltaProvider? selectedProvider;
+
+  const _ProviderDetailsPane({this.selectedProvider});
+
+  @override
+  Widget build(BuildContext context) {
+    return DevToolsAreaPane(
+      header: BlankHeader(),
+      child: switch (selectedProvider) {
+        null => Center(
+            child: Text("Select a provider"),
+          ),
+        _ => ProviderDetails(provider: selectedProvider!),
+      },
+    );
   }
 }
