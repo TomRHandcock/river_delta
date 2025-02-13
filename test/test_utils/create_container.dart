@@ -1,5 +1,5 @@
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:test/test.dart';
+import 'package:flutter_test/flutter_test.dart';
 
 /// A testing utility which creates a [ProviderContainer] and automatically
 /// disposes it at the end of the test.
