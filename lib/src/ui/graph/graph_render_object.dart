@@ -105,9 +105,9 @@ class RenderCustomGraphWidget extends RenderBox
       ..style = PaintingStyle.stroke;
     for (final edge in _graph.edges) {
       final startNode =
-          _graph.nodes.firstWhere((it) => it.provider.name == edge.from.name);
+          _graph.nodes.firstWhere((it) => it.provider == edge.from);
       final endNode =
-          _graph.nodes.firstWhere((it) => it.provider.name == edge.to.name);
+          _graph.nodes.firstWhere((it) => it.provider == edge.to);
       final startOffset = _cachedChildRects[startNode]?.center ?? Offset.zero;
       final endOffset = _cachedChildRects[endNode]?.center ?? Offset.zero;
       final edgeRect = Rect.fromPoints(startOffset, endOffset);
