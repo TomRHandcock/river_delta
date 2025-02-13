@@ -75,6 +75,7 @@ class DeltaContent extends StatelessWidget {
                   ),
                 ),
                 Text("Number of known providers: ${valueOrNull.nodes.length}"),
+                Text("Number of edges: ${valueOrNull.edges.length}")
               ],
             ),
             _ProviderDetailsPane(
