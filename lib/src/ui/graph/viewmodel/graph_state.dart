@@ -94,8 +94,8 @@ class DeltaProvider with _$DeltaProvider {
     if (isRoot) {
       return 0;
     }
-    if (recursionDepth > 10) {
-      return 10;
+    if (recursionDepth > 50) {
+      return 50;
     }
     try {
       final dependencyProviders = dependencies.toSet()
