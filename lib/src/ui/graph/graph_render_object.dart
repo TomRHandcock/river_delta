@@ -1,4 +1,5 @@
 import 'package:collection/collection.dart';
+import 'package:devtools_app_shared/ui.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 import 'package:river_delta/src/engine/utils/utils.dart';
@@ -14,6 +15,7 @@ class RenderCustomGraphWidget extends RenderBox
     with
         ContainerRenderObjectMixin<RenderBox, CustomGraphWidgetParentData>,
         DebugOverflowIndicatorMixin {
+
   GraphState _graph;
   late List<List<GraphNode>> _layeredTree;
   Map<GraphNode, Rect> _cachedChildRects = {};
@@ -65,9 +67,14 @@ class RenderCustomGraphWidget extends RenderBox
   bool hitTestChildren(BoxHitTestResult result, {required Offset position}) {
     RenderBox? child = firstChild;
     bool hit = false;
+    final globalPosition = position.translate(defaultSpacing, defaultSpacing);
     while (child != null) {
-      final childPosition = child.globalToLocal(position);
-      hit = hit || child.hitTest(result, position: childPosition);
+      final childNode = child.parentData.asOrNull<CustomGraphWidgetParentData>()?.node;
+      if(childNode != null) {
+        final childPosition = _cachedChildRects[childNode]!.topLeft;
+        final positionOnChild = globalPosition.translate(-childPosition.dx, -childPosition.dy);
+        hit = hit || child.hitTest(result, position: positionOnChild);
+      }
       child = childAfter(child);
     }
     return hit;
@@ -150,23 +157,9 @@ class RenderCustomGraphWidget extends RenderBox
       final graphNode = parentData.node;
       if (graphNode != null) {
         final offset = _cachedChildRects[graphNode]?.topLeft ?? Offset.zero;
-        child.paint(context, offset);
+        context.paintChild(child, offset);
       }
       child = childAfter(child);
     }
-  }
-
-  @override
-  void applyPaintTransform(covariant RenderObject child, Matrix4 transform) {
-    final node = child.parentData?.asOrNull<CustomGraphWidgetParentData>()?.node;
-    if(node == null) {
-      return;
-    }
-    final rect = _cachedChildRects[node];
-    if(rect == null) {
-      return;
-    }
-    // TODO: This offset accounts for the `boundaryMargin`, remove this hard-coded value!
-    transform.translate(rect.left - 32, rect.top - 32);
   }
 }

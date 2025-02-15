@@ -2,12 +2,10 @@ import 'package:devtools_app_shared/ui.dart';
 import 'package:devtools_extensions/devtools_extensions.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:river_delta/src/engine/utils/utils.dart';
 import 'package:river_delta/src/ui/graph/custom_graph_widget.dart';
 import 'package:river_delta/src/ui/graph/viewmodel/graph_state.dart';
 import 'package:river_delta/src/ui/graph/viewmodel/graph_viewmodel.dart';
 import 'package:river_delta/src/ui/graph/widgets/provider_details.dart';
-import 'package:devtools_app_shared/ui.dart';
 
 class RiverDeltaExtension extends StatelessWidget {
   const RiverDeltaExtension({super.key});
@@ -64,7 +62,6 @@ class DeltaContent extends StatelessWidget {
                 Expanded(
                   child: InteractiveViewer(
                     constrained: false,
-                    boundaryMargin: const EdgeInsets.all(32),
                     minScale: 0.1,
                     child: CustomGraphWidget(
                       graph: valueOrNull,
