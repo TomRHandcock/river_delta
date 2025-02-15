@@ -1,7 +1,7 @@
 A visual inspector for Flutter apps using Riverpod.
 
 <p align="center">
-    <img src="https://raw.githubusercontent.com/TomRHandcock/river_delta/develop/resources/image/screenshot.png" height=200>
+    <img src="https://raw.githubusercontent.com/TomRHandcock/river_delta/develop/resources/image/screenshot.png" height=500>
 </p>
 
 # Install it
