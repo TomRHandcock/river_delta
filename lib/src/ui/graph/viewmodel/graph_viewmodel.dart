@@ -54,4 +54,14 @@ class GraphViewmodel extends _$GraphViewmodel {
         .toSet();
     return GraphState(nodes: nodes, edges: edges);
   }
+
+  void selectProvider(DeltaProvider provider) {
+    final current = state.valueOrNull;
+    if (current == null) {
+      return;
+    }
+    state = AsyncValue.data(current.copyWith(
+      selectedProvider: provider,
+    ));
+  }
 }
