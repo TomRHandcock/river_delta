@@ -1,4 +1,4 @@
-import 'package:example/src/engine/books/models.dart';
+import 'package:example/src/engine/feature/books/models.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 
 part 'book_list_state.freezed.dart';

@@ -1,5 +1,5 @@
 import 'package:auto_route/auto_route.dart';
-import 'package:example/src/engine/books/models.dart';
+import 'package:example/src/engine/feature/books/models.dart';
 import 'package:example/src/engine/router/app_router.gr.dart';
 import 'package:example/src/ui/screens/book_list/viewmodel/book_list_state.dart';
 import 'package:example/src/ui/screens/book_list/viewmodel/book_list_viewmodel.dart';
