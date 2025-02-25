@@ -154,15 +154,17 @@ class RenderCustomGraphWidget extends RenderBox
     }
 
     // Compute overall parent size.
-    final contentSize = sizes.foldIndexed(Size.zero, (yPos, acc, row) {
-          return Size(
-            max(acc.width, row.map((size) => size.width).sum) +
-                max(0, row.length - 1) * _horizontalSpacing,
-            acc.height + row.map((size) => size.height).max,
-          );
-        }) +
-        (Offset(0, max(0, sizes.length - 1) * _verticalSpacing));
-    size = contentSize + _padding.topLeft + _padding.bottomRight;
+    Size contentSize = sizes.foldIndexed(Size.zero, (yPos, acc, row) {
+      return Size(
+        max(acc.width, row.map((size) => size.width).sum) +
+            max(0, row.length - 1) * _horizontalSpacing,
+        acc.height + row.map((size) => size.height).max,
+      );
+    });
+    contentSize = Size(contentSize.width,
+        contentSize.height + max(0, sizes.length - 1) * _verticalSpacing);
+    size = Size(contentSize.width + _padding.horizontal,
+        contentSize.height + _padding.vertical);
   }
 
   @override
