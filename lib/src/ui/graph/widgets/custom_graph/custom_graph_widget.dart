@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:river_delta/src/ui/graph/graph_render_object.dart';
 import 'package:river_delta/src/ui/graph/viewmodel/graph_state.dart';
+
+import 'graph_render_object.dart';
 
 class CustomGraphWidget extends MultiChildRenderObjectWidget {
   final GraphState graph;

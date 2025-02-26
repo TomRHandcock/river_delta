@@ -144,13 +144,14 @@ class __$$GraphStateImplCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$GraphStateImpl implements _GraphState {
+class _$GraphStateImpl extends _GraphState {
   const _$GraphStateImpl(
       {required final Set<GraphNode> nodes,
       required final Set<GraphEdge> edges,
       this.selectedProvider})
       : _nodes = nodes,
-        _edges = edges;
+        _edges = edges,
+        super._();
 
   final Set<GraphNode> _nodes;
   @override
@@ -203,11 +204,12 @@ class _$GraphStateImpl implements _GraphState {
       __$$GraphStateImplCopyWithImpl<_$GraphStateImpl>(this, _$identity);
 }
 
-abstract class _GraphState implements GraphState {
+abstract class _GraphState extends GraphState {
   const factory _GraphState(
       {required final Set<GraphNode> nodes,
       required final Set<GraphEdge> edges,
       final DeltaProvider? selectedProvider}) = _$GraphStateImpl;
+  const _GraphState._() : super._();
 
   @override
   Set<GraphNode> get nodes;

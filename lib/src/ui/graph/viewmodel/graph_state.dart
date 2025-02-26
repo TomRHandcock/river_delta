@@ -1,3 +1,5 @@
+import 'dart:math';
+
 import 'package:collection/collection.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 
@@ -5,11 +7,21 @@ part 'graph_state.freezed.dart';
 
 @freezed
 class GraphState with _$GraphState {
+  const GraphState._();
+
   const factory GraphState({
     required Set<GraphNode> nodes,
     required Set<GraphEdge> edges,
     DeltaProvider? selectedProvider,
   }) = _GraphState;
+
+  Set<DeltaProvider> get allProviders =>
+      nodes.map((node) => node.provider).toSet();
+
+  int get depth => switch (nodes.length) {
+        0 => 0,
+        _ => nodes.map((node) => node.distanceToRoot(allProviders)).max,
+      };
 }
 
 @freezed
@@ -74,14 +86,14 @@ class DeltaProvider with _$DeltaProvider {
   bool get isRoot => dependencies.isEmpty;
 
   static DeltaProvider? _getDeltaProvider(
-      Set<DeltaProvider> allProviders,
-      String name,
-      Set<String> arguments,
-      ) {
+    Set<DeltaProvider> allProviders,
+    String name,
+    Set<String> arguments,
+  ) {
     const setEquality = SetEquality();
     return allProviders.firstWhereOrNull(
-          (provider) =>
-      provider.name == name &&
+      (provider) =>
+          provider.name == name &&
           setEquality.equals(provider.arguments.toSet(), arguments?.toSet()),
     );
   }
@@ -98,22 +110,26 @@ class DeltaProvider with _$DeltaProvider {
       return 50;
     }
     try {
-      final dependencyProviders = dependencies.toSet()
+      final dependencyProviders = dependencies
+          .toSet()
           .map(
             (provider) => _getDeltaProvider(
-          allProviders,
-          provider.name,
-          provider.arguments.toSet(),
-        ),
-      ).toList();
+              allProviders,
+              provider.name,
+              provider.arguments.toSet(),
+            ),
+          )
+          .toList();
       final dependencyDistances = dependencyProviders
           .map(
             (dependency) => dependency?.distanceToRoot(
-            allProviders: allProviders,
-            longestPath: longestPath,
-            recursionDepth: recursionDepth + 1),
-      ).whereNotNull().toList();
-      if(dependencyDistances.isEmpty) {
+                allProviders: allProviders,
+                longestPath: longestPath,
+                recursionDepth: recursionDepth + 1),
+          )
+          .whereNotNull()
+          .toList();
+      if (dependencyDistances.isEmpty) {
         return 0;
       }
       if (longestPath) {
@@ -127,9 +143,9 @@ class DeltaProvider with _$DeltaProvider {
   }
 
   bool isLeaf(Set<DeltaProvider> allProviders) => allProviders.fold(
-    <DeltaProviderDependency>[],
+        <DeltaProviderDependency>[],
         (acc, provider) => provider.dependencies + acc,
-  ).contains(DeltaProviderDependency(name: name, arguments: arguments));
+      ).contains(DeltaProviderDependency(name: name, arguments: arguments));
 }
 
 @freezed
@@ -139,4 +155,3 @@ class DeltaProviderDependency with _$DeltaProviderDependency {
     @Default({}) Set<String> arguments,
   }) = _DeltaProviderDependency;
 }
-

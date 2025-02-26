@@ -2,7 +2,7 @@ import 'package:devtools_app_shared/ui.dart';
 import 'package:devtools_extensions/devtools_extensions.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:river_delta/src/ui/graph/custom_graph_widget.dart';
+import 'package:river_delta/src/ui/graph/widgets/custom_graph/custom_graph_widget.dart';
 import 'package:river_delta/src/ui/graph/viewmodel/graph_state.dart';
 import 'package:river_delta/src/ui/graph/viewmodel/graph_viewmodel.dart';
 import 'package:river_delta/src/ui/graph/widgets/provider_details.dart';

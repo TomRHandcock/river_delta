@@ -6,7 +6,7 @@ part of 'vm_service.dart';
 // RiverpodGenerator
 // **************************************************************************
 
-String _$vmServiceHash() => r'02172aab129b34f55c19334298db8f2f417a968a';
+String _$vmServiceHash() => r'4fe43856bd5956134546eb27cf1415d0eacb531f';
 
 /// See also [vmService].
 @ProviderFor(vmService)
