@@ -101,6 +101,10 @@ class RenderCustomGraphWidget extends RenderBox
 
   @override
   void performLayout() {
+    if(firstChild == null) {
+      size = constraints.smallest;
+      return;
+    }
     List<List<Size>> sizes = List.generate(
       graph.depth + 1,
       (yPos) => List.generate(_layeredTree[yPos].length, (_) => Size.zero),
