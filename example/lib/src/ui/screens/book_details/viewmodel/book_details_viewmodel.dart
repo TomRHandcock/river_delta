@@ -6,10 +6,14 @@ import 'package:riverpod_annotation/riverpod_annotation.dart';
 part 'book_details_viewmodel.g.dart';
 
 @riverpod
-Future<BookDetailsState> bookDetailsViewmodel(
-  Ref ref,
-  String bookId,
-) async {
-  final book = await ref.watch(bookDetailsUseCaseProvider(bookId).future);
-  return BookDetailsState(book: book);
+class BookDetailsViewmodel extends _$BookDetailsViewmodel {
+  @override
+  Future<BookDetailsState> build(String bookId) async {
+    final book = await ref.watch(bookDetailsUseCaseProvider(bookId).future);
+    return BookDetailsState(book: book);
+  }
+
+  void toggleFavorite(bool favorite) => ref
+      .read(bookDetailsUseCaseProvider(bookId).notifier)
+      .toggleFavorite(favorite);
 }

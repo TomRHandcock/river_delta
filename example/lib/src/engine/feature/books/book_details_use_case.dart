@@ -12,7 +12,7 @@ class BookDetailsUseCase extends _$BookDetailsUseCase {
   FutureOr<BookWithFavorite> build(String id) async {
     final books = await ref.watch(booksRepositoryProvider.future);
     final book = books.books.firstWhere((book) => book.id == id);
-    final isFavorite = ref.read(favoritesRepositoryProvider).contains(book.id);
+    final isFavorite = ref.watch(favoritesRepositoryProvider).contains(book.id);
     return BookWithFavorite(book: Book.fromDto(book), favorite: isFavorite);
   }
 
@@ -23,9 +23,9 @@ class BookDetailsUseCase extends _$BookDetailsUseCase {
       return;
     }
     if(isFavorite) {
-      repository.addFavorite(book.book.id);
+      repository.addFavorite(id);
     } else {
-      repository.removeFavourite(book.book.id);
+      repository.removeFavourite(id);
     }
   }
 }

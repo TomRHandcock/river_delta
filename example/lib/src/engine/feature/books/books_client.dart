@@ -7,9 +7,10 @@ import 'package:riverpod_annotation/riverpod_annotation.dart';
 
 part 'books_client.g.dart';
 
-@riverpod
+@Riverpod(keepAlive: true)
 BooksClient booksClient(Ref ref) {
-  return BooksClient(ref.watch(dioProvider));
+  final dio = ref.watch(dioProvider);
+  return BooksClient(dio);
 }
 
 @RestApi()

@@ -6,6 +6,6 @@ part 'book_details_state.freezed.dart';
 @freezed
 class BookDetailsState with _$BookDetailsState {
   const factory BookDetailsState({
-    required Book book,
+    required BookWithFavorite book,
   }) = _BookDetailsState;
 }
