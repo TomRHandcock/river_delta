@@ -12,26 +12,46 @@ dependencies:
     sdk: flutter
 
   cupertino_icons: ^1.0.6
+
+  # State management
   flutter_riverpod: ^2.5.1
   riverpod_annotation: ^2.3.5
+
+  # Models
+  json_annotation: ^4.9.0
+
   freezed_annotation: ^2.4.1
+  # Navigation
+
   auto_route: ^9.2.0
+  # Debugging
   river_delta:
-    git:
-      url: https://github.com/TomRHandcock/river_delta
-      ref: feature/graph-alignment
+    path: ../
+
+  # Networking
+  retrofit: ^4.4.2
+  mockzilla: ^1.0.1
+  dio: ^5.8.0+1
+
+  # Logging
+  logger: ^2.5.0
 
 dev_dependencies:
   flutter_test:
     sdk: flutter
 
-  flutter_lints: ^3.0.0
-  riverpod_generator: ^2.4.0
+  # Code generation
   build_runner: ^2.4.11
-  custom_lint: ^0.7.3
-  riverpod_lint: ^2.3.10
+  riverpod_generator: ^2.4.0
   freezed: ^2.5.2
   auto_route_generator: ^9.0.0
+  json_serializable: ^6.9.0
+
+  # Linting
+  flutter_lints: ^5.0.0
+  custom_lint: ^0.7.3
+  riverpod_lint: ^2.3.10
+  retrofit_generator: ^9.1.9
 
 flutter:
   uses-material-design: true

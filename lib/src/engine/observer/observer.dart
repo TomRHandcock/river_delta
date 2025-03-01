@@ -35,26 +35,29 @@ class DeltaObserver extends ProviderObserver {
       }
     });
     return dependencies.map(
-      (dependency) => ProviderSlimDependencyDto(
-        name: dependency.provider.name!,
-        objectId: Service.getObjectId(dependency.provider)!,
-      ),
-    );
+      (dependency) {
+        final name = dependency.provider.name;
+        final objectId = Service.getObjectId(dependency.provider);
+        if (name == null || objectId == null) {
+          return null;
+        }
+        return ProviderSlimDependencyDto(
+          name: name,
+          objectId: objectId,
+        );
+      },
+    ).nonNulls;
   }
 
   @override
   void didAddProvider(ProviderBase<Object?> provider, Object? value,
       ProviderContainer container) {
     final dependencies = _fetchDependenciesForProvider(provider, container);
-    postEvent(
-      "ext.river_delta.add",
-      ProviderDto(
-        name: provider.name ?? "Unknown provider",
-        objectId: Service.getObjectId(provider)!,
-        isolateId: Service.getIsolateId(Isolate.current)!,
-        dependencies: dependencies.toSet(),
-      ).toJson(),
-    );
+    final providerDto = _resolveProvider(provider, dependencies.toSet());
+    if (providerDto == null) {
+      return;
+    }
+    postEvent("ext.river_delta.add", providerDto.toJson());
     super.didAddProvider(provider, value, container);
   }
 
@@ -66,15 +69,11 @@ class DeltaObserver extends ProviderObserver {
     ProviderContainer container,
   ) {
     final dependencies = _fetchDependenciesForProvider(provider, container);
-    postEvent(
-      "ext.river_delta.update",
-      ProviderDto(
-        name: provider.name ?? "Unknown provider",
-        objectId: Service.getObjectId(provider)!,
-        isolateId: Service.getIsolateId(Isolate.current)!,
-        dependencies: dependencies.toSet(),
-      ).toJson(),
-    );
+    final providerDto = _resolveProvider(provider, dependencies.toSet());
+    if (providerDto == null) {
+      return;
+    }
+    postEvent("ext.river_delta.update", providerDto.toJson());
     super.didUpdateProvider(provider, previousValue, newValue, container);
   }
 
@@ -84,15 +83,31 @@ class DeltaObserver extends ProviderObserver {
     ProviderContainer container,
   ) {
     final dependencies = _fetchDependenciesForProvider(provider, container);
-    postEvent(
-      "ext.river_delta.dispose",
-      ProviderDto(
-        name: provider.name ?? "Unknown provider",
-        objectId: Service.getObjectId(provider)!,
-        isolateId: Service.getIsolateId(Isolate.current)!,
-        dependencies: dependencies.toSet(),
-      ).toJson(),
-    );
+    final providerDto = _resolveProvider(provider, dependencies.toSet());
+    if (providerDto == null) {
+      return;
+    }
+    postEvent("ext.river_delta.dispose", providerDto.toJson());
     super.didDisposeProvider(provider, container);
+  }
+
+  ProviderDto? _resolveProvider(
+    ProviderBase<Object?> provider,
+    Set<ProviderSlimDependencyDto> dependencies,
+  ) {
+    final name = provider.name;
+    final objectId = Service.getObjectId(provider);
+    final isolateId = Service.getIsolateId(Isolate.current);
+    if (name == null || objectId == null || isolateId == null) {
+      log("Couldn't resolve provider: {name: $name, objectId: $objectId, isolateId: $isolateId}",
+          level: 900);
+      return null;
+    }
+    return ProviderDto(
+      name: name,
+      objectId: objectId,
+      isolateId: isolateId,
+      dependencies: dependencies,
+    );
   }
 }

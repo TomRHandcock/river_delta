@@ -1,3 +1,5 @@
+import 'dart:async';
+
 import 'package:auto_route/auto_route.dart';
 import 'package:example/src/ui/screens/book_details/viewmodel/book_details_state.dart';
 import 'package:example/src/ui/screens/book_details/viewmodel/book_details_viewmodel.dart';
@@ -13,15 +15,19 @@ class BookDetailsScreen extends ConsumerWidget {
     required this.bookId,
   });
 
-  _onRetryPressed(WidgetRef ref) {
-    ref.refresh(bookDetailsViewmodelProvider(bookId).future);
-  }
+  _onFavoritePressed(WidgetRef ref, bool isFavorite) => ref
+      .read(bookDetailsViewmodelProvider(bookId).notifier)
+      .toggleFavorite(isFavorite);
+
+  _onRetryPressed(WidgetRef ref) =>
+      ref.refresh(bookDetailsViewmodelProvider(bookId).future).ignore();
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final state = ref.watch(bookDetailsViewmodelProvider(bookId));
     return BookDetailsContent(
       state: state,
+      onFavoritePressed: (isFavorite) => _onFavoritePressed(ref, isFavorite),
       onRetryPressed: () => _onRetryPressed(ref),
     );
   }
@@ -29,19 +35,35 @@ class BookDetailsScreen extends ConsumerWidget {
 
 class BookDetailsContent extends StatelessWidget {
   final AsyncValue<BookDetailsState> state;
+  final Function(bool isFavorite)? onFavoritePressed;
   final Function()? onRetryPressed;
 
   const BookDetailsContent({
     super.key,
     required this.state,
+    required this.onFavoritePressed,
     required this.onRetryPressed,
   });
 
   @override
   Widget build(BuildContext context) {
+    final isFavorite = state.valueOrNull?.book.favorite;
     return Scaffold(
       appBar: AppBar(
         title: const Text("Book details"),
+        actions: [
+          if (isFavorite != null)
+            IconButton(
+              onPressed: () => onFavoritePressed?.call(!isFavorite),
+              icon: Icon(
+                switch (isFavorite) {
+                  true => Icons.favorite,
+                  false => Icons.favorite_border,
+                },
+                color: Colors.red,
+              ),
+            ),
+        ],
       ),
       body: switch (state) {
         AsyncData(:final value) => _SuccessState(state: value),
@@ -68,11 +90,11 @@ class _SuccessState extends StatelessWidget {
       padding: const EdgeInsets.all(8),
       children: [
         Text(
-          state.book.title,
+          state.book.book.title,
           style: Theme.of(context).textTheme.headlineLarge,
         ),
         Text(
-          state.book.author,
+          state.book.book.author,
           style: Theme.of(context).textTheme.bodyLarge,
         )
       ],

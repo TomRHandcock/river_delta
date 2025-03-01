@@ -39,7 +39,7 @@ class ProvidersProvider extends _$ProvidersProvider {
         return null;
       }
     }));
-    return parameters.whereNotNull().toSet();
+    return parameters.nonNulls.toSet();
   }
 
   @override
