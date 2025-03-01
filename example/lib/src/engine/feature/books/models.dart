@@ -1,8 +1,8 @@
 import 'package:freezed_annotation/freezed_annotation.dart';
 
 part 'models.freezed.dart';
-part 'models.g.dart';
 
+part 'models.g.dart';
 
 @freezed
 class BookListDto with _$BookListDto {
@@ -10,7 +10,8 @@ class BookListDto with _$BookListDto {
     required List<BookDto> books,
   }) = _BookListDto;
 
-  factory BookListDto.fromJson(Map<String, dynamic> json) => _$BookListDtoFromJson(json);
+  factory BookListDto.fromJson(Map<String, dynamic> json) =>
+      _$BookListDtoFromJson(json);
 }
 
 @freezed
@@ -21,7 +22,8 @@ class BookDto with _$BookDto {
     required String author,
   }) = _BookDto;
 
-  factory BookDto.fromJson(Map<String, dynamic> json) => _$BookDtoFromJson(json);
+  factory BookDto.fromJson(Map<String, dynamic> json) =>
+      _$BookDtoFromJson(json);
 }
 
 @freezed
@@ -44,4 +46,12 @@ class Book with _$Book {
         title: dto.title,
         author: dto.author,
       );
+}
+
+@freezed
+class BookWithFavorite with _$BookWithFavorite {
+  const factory BookWithFavorite({
+    required Book book,
+    required bool favorite,
+  }) = _BookWithFavourite;
 }
