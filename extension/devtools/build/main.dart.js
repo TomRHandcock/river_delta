@@ -57937,80 +57937,62 @@ return A.C($async$$1,r)},
 $S:125}
 A.a_b.prototype={
 $1(a){return this.Kz(a)},
-Kz(a3){var s=0,r=A.D(t.H),q=1,p,o=this,n,m,l,k,j,i,h,g,f,e,d,c,b,a,a0,a1,a2
-var $async$$1=A.E(function(a4,a5){if(a4===1){p=a5
-s=q}while(true)switch(s){case 0:q=3
-case 6:switch(a3.ax){case"ext.river_delta.add":s=8
+Kz(a){var s=0,r=A.D(t.H),q=this,p,o,n,m,l,k,j
+var $async$$1=A.E(function(b,c){if(b===1)return A.A(c,r)
+while(true)switch(s){case 0:case 2:switch(a.ax){case"ext.river_delta.add":s=4
 break
-case"ext.river_delta.update":s=9
+case"ext.river_delta.update":s=5
 break
-case"ext.river_delta.dispose":s=10
+case"ext.river_delta.dispose":s=6
 break
-default:s=7
+default:s=3
 break}break
-case 8:n=A.ady(a3.ay.a)
-c=o.a
-b=o.b
+case 4:p=A.ady(a.ay.a)
+o=q.a
+n=q.b
+s=7
+return A.t(o.fQ(n,p.c,p.b),$async$$1)
+case 7:m=c
+s=8
+return A.t(A.dD(p.gej().b3(0,new A.a_7(o,n,p),t.el),t.YF),$async$$1)
+case 8:l=c
+n=o.c
+k=m==null?A.ap(t.N):m
+k=B.b.X(n,A.a([new A.nG(p.a,k,J.NJ(l))],t.jR))
+o.c=k
+o.vh(k)
+s=3
+break
+case 5:p=A.ady(a.ay.a)
+o=q.a
+n=q.b
+s=9
+return A.t(o.fQ(n,p.c,p.b),$async$$1)
+case 9:m=c
+s=10
+return A.t(A.dD(p.gej().b3(0,new A.a_8(o,n,p),t.el),t.YF),$async$$1)
+case 10:l=c
+n=m==null?A.ap(t.N):m
+j=new A.nG(p.a,n,J.NJ(l))
+n=A.ah8(o.c,new A.a_9(o,j),t.kA)
+n=B.b.X(A.J(n,!0,n.$ti.i("u.E")),A.a([j],t.jR))
+o.c=n
+o.vh(n)
+s=3
+break
+case 6:p=A.ady(a.ay.a)
+o=q.a
 s=11
-return A.t(c.fQ(b,n.c,n.b),$async$$1)
-case 11:m=a5
-s=12
-return A.t(A.dD(n.gej().b3(0,new A.a_7(c,b,n),t.el),t.YF),$async$$1)
-case 12:l=a5
-b=c.c
-a=n.a
-a0=m
-if(a0==null)a0=A.ap(t.N)
-a0=B.b.X(b,A.a([new A.nG(a,a0,J.NJ(l))],t.jR))
-c.c=a0
-c.vh(a0)
-s=7
+return A.t(o.fQ(q.b,p.c,p.b),$async$$1)
+case 11:m=c
+n=m==null?A.ap(t.N):m
+n=A.ah8(o.c,new A.a_a(o,new A.nG(p.a,n,B.GH)),t.kA)
+n=A.J(n,!0,n.$ti.i("u.E"))
+o.c=n
+o.vh(n)
+s=3
 break
-case 9:k=A.ady(a3.ay.a)
-c=o.a
-b=o.b
-s=13
-return A.t(c.fQ(b,k.c,k.b),$async$$1)
-case 13:j=a5
-s=14
-return A.t(A.dD(k.gej().b3(0,new A.a_8(c,b,k),t.el),t.YF),$async$$1)
-case 14:i=a5
-b=k.a
-a=j
-if(a==null)a=A.ap(t.N)
-h=new A.nG(b,a,J.NJ(i))
-a=A.ah8(c.c,new A.a_9(c,h),t.kA)
-a=B.b.X(A.J(a,!0,a.$ti.i("u.E")),A.a([h],t.jR))
-c.c=a
-c.vh(a)
-s=7
-break
-case 10:g=A.ady(a3.ay.a)
-c=o.a
-s=15
-return A.t(c.fQ(o.b,g.c,g.b),$async$$1)
-case 15:f=a5
-b=g.a
-a=f
-e=new A.nG(b,a==null?A.ap(t.N):a,B.GH)
-b=A.ah8(c.c,new A.a_a(c,e),t.kA)
-b=A.J(b,!0,b.$ti.i("u.E"))
-c.c=b
-c.vh(b)
-s=7
-break
-case 7:q=1
-s=5
-break
-case 3:q=2
-a2=p
-d=A.a0(a2)
-s=5
-break
-case 2:s=1
-break
-case 5:return A.B(null,r)
-case 1:return A.A(p,r)}})
+case 3:return A.B(null,r)}})
 return A.C($async$$1,r)},
 $S:43}
 A.a_7.prototype={

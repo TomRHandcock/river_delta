@@ -1,4 +1,5 @@
 import 'package:collection/collection.dart';
+import 'package:devtools_extensions/devtools_extensions.dart';
 import 'package:river_delta/src/engine/providers/models.dart';
 import 'package:river_delta/src/engine/providers/vm_service.dart';
 import 'package:river_delta/src/engine/utils/utils.dart';
@@ -46,76 +47,72 @@ class ProvidersProvider extends _$ProvidersProvider {
   Future<List<ProviderModel>> build() async {
     final vmService = await ref.watch(vmServiceProvider.future);
     final subscription = vmService.onExtensionEvent.listen((event) async {
-      try {
-        switch (event.extensionKind) {
-          case "ext.river_delta.add":
-            final provider = ProviderDto.fromJson(event.extensionData!.data);
-            final arguments = await _extractFamilyArguments(
-                vmService, provider.isolateId, provider.objectId);
-            final resolvedDependencies = await Future.wait(
-              provider.dependencies.map(
-                (it) => _extractFamilyArguments(
-                        vmService, provider.isolateId, it.objectId)
-                    .then(
-                  (arguments) => ProviderDependencyModel(
-                    name: it.name,
-                    arguments: arguments ?? {},
-                  ),
+      switch (event.extensionKind) {
+        case "ext.river_delta.add":
+          final provider = ProviderDto.fromJson(event.extensionData!.data);
+          final arguments = await _extractFamilyArguments(
+              vmService, provider.isolateId, provider.objectId);
+          final resolvedDependencies = await Future.wait(
+            provider.dependencies.map(
+              (it) => _extractFamilyArguments(
+                      vmService, provider.isolateId, it.objectId)
+                  .then(
+                (arguments) => ProviderDependencyModel(
+                  name: it.name,
+                  arguments: arguments ?? {},
                 ),
               ),
-            );
-            _providers = _providers +
-                [
-                  ProviderModel(
-                    name: provider.name,
-                    arguments: arguments ?? {},
-                    dependencies: resolvedDependencies.toSet(),
-                  ),
-                ];
-            _emit(_providers);
-          case "ext.river_delta.update":
-            final provider = ProviderDto.fromJson(event.extensionData!.data);
-            final arguments = await _extractFamilyArguments(
-                vmService, provider.isolateId, provider.objectId);
-            final resolvedDependencies = await Future.wait(
-              provider.dependencies.map(
-                (it) => _extractFamilyArguments(
-                        vmService, provider.isolateId, it.objectId)
-                    .then(
-                  (arguments) => ProviderDependencyModel(
-                      name: it.name, arguments: arguments ?? {}),
+            ),
+          );
+          _providers = _providers +
+              [
+                ProviderModel(
+                  name: provider.name,
+                  arguments: arguments ?? {},
+                  dependencies: resolvedDependencies.toSet(),
                 ),
+              ];
+          _emit(_providers);
+        case "ext.river_delta.update":
+          final provider = ProviderDto.fromJson(event.extensionData!.data);
+          final arguments = await _extractFamilyArguments(
+              vmService, provider.isolateId, provider.objectId);
+          final resolvedDependencies = await Future.wait(
+            provider.dependencies.map(
+              (it) => _extractFamilyArguments(
+                      vmService, provider.isolateId, it.objectId)
+                  .then(
+                (arguments) => ProviderDependencyModel(
+                    name: it.name, arguments: arguments ?? {}),
               ),
-            );
-            final providerWithArgs = ProviderModel(
-              name: provider.name,
-              arguments: arguments ?? {},
-              dependencies: resolvedDependencies.toSet(),
-            );
-            _providers = _providers.whereNot((it) {
-                  return it.name == providerWithArgs.name &&
-                      _listEquality.equals(it.arguments.toSet(),
-                          providerWithArgs.arguments.toSet());
-                }).toList() +
-                [providerWithArgs];
-            _emit(_providers);
-          case "ext.river_delta.dispose":
-            final provider = ProviderDto.fromJson(event.extensionData!.data);
-            final arguments = await _extractFamilyArguments(
-                vmService, provider.isolateId, provider.objectId);
-            final providerWithArgs = ProviderModel(
-              name: provider.name,
-              arguments: arguments ?? {},
-            );
-            _providers = _providers.whereNot((it) {
-              return it.name == providerWithArgs.name &&
-                  _listEquality.equals(
-                      it.arguments.toSet(), providerWithArgs.arguments.toSet());
-            }).toList();
-            _emit(_providers);
-        }
-      } catch (e) {
-        e;
+            ),
+          );
+          final providerWithArgs = ProviderModel(
+            name: provider.name,
+            arguments: arguments ?? {},
+            dependencies: resolvedDependencies.toSet(),
+          );
+          _providers = _providers.whereNot((it) {
+                return it.name == providerWithArgs.name &&
+                    _listEquality.equals(it.arguments.toSet(),
+                        providerWithArgs.arguments.toSet());
+              }).toList() +
+              [providerWithArgs];
+          _emit(_providers);
+        case "ext.river_delta.dispose":
+          final provider = ProviderDto.fromJson(event.extensionData!.data);
+          final arguments = await _extractFamilyArguments(
+              vmService, provider.isolateId, provider.objectId);
+          final providerWithArgs = ProviderModel(
+            name: provider.name,
+            arguments: arguments ?? {},
+          );
+          _providers = _providers.whereNot((it) {
+            return it.name == providerWithArgs.name &&
+                _listEquality.equals(
+                    it.arguments.toSet(), providerWithArgs.arguments.toSet());
+          }).toList();
+          _emit(_providers);
       }
     });
     ref.onDispose(() {
