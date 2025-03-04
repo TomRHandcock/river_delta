@@ -12,6 +12,14 @@ part 'providers_provider.g.dart';
 
 @riverpod
 class ProvidersProvider extends _$ProvidersProvider {
+  static const _reservedFields = [
+    "family",
+    "notifier",
+    "future",
+    "internal",
+    "element",
+  ];
+
   List<ProviderModel> _providers = List.empty();
   final _listEquality = const SetEquality();
 
@@ -32,6 +40,9 @@ class ProvidersProvider extends _$ProvidersProvider {
       return null;
     }
     final parameters = await Future.wait(fieldNames.map((field) async {
+      if (_reservedFields.contains(field)) {
+        return null;
+      }
       final value =
           await vmService.evaluate(isolateId, objectId, "this.$field");
       if (value is InstanceRef) {
