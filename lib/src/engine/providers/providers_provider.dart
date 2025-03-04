@@ -12,12 +12,20 @@ part 'providers_provider.g.dart';
 
 @riverpod
 class ProvidersProvider extends _$ProvidersProvider {
+  /// Internal fields used by riverpod, we shouldn't be querying these.
   static const _reservedFields = [
     "family",
     "notifier",
     "future",
     "internal",
     "element",
+    "autoDispose",
+    "allTransitiveDependencies",
+    "dependencies",
+    "from",
+    "hashCode",
+    "name",
+    "runtimeType",
   ];
 
   List<ProviderModel> _providers = List.empty();
