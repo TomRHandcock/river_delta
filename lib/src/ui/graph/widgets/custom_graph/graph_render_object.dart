@@ -167,8 +167,9 @@ class RenderCustomGraphWidget extends RenderBox
     });
     contentSize = Size(contentSize.width,
         contentSize.height + max(0, sizes.length - 1) * _verticalSpacing);
-    size = Size(contentSize.width + _padding.horizontal,
+    final paddedSize = Size(contentSize.width + _padding.horizontal,
         contentSize.height + _padding.vertical);
+    size = Size.square(paddedSize.longestSide);
   }
 
   @override
