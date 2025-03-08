@@ -20,39 +20,45 @@ class DeltaObserver extends ProviderObserver {
     return _instance!;
   }
 
-  Iterable<ProviderSlimDependencyDto> _fetchDependenciesForProvider(
+  Future<Iterable<ProviderSlimDependencyDto>> _fetchDependenciesForProvider(
     ProviderBase<Object?> provider,
     ProviderContainer container,
-  ) {
+  ) async {
     final dependencies = <ProviderElementBase>{};
-    container
-        .getAllProviderElements()
-        .firstWhereOrNull((it) => it.provider.name == provider.name)
-        ?.visitAncestors((ancestor) {
-      final name = ancestor.provider.name;
-      if (name != null) {
-        dependencies.add(ancestor);
-      }
-    });
-    return dependencies.map(
-      (dependency) {
-        final name = dependency.provider.name;
-        final objectId = Service.getObjectId(dependency.provider);
-        if (name == null || objectId == null) {
-          return null;
+    // Use a microtask to read provider ancestors after synchronous code has
+    // run in the event loop. If we didn't do this, the provider element won't
+    // be found in the container.
+    return Future.microtask(() {
+      container
+          .getAllProviderElements()
+          .firstWhereOrNull((it) => it.provider.name == provider.name)
+          ?.visitAncestors((ancestor) {
+        final name = ancestor.provider.name;
+        if (name != null) {
+          dependencies.add(ancestor);
         }
-        return ProviderSlimDependencyDto(
-          name: name,
-          objectId: objectId,
-        );
-      },
-    ).nonNulls;
+      });
+      return dependencies.map(
+        (dependency) {
+          final name = dependency.provider.name;
+          final objectId = Service.getObjectId(dependency.provider);
+          if (name == null || objectId == null) {
+            return null;
+          }
+          return ProviderSlimDependencyDto(
+            name: name,
+            objectId: objectId,
+          );
+        },
+      ).nonNulls;
+    });
   }
 
   @override
   void didAddProvider(ProviderBase<Object?> provider, Object? value,
-      ProviderContainer container) {
-    final dependencies = _fetchDependenciesForProvider(provider, container);
+      ProviderContainer container) async {
+    final dependencies =
+        await _fetchDependenciesForProvider(provider, container);
     final providerDto = _resolveProvider(provider, dependencies.toSet());
     if (providerDto == null) {
       return;
@@ -67,8 +73,9 @@ class DeltaObserver extends ProviderObserver {
     Object? previousValue,
     Object? newValue,
     ProviderContainer container,
-  ) {
-    final dependencies = _fetchDependenciesForProvider(provider, container);
+  ) async {
+    final dependencies =
+        await _fetchDependenciesForProvider(provider, container);
     final providerDto = _resolveProvider(provider, dependencies.toSet());
     if (providerDto == null) {
       return;
@@ -81,8 +88,9 @@ class DeltaObserver extends ProviderObserver {
   void didDisposeProvider(
     ProviderBase<Object?> provider,
     ProviderContainer container,
-  ) {
-    final dependencies = _fetchDependenciesForProvider(provider, container);
+  ) async {
+    final dependencies =
+        await _fetchDependenciesForProvider(provider, container);
     final providerDto = _resolveProvider(provider, dependencies.toSet());
     if (providerDto == null) {
       return;

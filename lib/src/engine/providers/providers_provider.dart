@@ -1,5 +1,4 @@
 import 'package:collection/collection.dart';
-import 'package:devtools_extensions/devtools_extensions.dart';
 import 'package:river_delta/src/engine/providers/models.dart';
 import 'package:river_delta/src/engine/providers/vm_service.dart';
 import 'package:river_delta/src/engine/utils/utils.dart';
@@ -71,12 +70,17 @@ class ProvidersProvider extends _$ProvidersProvider {
           case "ext.river_delta.add":
             final provider = ProviderDto.fromJson(event.extensionData!.data);
             final arguments = await _extractFamilyArguments(
-                vmService, provider.isolateId, provider.objectId);
+              vmService,
+              provider.isolateId,
+              provider.objectId,
+            );
             final resolvedDependencies = await Future.wait(
               provider.dependencies.map(
                 (it) => _extractFamilyArguments(
-                        vmService, provider.isolateId, it.objectId)
-                    .then(
+                  vmService,
+                  provider.isolateId,
+                  it.objectId,
+                ).then(
                   (arguments) => ProviderDependencyModel(
                     name: it.name,
                     arguments: arguments ?? {},
@@ -96,12 +100,17 @@ class ProvidersProvider extends _$ProvidersProvider {
           case "ext.river_delta.update":
             final provider = ProviderDto.fromJson(event.extensionData!.data);
             final arguments = await _extractFamilyArguments(
-                vmService, provider.isolateId, provider.objectId);
+              vmService,
+              provider.isolateId,
+              provider.objectId,
+            );
             final resolvedDependencies = await Future.wait(
               provider.dependencies.map(
                 (it) => _extractFamilyArguments(
-                        vmService, provider.isolateId, it.objectId)
-                    .then(
+                  vmService,
+                  provider.isolateId,
+                  it.objectId,
+                ).then(
                   (arguments) => ProviderDependencyModel(
                       name: it.name, arguments: arguments ?? {}),
                 ),
@@ -122,10 +131,26 @@ class ProvidersProvider extends _$ProvidersProvider {
           case "ext.river_delta.dispose":
             final provider = ProviderDto.fromJson(event.extensionData!.data);
             final arguments = await _extractFamilyArguments(
-                vmService, provider.isolateId, provider.objectId);
+              vmService,
+              provider.isolateId,
+              provider.objectId,
+            );
+            final resolvedDependencies = await Future.wait(
+              provider.dependencies.map(
+                (it) => _extractFamilyArguments(
+                  vmService,
+                  provider.isolateId,
+                  it.objectId,
+                ).then(
+                  (arguments) => ProviderDependencyModel(
+                      name: it.name, arguments: arguments ?? {}),
+                ),
+              ),
+            );
             final providerWithArgs = ProviderModel(
               name: provider.name,
               arguments: arguments ?? {},
+              dependencies: resolvedDependencies.toSet(),
             );
             _providers = _providers.whereNot((it) {
               return it.name == providerWithArgs.name &&
