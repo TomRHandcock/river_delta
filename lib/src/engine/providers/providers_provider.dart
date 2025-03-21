@@ -11,6 +11,22 @@ part 'providers_provider.g.dart';
 
 @riverpod
 class ProvidersProvider extends _$ProvidersProvider {
+  /// Internal fields used by riverpod, we shouldn't be querying these.
+  static const _reservedFields = [
+    "family",
+    "notifier",
+    "future",
+    "internal",
+    "element",
+    "autoDispose",
+    "allTransitiveDependencies",
+    "dependencies",
+    "from",
+    "hashCode",
+    "name",
+    "runtimeType",
+  ];
+
   List<ProviderModel> _providers = List.empty();
   final _listEquality = const SetEquality();
 
@@ -31,6 +47,9 @@ class ProvidersProvider extends _$ProvidersProvider {
       return null;
     }
     final parameters = await Future.wait(fieldNames.map((field) async {
+      if (_reservedFields.contains(field)) {
+        return null;
+      }
       final value =
           await vmService.evaluate(isolateId, objectId, "this.$field");
       if (value is InstanceRef) {
@@ -51,12 +70,17 @@ class ProvidersProvider extends _$ProvidersProvider {
           case "ext.river_delta.add":
             final provider = ProviderDto.fromJson(event.extensionData!.data);
             final arguments = await _extractFamilyArguments(
-                vmService, provider.isolateId, provider.objectId);
+              vmService,
+              provider.isolateId,
+              provider.objectId,
+            );
             final resolvedDependencies = await Future.wait(
               provider.dependencies.map(
                 (it) => _extractFamilyArguments(
-                        vmService, provider.isolateId, it.objectId)
-                    .then(
+                  vmService,
+                  provider.isolateId,
+                  it.objectId,
+                ).then(
                   (arguments) => ProviderDependencyModel(
                     name: it.name,
                     arguments: arguments ?? {},
@@ -76,12 +100,17 @@ class ProvidersProvider extends _$ProvidersProvider {
           case "ext.river_delta.update":
             final provider = ProviderDto.fromJson(event.extensionData!.data);
             final arguments = await _extractFamilyArguments(
-                vmService, provider.isolateId, provider.objectId);
+              vmService,
+              provider.isolateId,
+              provider.objectId,
+            );
             final resolvedDependencies = await Future.wait(
               provider.dependencies.map(
                 (it) => _extractFamilyArguments(
-                        vmService, provider.isolateId, it.objectId)
-                    .then(
+                  vmService,
+                  provider.isolateId,
+                  it.objectId,
+                ).then(
                   (arguments) => ProviderDependencyModel(
                       name: it.name, arguments: arguments ?? {}),
                 ),
@@ -102,10 +131,26 @@ class ProvidersProvider extends _$ProvidersProvider {
           case "ext.river_delta.dispose":
             final provider = ProviderDto.fromJson(event.extensionData!.data);
             final arguments = await _extractFamilyArguments(
-                vmService, provider.isolateId, provider.objectId);
+              vmService,
+              provider.isolateId,
+              provider.objectId,
+            );
+            final resolvedDependencies = await Future.wait(
+              provider.dependencies.map(
+                (it) => _extractFamilyArguments(
+                  vmService,
+                  provider.isolateId,
+                  it.objectId,
+                ).then(
+                  (arguments) => ProviderDependencyModel(
+                      name: it.name, arguments: arguments ?? {}),
+                ),
+              ),
+            );
             final providerWithArgs = ProviderModel(
               name: provider.name,
               arguments: arguments ?? {},
+              dependencies: resolvedDependencies.toSet(),
             );
             _providers = _providers.whereNot((it) {
               return it.name == providerWithArgs.name &&
@@ -114,8 +159,9 @@ class ProvidersProvider extends _$ProvidersProvider {
             }).toList();
             _emit(_providers);
         }
-      } catch (e) {
-        e;
+      } catch (error, stackTrace) {
+        state = AsyncError(error, stackTrace);
+        ref.notifyListeners();
       }
     });
     ref.onDispose(() {
