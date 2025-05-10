@@ -2,6 +2,7 @@ import 'dart:math';
 
 import 'package:collection/collection.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
+import 'package:river_delta/src/engine/providers/models.dart';
 
 part 'graph_state.freezed.dart';
 
@@ -81,6 +82,7 @@ class DeltaProvider with _$DeltaProvider {
     required String name,
     @Default({}) Set<String> arguments,
     @Default([]) List<DeltaProviderDependency> dependencies,
+    required List<ProviderState> states,
   }) = _DeltaProvider;
 
   bool get isRoot => dependencies.isEmpty;
