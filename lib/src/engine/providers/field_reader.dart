@@ -41,7 +41,7 @@ class FieldReader {
     if (_isAsyncValue(object)) {
       return _extractAsyncState(isolateId, object);
     } else {
-      return null;
+      return _extractSyncState(isolateId, object);
     }
   }
 
@@ -85,5 +85,15 @@ class FieldReader {
       asyncState: asyncState,
       timestamp: DateTime.now(),
     );
+  }
+
+  Future<ProviderState> _extractSyncState(
+      String isolateId, InstanceRef instanceRef) async {
+    final clazz = instanceRef.classRef;
+    if (clazz == null) {
+      throw LogicalError(code: LogicalErrorCode.failedToReadState);
+    }
+    return ProviderState(
+        name: clazz.name ?? "Unknown", fields: {}, timestamp: DateTime.now());
   }
 }
