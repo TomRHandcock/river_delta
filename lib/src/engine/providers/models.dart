@@ -27,6 +27,7 @@ class ProviderState with _$ProviderState {
     required String name,
     ProviderAsyncState? asyncState,
     required Map<String?, String?> fields,
+    required DateTime timestamp,
   }) = _ProviderState;
 }
 

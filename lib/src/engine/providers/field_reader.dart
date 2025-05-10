@@ -80,6 +80,10 @@ class FieldReader {
     final clazz =
         (await vmService.getObject(isolateId, valueClassId)).asOrNull<Class>();
     return ProviderState(
-        name: clazz?.name ?? "Unknown", fields: {}, asyncState: asyncState);
+      name: clazz?.name ?? "Unknown",
+      fields: {},
+      asyncState: asyncState,
+      timestamp: DateTime.now(),
+    );
   }
 }

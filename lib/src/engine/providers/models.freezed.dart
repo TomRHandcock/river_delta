@@ -415,6 +415,7 @@ mixin _$ProviderState {
   String get name => throw _privateConstructorUsedError;
   ProviderAsyncState? get asyncState => throw _privateConstructorUsedError;
   Map<String?, String?> get fields => throw _privateConstructorUsedError;
+  DateTime get timestamp => throw _privateConstructorUsedError;
 
   /// Create a copy of ProviderState
   /// with the given fields replaced by the non-null parameter values.
@@ -432,7 +433,8 @@ abstract class $ProviderStateCopyWith<$Res> {
   $Res call(
       {String name,
       ProviderAsyncState? asyncState,
-      Map<String?, String?> fields});
+      Map<String?, String?> fields,
+      DateTime timestamp});
 }
 
 /// @nodoc
@@ -453,6 +455,7 @@ class _$ProviderStateCopyWithImpl<$Res, $Val extends ProviderState>
     Object? name = null,
     Object? asyncState = freezed,
     Object? fields = null,
+    Object? timestamp = null,
   }) {
     return _then(_value.copyWith(
       name: null == name
@@ -467,6 +470,10 @@ class _$ProviderStateCopyWithImpl<$Res, $Val extends ProviderState>
           ? _value.fields
           : fields // ignore: cast_nullable_to_non_nullable
               as Map<String?, String?>,
+      timestamp: null == timestamp
+          ? _value.timestamp
+          : timestamp // ignore: cast_nullable_to_non_nullable
+              as DateTime,
     ) as $Val);
   }
 }
@@ -482,7 +489,8 @@ abstract class _$$ProviderStateImplCopyWith<$Res>
   $Res call(
       {String name,
       ProviderAsyncState? asyncState,
-      Map<String?, String?> fields});
+      Map<String?, String?> fields,
+      DateTime timestamp});
 }
 
 /// @nodoc
@@ -501,6 +509,7 @@ class __$$ProviderStateImplCopyWithImpl<$Res>
     Object? name = null,
     Object? asyncState = freezed,
     Object? fields = null,
+    Object? timestamp = null,
   }) {
     return _then(_$ProviderStateImpl(
       name: null == name
@@ -515,6 +524,10 @@ class __$$ProviderStateImplCopyWithImpl<$Res>
           ? _value._fields
           : fields // ignore: cast_nullable_to_non_nullable
               as Map<String?, String?>,
+      timestamp: null == timestamp
+          ? _value.timestamp
+          : timestamp // ignore: cast_nullable_to_non_nullable
+              as DateTime,
     ));
   }
 }
@@ -525,7 +538,8 @@ class _$ProviderStateImpl implements _ProviderState {
   const _$ProviderStateImpl(
       {required this.name,
       this.asyncState,
-      required final Map<String?, String?> fields})
+      required final Map<String?, String?> fields,
+      required this.timestamp})
       : _fields = fields;
 
   @override
@@ -541,8 +555,11 @@ class _$ProviderStateImpl implements _ProviderState {
   }
 
   @override
+  final DateTime timestamp;
+
+  @override
   String toString() {
-    return 'ProviderState(name: $name, asyncState: $asyncState, fields: $fields)';
+    return 'ProviderState(name: $name, asyncState: $asyncState, fields: $fields, timestamp: $timestamp)';
   }
 
   @override
@@ -553,12 +570,14 @@ class _$ProviderStateImpl implements _ProviderState {
             (identical(other.name, name) || other.name == name) &&
             (identical(other.asyncState, asyncState) ||
                 other.asyncState == asyncState) &&
-            const DeepCollectionEquality().equals(other._fields, _fields));
+            const DeepCollectionEquality().equals(other._fields, _fields) &&
+            (identical(other.timestamp, timestamp) ||
+                other.timestamp == timestamp));
   }
 
   @override
   int get hashCode => Object.hash(runtimeType, name, asyncState,
-      const DeepCollectionEquality().hash(_fields));
+      const DeepCollectionEquality().hash(_fields), timestamp);
 
   /// Create a copy of ProviderState
   /// with the given fields replaced by the non-null parameter values.
@@ -573,7 +592,8 @@ abstract class _ProviderState implements ProviderState {
   const factory _ProviderState(
       {required final String name,
       final ProviderAsyncState? asyncState,
-      required final Map<String?, String?> fields}) = _$ProviderStateImpl;
+      required final Map<String?, String?> fields,
+      required final DateTime timestamp}) = _$ProviderStateImpl;
 
   @override
   String get name;
@@ -581,6 +601,8 @@ abstract class _ProviderState implements ProviderState {
   ProviderAsyncState? get asyncState;
   @override
   Map<String?, String?> get fields;
+  @override
+  DateTime get timestamp;
 
   /// Create a copy of ProviderState
   /// with the given fields replaced by the non-null parameter values.
