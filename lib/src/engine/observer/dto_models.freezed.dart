@@ -182,6 +182,7 @@ mixin _$ProviderDto {
   String get name => throw _privateConstructorUsedError;
   String get objectId => throw _privateConstructorUsedError;
   String get isolateId => throw _privateConstructorUsedError;
+  String? get stateObjectId => throw _privateConstructorUsedError;
   @JsonKey(toJson: ProviderDto.dependenciesToJson)
   Set<ProviderSlimDependencyDto> get dependencies =>
       throw _privateConstructorUsedError;
@@ -206,6 +207,7 @@ abstract class $ProviderDtoCopyWith<$Res> {
       {String name,
       String objectId,
       String isolateId,
+      String? stateObjectId,
       @JsonKey(toJson: ProviderDto.dependenciesToJson)
       Set<ProviderSlimDependencyDto> dependencies});
 }
@@ -228,6 +230,7 @@ class _$ProviderDtoCopyWithImpl<$Res, $Val extends ProviderDto>
     Object? name = null,
     Object? objectId = null,
     Object? isolateId = null,
+    Object? stateObjectId = freezed,
     Object? dependencies = null,
   }) {
     return _then(_value.copyWith(
@@ -243,6 +246,10 @@ class _$ProviderDtoCopyWithImpl<$Res, $Val extends ProviderDto>
           ? _value.isolateId
           : isolateId // ignore: cast_nullable_to_non_nullable
               as String,
+      stateObjectId: freezed == stateObjectId
+          ? _value.stateObjectId
+          : stateObjectId // ignore: cast_nullable_to_non_nullable
+              as String?,
       dependencies: null == dependencies
           ? _value.dependencies
           : dependencies // ignore: cast_nullable_to_non_nullable
@@ -263,6 +270,7 @@ abstract class _$$ProviderDtoImplCopyWith<$Res>
       {String name,
       String objectId,
       String isolateId,
+      String? stateObjectId,
       @JsonKey(toJson: ProviderDto.dependenciesToJson)
       Set<ProviderSlimDependencyDto> dependencies});
 }
@@ -283,6 +291,7 @@ class __$$ProviderDtoImplCopyWithImpl<$Res>
     Object? name = null,
     Object? objectId = null,
     Object? isolateId = null,
+    Object? stateObjectId = freezed,
     Object? dependencies = null,
   }) {
     return _then(_$ProviderDtoImpl(
@@ -298,6 +307,10 @@ class __$$ProviderDtoImplCopyWithImpl<$Res>
           ? _value.isolateId
           : isolateId // ignore: cast_nullable_to_non_nullable
               as String,
+      stateObjectId: freezed == stateObjectId
+          ? _value.stateObjectId
+          : stateObjectId // ignore: cast_nullable_to_non_nullable
+              as String?,
       dependencies: null == dependencies
           ? _value._dependencies
           : dependencies // ignore: cast_nullable_to_non_nullable
@@ -313,6 +326,7 @@ class _$ProviderDtoImpl implements _ProviderDto {
       {required this.name,
       required this.objectId,
       required this.isolateId,
+      required this.stateObjectId,
       @JsonKey(toJson: ProviderDto.dependenciesToJson)
       final Set<ProviderSlimDependencyDto> dependencies = const {}})
       : _dependencies = dependencies;
@@ -326,6 +340,8 @@ class _$ProviderDtoImpl implements _ProviderDto {
   final String objectId;
   @override
   final String isolateId;
+  @override
+  final String? stateObjectId;
   final Set<ProviderSlimDependencyDto> _dependencies;
   @override
   @JsonKey(toJson: ProviderDto.dependenciesToJson)
@@ -337,7 +353,7 @@ class _$ProviderDtoImpl implements _ProviderDto {
 
   @override
   String toString() {
-    return 'ProviderDto(name: $name, objectId: $objectId, isolateId: $isolateId, dependencies: $dependencies)';
+    return 'ProviderDto(name: $name, objectId: $objectId, isolateId: $isolateId, stateObjectId: $stateObjectId, dependencies: $dependencies)';
   }
 
   @override
@@ -350,6 +366,8 @@ class _$ProviderDtoImpl implements _ProviderDto {
                 other.objectId == objectId) &&
             (identical(other.isolateId, isolateId) ||
                 other.isolateId == isolateId) &&
+            (identical(other.stateObjectId, stateObjectId) ||
+                other.stateObjectId == stateObjectId) &&
             const DeepCollectionEquality()
                 .equals(other._dependencies, _dependencies));
   }
@@ -357,7 +375,7 @@ class _$ProviderDtoImpl implements _ProviderDto {
   @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   int get hashCode => Object.hash(runtimeType, name, objectId, isolateId,
-      const DeepCollectionEquality().hash(_dependencies));
+      stateObjectId, const DeepCollectionEquality().hash(_dependencies));
 
   /// Create a copy of ProviderDto
   /// with the given fields replaced by the non-null parameter values.
@@ -380,6 +398,7 @@ abstract class _ProviderDto implements ProviderDto {
       {required final String name,
       required final String objectId,
       required final String isolateId,
+      required final String? stateObjectId,
       @JsonKey(toJson: ProviderDto.dependenciesToJson)
       final Set<ProviderSlimDependencyDto> dependencies}) = _$ProviderDtoImpl;
 
@@ -392,6 +411,8 @@ abstract class _ProviderDto implements ProviderDto {
   String get objectId;
   @override
   String get isolateId;
+  @override
+  String? get stateObjectId;
   @override
   @JsonKey(toJson: ProviderDto.dependenciesToJson)
   Set<ProviderSlimDependencyDto> get dependencies;

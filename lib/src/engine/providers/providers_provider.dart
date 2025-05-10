@@ -1,4 +1,5 @@
 import 'package:collection/collection.dart';
+import 'package:river_delta/src/engine/providers/field_reader.dart';
 import 'package:river_delta/src/engine/providers/models.dart';
 import 'package:river_delta/src/engine/providers/vm_service.dart';
 import 'package:river_delta/src/engine/utils/utils.dart';
@@ -64,6 +65,7 @@ class ProvidersProvider extends _$ProvidersProvider {
   @override
   Future<List<ProviderModel>> build() async {
     final vmService = await ref.watch(vmServiceProvider.future);
+    final fieldReader = await ref.watch(fieldReaderProvider.future);
     final subscription = vmService.onExtensionEvent.listen((event) async {
       try {
         switch (event.extensionKind) {
@@ -88,13 +90,16 @@ class ProvidersProvider extends _$ProvidersProvider {
                 ),
               ),
             );
+            final fields = await fieldReader.readState(
+                provider.isolateId, provider.stateObjectId);
             _providers = _providers +
                 [
                   ProviderModel(
                     name: provider.name,
                     arguments: arguments ?? {},
                     dependencies: resolvedDependencies.toSet(),
-                  ),
+                    state: fields,
+                  )
                 ];
             _emit(_providers);
           case "ext.river_delta.update":
@@ -116,11 +121,13 @@ class ProvidersProvider extends _$ProvidersProvider {
                 ),
               ),
             );
+            final fields = await fieldReader.readState(
+                provider.isolateId, provider.stateObjectId);
             final providerWithArgs = ProviderModel(
-              name: provider.name,
-              arguments: arguments ?? {},
-              dependencies: resolvedDependencies.toSet(),
-            );
+                name: provider.name,
+                arguments: arguments ?? {},
+                dependencies: resolvedDependencies.toSet(),
+                state: fields);
             _providers = _providers.whereNot((it) {
                   return it.name == providerWithArgs.name &&
                       _listEquality.equals(it.arguments.toSet(),
@@ -147,11 +154,13 @@ class ProvidersProvider extends _$ProvidersProvider {
                 ),
               ),
             );
+            final fields = await fieldReader.readState(
+                provider.isolateId, provider.stateObjectId);
             final providerWithArgs = ProviderModel(
-              name: provider.name,
-              arguments: arguments ?? {},
-              dependencies: resolvedDependencies.toSet(),
-            );
+                name: provider.name,
+                arguments: arguments ?? {},
+                dependencies: resolvedDependencies.toSet(),
+                state: fields);
             _providers = _providers.whereNot((it) {
               return it.name == providerWithArgs.name &&
                   _listEquality.equals(

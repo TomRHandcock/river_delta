@@ -25,6 +25,7 @@ _$ProviderDtoImpl _$$ProviderDtoImplFromJson(Map<String, dynamic> json) =>
       name: json['name'] as String,
       objectId: json['objectId'] as String,
       isolateId: json['isolateId'] as String,
+      stateObjectId: json['stateObjectId'] as String?,
       dependencies: (json['dependencies'] as List<dynamic>?)
               ?.map((e) =>
                   ProviderSlimDependencyDto.fromJson(e as Map<String, dynamic>))
@@ -37,6 +38,7 @@ Map<String, dynamic> _$$ProviderDtoImplToJson(_$ProviderDtoImpl instance) =>
       'name': instance.name,
       'objectId': instance.objectId,
       'isolateId': instance.isolateId,
+      'stateObjectId': instance.stateObjectId,
       'dependencies': ProviderDto.dependenciesToJson(instance.dependencies),
     };
 
