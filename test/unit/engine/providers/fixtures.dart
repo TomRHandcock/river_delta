@@ -26,14 +26,14 @@ final _addEvent = Event(
   extensionData: MockExtensionData()
     ..stubReturn(
       (it) => it.data,
-       ProviderDto(
-        name: "Provider",
-        objectId: "object/0",
-        isolateId: "isolate/0",
-        dependencies: {
-          ProviderSlimDependencyDto(name: "Dependency", objectId: "object/1")
-        }
-      ).toJson(),
+      ProviderDto(
+          name: "Provider",
+          objectId: "object/0",
+          isolateId: "isolate/0",
+          stateObjectId: "object/1",
+          dependencies: {
+            ProviderSlimDependencyDto(name: "Dependency", objectId: "object/1")
+          }).toJson(),
     ),
 );
 
