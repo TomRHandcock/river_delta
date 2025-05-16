@@ -551,6 +551,7 @@ mixin _$DeltaProvider {
   Set<String> get arguments => throw _privateConstructorUsedError;
   List<DeltaProviderDependency> get dependencies =>
       throw _privateConstructorUsedError;
+  List<ProviderState> get states => throw _privateConstructorUsedError;
 
   /// Create a copy of DeltaProvider
   /// with the given fields replaced by the non-null parameter values.
@@ -568,7 +569,8 @@ abstract class $DeltaProviderCopyWith<$Res> {
   $Res call(
       {String name,
       Set<String> arguments,
-      List<DeltaProviderDependency> dependencies});
+      List<DeltaProviderDependency> dependencies,
+      List<ProviderState> states});
 }
 
 /// @nodoc
@@ -589,6 +591,7 @@ class _$DeltaProviderCopyWithImpl<$Res, $Val extends DeltaProvider>
     Object? name = null,
     Object? arguments = null,
     Object? dependencies = null,
+    Object? states = null,
   }) {
     return _then(_value.copyWith(
       name: null == name
@@ -603,6 +606,10 @@ class _$DeltaProviderCopyWithImpl<$Res, $Val extends DeltaProvider>
           ? _value.dependencies
           : dependencies // ignore: cast_nullable_to_non_nullable
               as List<DeltaProviderDependency>,
+      states: null == states
+          ? _value.states
+          : states // ignore: cast_nullable_to_non_nullable
+              as List<ProviderState>,
     ) as $Val);
   }
 }
@@ -618,7 +625,8 @@ abstract class _$$DeltaProviderImplCopyWith<$Res>
   $Res call(
       {String name,
       Set<String> arguments,
-      List<DeltaProviderDependency> dependencies});
+      List<DeltaProviderDependency> dependencies,
+      List<ProviderState> states});
 }
 
 /// @nodoc
@@ -637,6 +645,7 @@ class __$$DeltaProviderImplCopyWithImpl<$Res>
     Object? name = null,
     Object? arguments = null,
     Object? dependencies = null,
+    Object? states = null,
   }) {
     return _then(_$DeltaProviderImpl(
       name: null == name
@@ -651,6 +660,10 @@ class __$$DeltaProviderImplCopyWithImpl<$Res>
           ? _value._dependencies
           : dependencies // ignore: cast_nullable_to_non_nullable
               as List<DeltaProviderDependency>,
+      states: null == states
+          ? _value._states
+          : states // ignore: cast_nullable_to_non_nullable
+              as List<ProviderState>,
     ));
   }
 }
@@ -661,9 +674,11 @@ class _$DeltaProviderImpl extends _DeltaProvider {
   const _$DeltaProviderImpl(
       {required this.name,
       final Set<String> arguments = const {},
-      final List<DeltaProviderDependency> dependencies = const []})
+      final List<DeltaProviderDependency> dependencies = const [],
+      required final List<ProviderState> states})
       : _arguments = arguments,
         _dependencies = dependencies,
+        _states = states,
         super._();
 
   @override
@@ -686,9 +701,17 @@ class _$DeltaProviderImpl extends _DeltaProvider {
     return EqualUnmodifiableListView(_dependencies);
   }
 
+  final List<ProviderState> _states;
+  @override
+  List<ProviderState> get states {
+    if (_states is EqualUnmodifiableListView) return _states;
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableListView(_states);
+  }
+
   @override
   String toString() {
-    return 'DeltaProvider(name: $name, arguments: $arguments, dependencies: $dependencies)';
+    return 'DeltaProvider(name: $name, arguments: $arguments, dependencies: $dependencies, states: $states)';
   }
 
   @override
@@ -700,7 +723,8 @@ class _$DeltaProviderImpl extends _DeltaProvider {
             const DeepCollectionEquality()
                 .equals(other._arguments, _arguments) &&
             const DeepCollectionEquality()
-                .equals(other._dependencies, _dependencies));
+                .equals(other._dependencies, _dependencies) &&
+            const DeepCollectionEquality().equals(other._states, _states));
   }
 
   @override
@@ -708,7 +732,8 @@ class _$DeltaProviderImpl extends _DeltaProvider {
       runtimeType,
       name,
       const DeepCollectionEquality().hash(_arguments),
-      const DeepCollectionEquality().hash(_dependencies));
+      const DeepCollectionEquality().hash(_dependencies),
+      const DeepCollectionEquality().hash(_states));
 
   /// Create a copy of DeltaProvider
   /// with the given fields replaced by the non-null parameter values.
@@ -723,7 +748,8 @@ abstract class _DeltaProvider extends DeltaProvider {
   const factory _DeltaProvider(
       {required final String name,
       final Set<String> arguments,
-      final List<DeltaProviderDependency> dependencies}) = _$DeltaProviderImpl;
+      final List<DeltaProviderDependency> dependencies,
+      required final List<ProviderState> states}) = _$DeltaProviderImpl;
   const _DeltaProvider._() : super._();
 
   @override
@@ -732,6 +758,8 @@ abstract class _DeltaProvider extends DeltaProvider {
   Set<String> get arguments;
   @override
   List<DeltaProviderDependency> get dependencies;
+  @override
+  List<ProviderState> get states;
 
   /// Create a copy of DeltaProvider
   /// with the given fields replaced by the non-null parameter values.

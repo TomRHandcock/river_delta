@@ -20,6 +20,7 @@ class ProviderDto with _$ProviderDto {
     required String name,
     required String objectId,
     required String isolateId,
+    required String? stateObjectId,
     @Default({})
     @JsonKey(toJson: ProviderDto.dependenciesToJson)
     Set<ProviderSlimDependencyDto> dependencies,

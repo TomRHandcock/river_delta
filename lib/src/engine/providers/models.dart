@@ -9,6 +9,7 @@ class ProviderModel with _$ProviderModel {
     required String name,
     @Default({}) Set<String> arguments,
     @Default({}) Set<ProviderDependencyModel> dependencies,
+    ProviderState? state,
   }) = _ProviderModel;
 }
 
@@ -18,4 +19,20 @@ class ProviderDependencyModel with _$ProviderDependencyModel {
     required String name,
     @Default({}) Set<String> arguments,
   }) = _ProviderDependencyModel;
+}
+
+@freezed
+class ProviderState with _$ProviderState {
+  const factory ProviderState({
+    required String name,
+    ProviderAsyncState? asyncState,
+    required Map<String?, String?> fields,
+    required DateTime timestamp,
+  }) = _ProviderState;
+}
+
+enum ProviderAsyncState {
+  loading,
+  data,
+  error;
 }

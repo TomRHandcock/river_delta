@@ -12,7 +12,7 @@ extension on Set<DeltaProvider> {
         const listEquality = SetEquality();
         return provider.name == dependency.name &&
             listEquality.equals(
-                provider.arguments?.toSet(), dependency.arguments?.toSet());
+                provider.arguments.toSet(), dependency.arguments.toSet());
       });
 }
 
@@ -28,12 +28,33 @@ class GraphViewmodel extends _$GraphViewmodel {
                 arguments: dependency.arguments,
               ))
           .toList();
+      final incumbent = _findIncumbentProvider(dto.name, dto.arguments);
+      final previousState = incumbent?.states.firstOrNull;
       return DeltaProvider(
         name: dto.name,
         arguments: dto.arguments,
         dependencies: dependencies,
+        states: [
+          if (previousState?.timestamp != dto.state?.timestamp) dto.state,
+          ...?incumbent?.states
+        ].nonNulls.toList(),
       );
     }).toSet();
+    Set<GraphNode> nodes = _computeNodes(providers);
+    Set<GraphEdge> edges = _computeEdges(providers);
+    return GraphState(nodes: nodes, edges: edges);
+  }
+
+  Set<GraphNode> _computeNodes(Set<DeltaProvider> providers) {
+    final nodes = providers
+        .map(
+          (provider) => GraphNode(provider: provider),
+        )
+        .toSet();
+    return nodes;
+  }
+
+  Set<GraphEdge> _computeEdges(Set<DeltaProvider> providers) {
     final edges = providers.fold(
       <GraphEdge>[],
       (acc, cur) =>
@@ -47,12 +68,19 @@ class GraphViewmodel extends _$GraphViewmodel {
               .toList() +
           acc,
     ).toSet();
-    final nodes = providers
-        .map(
-          (provider) => GraphNode(provider: provider),
-        )
-        .toSet();
-    return GraphState(nodes: nodes, edges: edges);
+    return edges;
+  }
+
+  DeltaProvider? _findIncumbentProvider(String name, Set<String> arguments) {
+    final current = state.valueOrNull;
+    if (current == null) {
+      return null;
+    }
+    return current.allProviders.firstWhereOrNull((provider) {
+      const listEquality = SetEquality();
+      return provider.name == name &&
+          listEquality.equals(provider.arguments.toSet(), arguments.toSet());
+    });
   }
 
   void selectProvider(DeltaProvider provider) {

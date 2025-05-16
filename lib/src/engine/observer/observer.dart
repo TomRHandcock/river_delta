@@ -3,6 +3,7 @@ import 'dart:isolate';
 
 import 'package:collection/collection.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:river_delta/src/engine/utils/utils.dart';
 
 import 'dto_models.dart';
 
@@ -59,7 +60,7 @@ class DeltaObserver extends ProviderObserver {
       ProviderContainer container) async {
     final dependencies =
         await _fetchDependenciesForProvider(provider, container);
-    final providerDto = _resolveProvider(provider, dependencies.toSet());
+    final providerDto = _resolveProvider(provider, dependencies.toSet(), value);
     if (providerDto == null) {
       return;
     }
@@ -76,7 +77,7 @@ class DeltaObserver extends ProviderObserver {
   ) async {
     final dependencies =
         await _fetchDependenciesForProvider(provider, container);
-    final providerDto = _resolveProvider(provider, dependencies.toSet());
+    final providerDto = _resolveProvider(provider, dependencies.toSet(), newValue);
     if (providerDto == null) {
       return;
     }
@@ -91,7 +92,7 @@ class DeltaObserver extends ProviderObserver {
   ) async {
     final dependencies =
         await _fetchDependenciesForProvider(provider, container);
-    final providerDto = _resolveProvider(provider, dependencies.toSet());
+    final providerDto = _resolveProvider(provider, dependencies.toSet(), null);
     if (providerDto == null) {
       return;
     }
@@ -102,10 +103,12 @@ class DeltaObserver extends ProviderObserver {
   ProviderDto? _resolveProvider(
     ProviderBase<Object?> provider,
     Set<ProviderSlimDependencyDto> dependencies,
+      Object? state,
   ) {
     final name = provider.name;
     final objectId = Service.getObjectId(provider);
     final isolateId = Service.getIsolateId(Isolate.current);
+    final stateObjectId = state?.let((it) => Service.getObjectId(it));
     if (name == null || objectId == null || isolateId == null) {
       log("Couldn't resolve provider: {name: $name, objectId: $objectId, isolateId: $isolateId}",
           level: 900);
@@ -116,6 +119,7 @@ class DeltaObserver extends ProviderObserver {
       objectId: objectId,
       isolateId: isolateId,
       dependencies: dependencies,
+      stateObjectId: stateObjectId,
     );
   }
 }

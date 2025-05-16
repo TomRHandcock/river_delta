@@ -38,23 +38,32 @@ void main() async {
       // Verify
       final expected = GraphState(
         nodes: {
-          const GraphNode(
+          GraphNode(
             provider: _deltaProviderFixtureA,
           ),
-          const GraphNode(
+          GraphNode(
             provider: _deltaProviderFixtureB,
           ),
-          const GraphNode(
+          GraphNode(
             provider: _deltaProviderFixtureC,
           ),
-          const GraphNode(
+          GraphNode(
             provider: _deltaProviderFixtureD,
           ),
         },
         edges: {
-          const GraphEdge(from: _deltaProviderFixtureA, to: _deltaProviderFixtureC,),
-          const GraphEdge(from: _deltaProviderFixtureB, to: _deltaProviderFixtureC,),
-          const GraphEdge(from: _deltaProviderFixtureC, to: _deltaProviderFixtureD,),
+          GraphEdge(
+            from: _deltaProviderFixtureA,
+            to: _deltaProviderFixtureC,
+          ),
+          GraphEdge(
+            from: _deltaProviderFixtureB,
+            to: _deltaProviderFixtureC,
+          ),
+          GraphEdge(
+            from: _deltaProviderFixtureC,
+            to: _deltaProviderFixtureD,
+          ),
         },
       );
       expect(actual, expected);
@@ -68,11 +77,11 @@ void main() async {
       // Setup
       final container = createContainer(overrides: [
         providersProviderProvider.overrideWith(
-              () => MockProvidersProvider(() async => [
-            _providerModelFixtureA,
-            _providerModelFixtureB,
-            _providerModelFixtureD,
-          ]),
+          () => MockProvidersProvider(() async => [
+                _providerModelFixtureA,
+                _providerModelFixtureB,
+                _providerModelFixtureD,
+              ]),
         )
       ]);
 
@@ -82,15 +91,9 @@ void main() async {
       // Verify
       final expected = GraphState(
         nodes: {
-          const GraphNode(
-            provider: _deltaProviderFixtureA,
-          ),
-          const GraphNode(
-            provider: _deltaProviderFixtureB,
-          ),
-          const GraphNode(
-            provider: _deltaProviderFixtureD,
-          ),
+          GraphNode(provider: _deltaProviderFixtureA),
+          GraphNode(provider: _deltaProviderFixtureB),
+          GraphNode(provider: _deltaProviderFixtureD),
         },
         edges: {},
       );
