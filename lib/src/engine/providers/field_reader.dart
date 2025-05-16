@@ -1,3 +1,4 @@
+import 'package:flutter/foundation.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:river_delta/src/engine/common/logical_error.dart';
 import 'package:river_delta/src/engine/providers/models.dart';
@@ -38,14 +39,15 @@ class FieldReader {
     if (object == null) {
       return null;
     }
-    if (_isAsyncValue(object)) {
-      return _extractAsyncState(isolateId, object);
+    if (isAsyncValue(object)) {
+      return extractAsyncState(isolateId, object);
     } else {
-      return _extractSyncState(isolateId, object);
+      return extractSyncState(isolateId, object);
     }
   }
 
-  bool _isAsyncValue(InstanceRef instanceRef) {
+  @visibleForTesting
+  bool isAsyncValue(InstanceRef instanceRef) {
     final classRef = instanceRef.classRef;
     final classNameMatches =
         classRef?.name?.let((name) => _asyncValueClassNames.contains(name)) ??
@@ -55,7 +57,8 @@ class FieldReader {
     return classNameMatches && classPackageMatches;
   }
 
-  Future<ProviderState> _extractAsyncState(
+  @visibleForTesting
+  Future<ProviderState> extractAsyncState(
       String isolateId, InstanceRef instanceRef) async {
     final asyncState = switch (instanceRef.classRef?.name) {
       "AsyncLoading" => ProviderAsyncState.loading,
@@ -79,15 +82,19 @@ class FieldReader {
     }
     final clazz =
         (await vmService.getObject(isolateId, valueClassId)).asOrNull<Class>();
+    if (clazz == null) {
+      throw LogicalError(code: LogicalErrorCode.failedToReadAsyncState);
+    }
     return ProviderState(
-      name: clazz?.name ?? "Unknown",
+      name: clazz.name ?? "Unknown",
       fields: {},
       asyncState: asyncState,
       timestamp: DateTime.now(),
     );
   }
 
-  Future<ProviderState> _extractSyncState(
+  @visibleForTesting
+  Future<ProviderState> extractSyncState(
       String isolateId, InstanceRef instanceRef) async {
     final clazz = instanceRef.classRef;
     if (clazz == null) {
