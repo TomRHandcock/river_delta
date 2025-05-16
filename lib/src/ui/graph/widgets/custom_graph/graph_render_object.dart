@@ -5,6 +5,7 @@ import 'package:devtools_app_shared/ui.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 import 'package:river_delta/src/engine/utils/utils.dart';
+import 'package:river_delta/src/ui/graph/viewmodel/graph_comparison.dart';
 import 'package:river_delta/src/ui/graph/viewmodel/graph_state.dart';
 
 class CustomGraphWidgetParentData extends ContainerBoxParentData<RenderBox> {
@@ -34,7 +35,8 @@ class RenderCustomGraphWidget extends RenderBox
   GraphState get graph => _graph;
 
   set graph(GraphState value) {
-    if (_graph == value) {
+    final shapesEqual = GraphComparison.isShapeEqual(_graph, value);
+    if (shapesEqual) {
       return;
     }
     _graph = value;
@@ -58,14 +60,6 @@ class RenderCustomGraphWidget extends RenderBox
     final y = node.distanceToRoot(allProviders, longest: true);
     final x = _layeredTree[y].indexOf(node);
     return (y: y, x: x);
-  }
-
-  Offset _getOffsetForGraphNode(
-      GraphNode node, Set<DeltaProvider> allProviders) {
-    final position = _getPositionForNode(node, allProviders);
-    return Offset(
-            position.x * _horizontalSpacing, position.y * _verticalSpacing) +
-        _padding.topLeft;
   }
 
   @override
@@ -101,7 +95,7 @@ class RenderCustomGraphWidget extends RenderBox
 
   @override
   void performLayout() {
-    if(firstChild == null) {
+    if (firstChild == null) {
       size = constraints.smallest;
       return;
     }
