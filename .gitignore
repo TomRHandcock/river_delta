@@ -34,3 +34,6 @@ build/
 .flutter-plugins-dependencies
 
 dev_examples/
+
+# Generated code
+*.mocks.dart
