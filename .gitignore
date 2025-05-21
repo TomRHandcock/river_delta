@@ -37,3 +37,6 @@ dev_examples/
 
 # Generated code
 *.mocks.dart
+
+# Fastlane
+fastlane/report.xml
