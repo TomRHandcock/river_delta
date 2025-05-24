@@ -42,7 +42,11 @@ class GraphViewmodel extends _$GraphViewmodel {
     }).toSet();
     Set<GraphNode> nodes = _computeNodes(providers);
     Set<GraphEdge> edges = _computeEdges(providers);
-    return GraphState(nodes: nodes, edges: edges);
+    return GraphState(
+      nodes: nodes,
+      edges: edges,
+      selectedProvider: state.valueOrNull?.selectedProvider,
+    );
   }
 
   Set<GraphNode> _computeNodes(Set<DeltaProvider> providers) {

@@ -23,7 +23,6 @@ class CustomGraphWidget extends MultiChildRenderObjectWidget {
           child: Material(
             child: InkWell(
               onTap: () {
-                print("Provider tap");
                 onProviderSelected?.call(node.provider);
               },
               child: Container(

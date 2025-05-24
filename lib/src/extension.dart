@@ -48,7 +48,7 @@ class DeltaContent extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return switch (state) {
-      AsyncData(:final valueOrNull?, hasError: false) => SplitPane(
+      AsyncValue(:final GraphState valueOrNull?, hasError: false) => SplitPane(
           axis: Axis.horizontal,
           initialFractions: [
             0.7,
