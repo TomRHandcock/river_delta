@@ -19,7 +19,7 @@ dependencies:
   json_annotation: ^4.9.0
   collection: ^1.18.0
   mockito: ^5.4.4
-  vm_service: ^14.2.5
+  vm_service: ^15.0.0
   flutter_svg: ^2.1.0
 
 dev_dependencies:
