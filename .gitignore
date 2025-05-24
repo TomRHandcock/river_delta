@@ -40,3 +40,6 @@ dev_examples/
 
 # Fastlane
 fastlane/report.xml
+
+# Android specific
+**/.cxx/
