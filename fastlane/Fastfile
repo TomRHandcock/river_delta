@@ -1,0 +1,22 @@
+before_all do |lane,options|
+    lane_context[:repo_root] = sh("git rev-parse --show-toplevel").strip
+end
+
+lane :pull_request do
+    desc "Runs automated pull-request checks"
+    setup
+
+    UI.message "Starting pull request lane"
+
+    Dir.chdir(lane_context[:repo_root]) do
+        sh("flutter test")
+    end
+end
+
+private_lane :setup do
+    UI.message "Setting things up..."
+
+    Dir.chdir(lane_context[:repo_root]) do
+        sh("flutter pub get && dart run build_runner build -d")
+    end
+end
