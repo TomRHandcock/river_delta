@@ -1,9 +1,11 @@
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:river_delta/src/engine/providers/models.dart';
 import 'package:river_delta/src/engine/providers/providers_provider.dart';
 import 'package:river_delta/src/ui/graph/viewmodel/graph_state.dart';
 import 'package:river_delta/src/ui/graph/viewmodel/graph_viewmodel.dart';
 
+import '../../../../test_utils/async_utils.dart';
 import '../../../../test_utils/create_container.dart';
 import 'mock_providers_provider.dart';
 
@@ -98,6 +100,68 @@ void main() async {
         edges: {},
       );
       expect(actual, expected);
+    });
+
+    test("build - preserves selected provider", () async {
+      // Setup
+      final container = createContainer(overrides: [
+        providersProviderProvider.overrideWith(
+          () => MockProvidersProvider(() async => [
+                _providerModelFixtureA,
+              ]),
+        ),
+      ]);
+      final states = [];
+      final subscription = container.listen(graphViewmodelProvider, (_, state) {
+        states.add(state);
+      });
+      final mockProvidersProvider =
+          container.read(providersProviderProvider.notifier);
+      await tick();
+      container
+          .read(graphViewmodelProvider.notifier)
+          .selectProvider(_deltaProviderFixtureA);
+      await tick();
+
+      // Run test
+      mockProvidersProvider.state = AsyncData(
+        [_providerModelFixtureA, _providerModelFixtureB],
+      );
+      await tick();
+
+      // Verify
+      expect(
+        states,
+        [
+          AsyncData(
+            GraphState(
+              nodes: {GraphNode(provider: _deltaProviderFixtureA)},
+              edges: {},
+            ),
+          ),
+          AsyncData(
+            GraphState(
+              nodes: {GraphNode(provider: _deltaProviderFixtureA)},
+              edges: {},
+              selectedProvider: _deltaProviderFixtureA,
+            ),
+          ),
+          anything,
+          AsyncData(
+            GraphState(
+              nodes: {
+                GraphNode(provider: _deltaProviderFixtureA),
+                GraphNode(provider: _deltaProviderFixtureB)
+              },
+              edges: {},
+              selectedProvider: _deltaProviderFixtureA,
+            ),
+          )
+        ],
+      );
+
+      // Tear down
+      subscription.close();
     });
   });
 }
