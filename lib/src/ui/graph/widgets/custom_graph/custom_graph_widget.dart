@@ -22,13 +22,17 @@ class CustomGraphWidget extends MultiChildRenderObjectWidget {
           node: node,
           child: Material(
             child: InkWell(
+              borderRadius: BorderRadius.circular(8),
               onTap: () {
                 onProviderSelected?.call(node.provider);
               },
               child: Container(
                 decoration: BoxDecoration(
                   border: Border.all(
-                    color: Colors.greenAccent,
+                    color: switch (graph.selectedProvider == node.provider) {
+                      true => Colors.deepPurpleAccent,
+                      false => Colors.greenAccent
+                    },
                   ),
                   borderRadius: BorderRadius.circular(8),
                   color: backgroundColor,
