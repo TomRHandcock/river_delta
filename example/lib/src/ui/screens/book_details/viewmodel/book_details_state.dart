@@ -4,7 +4,7 @@ import 'package:freezed_annotation/freezed_annotation.dart';
 part 'book_details_state.freezed.dart';
 
 @freezed
-class BookDetailsState with _$BookDetailsState {
+abstract class BookDetailsState with _$BookDetailsState {
   const factory BookDetailsState({
     required BookWithFavorite book,
   }) = _BookDetailsState;
