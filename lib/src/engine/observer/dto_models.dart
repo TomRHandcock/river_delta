@@ -5,7 +5,7 @@ part 'dto_models.freezed.dart';
 part 'dto_models.g.dart';
 
 @freezed
-class ProviderListDto with _$ProviderListDto {
+abstract class ProviderListDto with _$ProviderListDto {
   const factory ProviderListDto({
     required List<ProviderDto> providers,
   }) = _ProviderListDto;
@@ -15,7 +15,7 @@ class ProviderListDto with _$ProviderListDto {
 }
 
 @freezed
-class ProviderDto with _$ProviderDto {
+abstract class ProviderDto with _$ProviderDto {
   const factory ProviderDto({
     required String name,
     required String objectId,
@@ -35,7 +35,7 @@ class ProviderDto with _$ProviderDto {
 }
 
 @freezed
-class ProviderSlimDependencyDto with _$ProviderSlimDependencyDto {
+abstract class ProviderSlimDependencyDto with _$ProviderSlimDependencyDto {
   const factory ProviderSlimDependencyDto({
     required String name,
     required String objectId,

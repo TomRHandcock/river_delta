@@ -5,7 +5,7 @@ part 'models.freezed.dart';
 part 'models.g.dart';
 
 @freezed
-class BookListDto with _$BookListDto {
+abstract class BookListDto with _$BookListDto {
   const factory BookListDto({
     required List<BookDto> books,
   }) = _BookListDto;
@@ -15,7 +15,7 @@ class BookListDto with _$BookListDto {
 }
 
 @freezed
-class BookDto with _$BookDto {
+abstract class BookDto with _$BookDto {
   const factory BookDto({
     required String id,
     required String title,
@@ -27,14 +27,14 @@ class BookDto with _$BookDto {
 }
 
 @freezed
-class BookList with _$BookList {
+abstract class BookList with _$BookList {
   const factory BookList({
     required List<Book> books,
   }) = _BookList;
 }
 
 @freezed
-class Book with _$Book {
+abstract class Book with _$Book {
   const factory Book({
     required String id,
     required String title,
@@ -49,7 +49,7 @@ class Book with _$Book {
 }
 
 @freezed
-class BookWithFavorite with _$BookWithFavorite {
+abstract class BookWithFavorite with _$BookWithFavorite {
   const factory BookWithFavorite({
     required Book book,
     required bool favorite,

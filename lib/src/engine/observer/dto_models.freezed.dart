@@ -1,3 +1,4 @@
+// dart format width=80
 // coverage:ignore-file
 // GENERATED CODE - DO NOT MODIFY BY HAND
 // ignore_for_file: type=lint
@@ -9,82 +10,59 @@ part of 'dto_models.dart';
 // FreezedGenerator
 // **************************************************************************
 
+// dart format off
 T _$identity<T>(T value) => value;
-
-final _privateConstructorUsedError = UnsupportedError(
-    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#adding-getters-and-methods-to-our-models');
-
-ProviderListDto _$ProviderListDtoFromJson(Map<String, dynamic> json) {
-  return _ProviderListDto.fromJson(json);
-}
 
 /// @nodoc
 mixin _$ProviderListDto {
-  List<ProviderDto> get providers => throw _privateConstructorUsedError;
-
-  /// Serializes this ProviderListDto to a JSON map.
-  Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
+  List<ProviderDto> get providers;
 
   /// Create a copy of ProviderListDto
   /// with the given fields replaced by the non-null parameter values.
   @JsonKey(includeFromJson: false, includeToJson: false)
-  $ProviderListDtoCopyWith<ProviderListDto> get copyWith =>
-      throw _privateConstructorUsedError;
-}
-
-/// @nodoc
-abstract class $ProviderListDtoCopyWith<$Res> {
-  factory $ProviderListDtoCopyWith(
-          ProviderListDto value, $Res Function(ProviderListDto) then) =
-      _$ProviderListDtoCopyWithImpl<$Res, ProviderListDto>;
-  @useResult
-  $Res call({List<ProviderDto> providers});
-}
-
-/// @nodoc
-class _$ProviderListDtoCopyWithImpl<$Res, $Val extends ProviderListDto>
-    implements $ProviderListDtoCopyWith<$Res> {
-  _$ProviderListDtoCopyWithImpl(this._value, this._then);
-
-  // ignore: unused_field
-  final $Val _value;
-  // ignore: unused_field
-  final $Res Function($Val) _then;
-
-  /// Create a copy of ProviderListDto
-  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
+  $ProviderListDtoCopyWith<ProviderListDto> get copyWith =>
+      _$ProviderListDtoCopyWithImpl<ProviderListDto>(
+          this as ProviderListDto, _$identity);
+
+  /// Serializes this ProviderListDto to a JSON map.
+  Map<String, dynamic> toJson();
+
   @override
-  $Res call({
-    Object? providers = null,
-  }) {
-    return _then(_value.copyWith(
-      providers: null == providers
-          ? _value.providers
-          : providers // ignore: cast_nullable_to_non_nullable
-              as List<ProviderDto>,
-    ) as $Val);
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is ProviderListDto &&
+            const DeepCollectionEquality().equals(other.providers, providers));
+  }
+
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  @override
+  int get hashCode =>
+      Object.hash(runtimeType, const DeepCollectionEquality().hash(providers));
+
+  @override
+  String toString() {
+    return 'ProviderListDto(providers: $providers)';
   }
 }
 
 /// @nodoc
-abstract class _$$ProviderListDtoImplCopyWith<$Res>
-    implements $ProviderListDtoCopyWith<$Res> {
-  factory _$$ProviderListDtoImplCopyWith(_$ProviderListDtoImpl value,
-          $Res Function(_$ProviderListDtoImpl) then) =
-      __$$ProviderListDtoImplCopyWithImpl<$Res>;
-  @override
+abstract mixin class $ProviderListDtoCopyWith<$Res> {
+  factory $ProviderListDtoCopyWith(
+          ProviderListDto value, $Res Function(ProviderListDto) _then) =
+      _$ProviderListDtoCopyWithImpl;
   @useResult
   $Res call({List<ProviderDto> providers});
 }
 
 /// @nodoc
-class __$$ProviderListDtoImplCopyWithImpl<$Res>
-    extends _$ProviderListDtoCopyWithImpl<$Res, _$ProviderListDtoImpl>
-    implements _$$ProviderListDtoImplCopyWith<$Res> {
-  __$$ProviderListDtoImplCopyWithImpl(
-      _$ProviderListDtoImpl _value, $Res Function(_$ProviderListDtoImpl) _then)
-      : super(_value, _then);
+class _$ProviderListDtoCopyWithImpl<$Res>
+    implements $ProviderListDtoCopyWith<$Res> {
+  _$ProviderListDtoCopyWithImpl(this._self, this._then);
+
+  final ProviderListDto _self;
+  final $Res Function(ProviderListDto) _then;
 
   /// Create a copy of ProviderListDto
   /// with the given fields replaced by the non-null parameter values.
@@ -93,9 +71,9 @@ class __$$ProviderListDtoImplCopyWithImpl<$Res>
   $Res call({
     Object? providers = null,
   }) {
-    return _then(_$ProviderListDtoImpl(
+    return _then(_self.copyWith(
       providers: null == providers
-          ? _value._providers
+          ? _self.providers
           : providers // ignore: cast_nullable_to_non_nullable
               as List<ProviderDto>,
     ));
@@ -104,12 +82,11 @@ class __$$ProviderListDtoImplCopyWithImpl<$Res>
 
 /// @nodoc
 @JsonSerializable()
-class _$ProviderListDtoImpl implements _ProviderListDto {
-  const _$ProviderListDtoImpl({required final List<ProviderDto> providers})
+class _ProviderListDto implements ProviderListDto {
+  const _ProviderListDto({required final List<ProviderDto> providers})
       : _providers = providers;
-
-  factory _$ProviderListDtoImpl.fromJson(Map<String, dynamic> json) =>
-      _$$ProviderListDtoImplFromJson(json);
+  factory _ProviderListDto.fromJson(Map<String, dynamic> json) =>
+      _$ProviderListDtoFromJson(json);
 
   final List<ProviderDto> _providers;
   @override
@@ -119,16 +96,26 @@ class _$ProviderListDtoImpl implements _ProviderListDto {
     return EqualUnmodifiableListView(_providers);
   }
 
+  /// Create a copy of ProviderListDto
+  /// with the given fields replaced by the non-null parameter values.
   @override
-  String toString() {
-    return 'ProviderListDto(providers: $providers)';
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  @pragma('vm:prefer-inline')
+  _$ProviderListDtoCopyWith<_ProviderListDto> get copyWith =>
+      __$ProviderListDtoCopyWithImpl<_ProviderListDto>(this, _$identity);
+
+  @override
+  Map<String, dynamic> toJson() {
+    return _$ProviderListDtoToJson(
+      this,
+    );
   }
 
   @override
   bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$ProviderListDtoImpl &&
+            other is _ProviderListDto &&
             const DeepCollectionEquality()
                 .equals(other._providers, _providers));
   }
@@ -138,133 +125,98 @@ class _$ProviderListDtoImpl implements _ProviderListDto {
   int get hashCode =>
       Object.hash(runtimeType, const DeepCollectionEquality().hash(_providers));
 
-  /// Create a copy of ProviderListDto
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
-  @pragma('vm:prefer-inline')
-  _$$ProviderListDtoImplCopyWith<_$ProviderListDtoImpl> get copyWith =>
-      __$$ProviderListDtoImplCopyWithImpl<_$ProviderListDtoImpl>(
-          this, _$identity);
-
-  @override
-  Map<String, dynamic> toJson() {
-    return _$$ProviderListDtoImplToJson(
-      this,
-    );
+  String toString() {
+    return 'ProviderListDto(providers: $providers)';
   }
 }
 
-abstract class _ProviderListDto implements ProviderListDto {
-  const factory _ProviderListDto({required final List<ProviderDto> providers}) =
-      _$ProviderListDtoImpl;
-
-  factory _ProviderListDto.fromJson(Map<String, dynamic> json) =
-      _$ProviderListDtoImpl.fromJson;
-
+/// @nodoc
+abstract mixin class _$ProviderListDtoCopyWith<$Res>
+    implements $ProviderListDtoCopyWith<$Res> {
+  factory _$ProviderListDtoCopyWith(
+          _ProviderListDto value, $Res Function(_ProviderListDto) _then) =
+      __$ProviderListDtoCopyWithImpl;
   @override
-  List<ProviderDto> get providers;
+  @useResult
+  $Res call({List<ProviderDto> providers});
+}
+
+/// @nodoc
+class __$ProviderListDtoCopyWithImpl<$Res>
+    implements _$ProviderListDtoCopyWith<$Res> {
+  __$ProviderListDtoCopyWithImpl(this._self, this._then);
+
+  final _ProviderListDto _self;
+  final $Res Function(_ProviderListDto) _then;
 
   /// Create a copy of ProviderListDto
   /// with the given fields replaced by the non-null parameter values.
   @override
-  @JsonKey(includeFromJson: false, includeToJson: false)
-  _$$ProviderListDtoImplCopyWith<_$ProviderListDtoImpl> get copyWith =>
-      throw _privateConstructorUsedError;
-}
-
-ProviderDto _$ProviderDtoFromJson(Map<String, dynamic> json) {
-  return _ProviderDto.fromJson(json);
+  @pragma('vm:prefer-inline')
+  $Res call({
+    Object? providers = null,
+  }) {
+    return _then(_ProviderListDto(
+      providers: null == providers
+          ? _self._providers
+          : providers // ignore: cast_nullable_to_non_nullable
+              as List<ProviderDto>,
+    ));
+  }
 }
 
 /// @nodoc
 mixin _$ProviderDto {
-  String get name => throw _privateConstructorUsedError;
-  String get objectId => throw _privateConstructorUsedError;
-  String get isolateId => throw _privateConstructorUsedError;
-  String? get stateObjectId => throw _privateConstructorUsedError;
+  String get name;
+  String get objectId;
+  String get isolateId;
+  String? get stateObjectId;
   @JsonKey(toJson: ProviderDto.dependenciesToJson)
-  Set<ProviderSlimDependencyDto> get dependencies =>
-      throw _privateConstructorUsedError;
-
-  /// Serializes this ProviderDto to a JSON map.
-  Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
+  Set<ProviderSlimDependencyDto> get dependencies;
 
   /// Create a copy of ProviderDto
   /// with the given fields replaced by the non-null parameter values.
   @JsonKey(includeFromJson: false, includeToJson: false)
-  $ProviderDtoCopyWith<ProviderDto> get copyWith =>
-      throw _privateConstructorUsedError;
-}
-
-/// @nodoc
-abstract class $ProviderDtoCopyWith<$Res> {
-  factory $ProviderDtoCopyWith(
-          ProviderDto value, $Res Function(ProviderDto) then) =
-      _$ProviderDtoCopyWithImpl<$Res, ProviderDto>;
-  @useResult
-  $Res call(
-      {String name,
-      String objectId,
-      String isolateId,
-      String? stateObjectId,
-      @JsonKey(toJson: ProviderDto.dependenciesToJson)
-      Set<ProviderSlimDependencyDto> dependencies});
-}
-
-/// @nodoc
-class _$ProviderDtoCopyWithImpl<$Res, $Val extends ProviderDto>
-    implements $ProviderDtoCopyWith<$Res> {
-  _$ProviderDtoCopyWithImpl(this._value, this._then);
-
-  // ignore: unused_field
-  final $Val _value;
-  // ignore: unused_field
-  final $Res Function($Val) _then;
-
-  /// Create a copy of ProviderDto
-  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
+  $ProviderDtoCopyWith<ProviderDto> get copyWith =>
+      _$ProviderDtoCopyWithImpl<ProviderDto>(this as ProviderDto, _$identity);
+
+  /// Serializes this ProviderDto to a JSON map.
+  Map<String, dynamic> toJson();
+
   @override
-  $Res call({
-    Object? name = null,
-    Object? objectId = null,
-    Object? isolateId = null,
-    Object? stateObjectId = freezed,
-    Object? dependencies = null,
-  }) {
-    return _then(_value.copyWith(
-      name: null == name
-          ? _value.name
-          : name // ignore: cast_nullable_to_non_nullable
-              as String,
-      objectId: null == objectId
-          ? _value.objectId
-          : objectId // ignore: cast_nullable_to_non_nullable
-              as String,
-      isolateId: null == isolateId
-          ? _value.isolateId
-          : isolateId // ignore: cast_nullable_to_non_nullable
-              as String,
-      stateObjectId: freezed == stateObjectId
-          ? _value.stateObjectId
-          : stateObjectId // ignore: cast_nullable_to_non_nullable
-              as String?,
-      dependencies: null == dependencies
-          ? _value.dependencies
-          : dependencies // ignore: cast_nullable_to_non_nullable
-              as Set<ProviderSlimDependencyDto>,
-    ) as $Val);
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is ProviderDto &&
+            (identical(other.name, name) || other.name == name) &&
+            (identical(other.objectId, objectId) ||
+                other.objectId == objectId) &&
+            (identical(other.isolateId, isolateId) ||
+                other.isolateId == isolateId) &&
+            (identical(other.stateObjectId, stateObjectId) ||
+                other.stateObjectId == stateObjectId) &&
+            const DeepCollectionEquality()
+                .equals(other.dependencies, dependencies));
+  }
+
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  @override
+  int get hashCode => Object.hash(runtimeType, name, objectId, isolateId,
+      stateObjectId, const DeepCollectionEquality().hash(dependencies));
+
+  @override
+  String toString() {
+    return 'ProviderDto(name: $name, objectId: $objectId, isolateId: $isolateId, stateObjectId: $stateObjectId, dependencies: $dependencies)';
   }
 }
 
 /// @nodoc
-abstract class _$$ProviderDtoImplCopyWith<$Res>
-    implements $ProviderDtoCopyWith<$Res> {
-  factory _$$ProviderDtoImplCopyWith(
-          _$ProviderDtoImpl value, $Res Function(_$ProviderDtoImpl) then) =
-      __$$ProviderDtoImplCopyWithImpl<$Res>;
-  @override
+abstract mixin class $ProviderDtoCopyWith<$Res> {
+  factory $ProviderDtoCopyWith(
+          ProviderDto value, $Res Function(ProviderDto) _then) =
+      _$ProviderDtoCopyWithImpl;
   @useResult
   $Res call(
       {String name,
@@ -276,12 +228,11 @@ abstract class _$$ProviderDtoImplCopyWith<$Res>
 }
 
 /// @nodoc
-class __$$ProviderDtoImplCopyWithImpl<$Res>
-    extends _$ProviderDtoCopyWithImpl<$Res, _$ProviderDtoImpl>
-    implements _$$ProviderDtoImplCopyWith<$Res> {
-  __$$ProviderDtoImplCopyWithImpl(
-      _$ProviderDtoImpl _value, $Res Function(_$ProviderDtoImpl) _then)
-      : super(_value, _then);
+class _$ProviderDtoCopyWithImpl<$Res> implements $ProviderDtoCopyWith<$Res> {
+  _$ProviderDtoCopyWithImpl(this._self, this._then);
+
+  final ProviderDto _self;
+  final $Res Function(ProviderDto) _then;
 
   /// Create a copy of ProviderDto
   /// with the given fields replaced by the non-null parameter values.
@@ -294,25 +245,25 @@ class __$$ProviderDtoImplCopyWithImpl<$Res>
     Object? stateObjectId = freezed,
     Object? dependencies = null,
   }) {
-    return _then(_$ProviderDtoImpl(
+    return _then(_self.copyWith(
       name: null == name
-          ? _value.name
+          ? _self.name
           : name // ignore: cast_nullable_to_non_nullable
               as String,
       objectId: null == objectId
-          ? _value.objectId
+          ? _self.objectId
           : objectId // ignore: cast_nullable_to_non_nullable
               as String,
       isolateId: null == isolateId
-          ? _value.isolateId
+          ? _self.isolateId
           : isolateId // ignore: cast_nullable_to_non_nullable
               as String,
       stateObjectId: freezed == stateObjectId
-          ? _value.stateObjectId
+          ? _self.stateObjectId
           : stateObjectId // ignore: cast_nullable_to_non_nullable
               as String?,
       dependencies: null == dependencies
-          ? _value._dependencies
+          ? _self.dependencies
           : dependencies // ignore: cast_nullable_to_non_nullable
               as Set<ProviderSlimDependencyDto>,
     ));
@@ -321,8 +272,8 @@ class __$$ProviderDtoImplCopyWithImpl<$Res>
 
 /// @nodoc
 @JsonSerializable()
-class _$ProviderDtoImpl implements _ProviderDto {
-  const _$ProviderDtoImpl(
+class _ProviderDto implements ProviderDto {
+  const _ProviderDto(
       {required this.name,
       required this.objectId,
       required this.isolateId,
@@ -330,9 +281,8 @@ class _$ProviderDtoImpl implements _ProviderDto {
       @JsonKey(toJson: ProviderDto.dependenciesToJson)
       final Set<ProviderSlimDependencyDto> dependencies = const {}})
       : _dependencies = dependencies;
-
-  factory _$ProviderDtoImpl.fromJson(Map<String, dynamic> json) =>
-      _$$ProviderDtoImplFromJson(json);
+  factory _ProviderDto.fromJson(Map<String, dynamic> json) =>
+      _$ProviderDtoFromJson(json);
 
   @override
   final String name;
@@ -351,16 +301,26 @@ class _$ProviderDtoImpl implements _ProviderDto {
     return EqualUnmodifiableSetView(_dependencies);
   }
 
+  /// Create a copy of ProviderDto
+  /// with the given fields replaced by the non-null parameter values.
   @override
-  String toString() {
-    return 'ProviderDto(name: $name, objectId: $objectId, isolateId: $isolateId, stateObjectId: $stateObjectId, dependencies: $dependencies)';
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  @pragma('vm:prefer-inline')
+  _$ProviderDtoCopyWith<_ProviderDto> get copyWith =>
+      __$ProviderDtoCopyWithImpl<_ProviderDto>(this, _$identity);
+
+  @override
+  Map<String, dynamic> toJson() {
+    return _$ProviderDtoToJson(
+      this,
+    );
   }
 
   @override
   bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$ProviderDtoImpl &&
+            other is _ProviderDto &&
             (identical(other.name, name) || other.name == name) &&
             (identical(other.objectId, objectId) ||
                 other.objectId == objectId) &&
@@ -377,182 +337,93 @@ class _$ProviderDtoImpl implements _ProviderDto {
   int get hashCode => Object.hash(runtimeType, name, objectId, isolateId,
       stateObjectId, const DeepCollectionEquality().hash(_dependencies));
 
-  /// Create a copy of ProviderDto
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
-  @pragma('vm:prefer-inline')
-  _$$ProviderDtoImplCopyWith<_$ProviderDtoImpl> get copyWith =>
-      __$$ProviderDtoImplCopyWithImpl<_$ProviderDtoImpl>(this, _$identity);
-
-  @override
-  Map<String, dynamic> toJson() {
-    return _$$ProviderDtoImplToJson(
-      this,
-    );
+  String toString() {
+    return 'ProviderDto(name: $name, objectId: $objectId, isolateId: $isolateId, stateObjectId: $stateObjectId, dependencies: $dependencies)';
   }
 }
 
-abstract class _ProviderDto implements ProviderDto {
-  const factory _ProviderDto(
-      {required final String name,
-      required final String objectId,
-      required final String isolateId,
-      required final String? stateObjectId,
+/// @nodoc
+abstract mixin class _$ProviderDtoCopyWith<$Res>
+    implements $ProviderDtoCopyWith<$Res> {
+  factory _$ProviderDtoCopyWith(
+          _ProviderDto value, $Res Function(_ProviderDto) _then) =
+      __$ProviderDtoCopyWithImpl;
+  @override
+  @useResult
+  $Res call(
+      {String name,
+      String objectId,
+      String isolateId,
+      String? stateObjectId,
       @JsonKey(toJson: ProviderDto.dependenciesToJson)
-      final Set<ProviderSlimDependencyDto> dependencies}) = _$ProviderDtoImpl;
+      Set<ProviderSlimDependencyDto> dependencies});
+}
 
-  factory _ProviderDto.fromJson(Map<String, dynamic> json) =
-      _$ProviderDtoImpl.fromJson;
+/// @nodoc
+class __$ProviderDtoCopyWithImpl<$Res> implements _$ProviderDtoCopyWith<$Res> {
+  __$ProviderDtoCopyWithImpl(this._self, this._then);
 
-  @override
-  String get name;
-  @override
-  String get objectId;
-  @override
-  String get isolateId;
-  @override
-  String? get stateObjectId;
-  @override
-  @JsonKey(toJson: ProviderDto.dependenciesToJson)
-  Set<ProviderSlimDependencyDto> get dependencies;
+  final _ProviderDto _self;
+  final $Res Function(_ProviderDto) _then;
 
   /// Create a copy of ProviderDto
   /// with the given fields replaced by the non-null parameter values.
   @override
-  @JsonKey(includeFromJson: false, includeToJson: false)
-  _$$ProviderDtoImplCopyWith<_$ProviderDtoImpl> get copyWith =>
-      throw _privateConstructorUsedError;
-}
-
-ProviderSlimDependencyDto _$ProviderSlimDependencyDtoFromJson(
-    Map<String, dynamic> json) {
-  return _ProviderSlimDependencyDto.fromJson(json);
-}
-
-/// @nodoc
-mixin _$ProviderSlimDependencyDto {
-  String get name => throw _privateConstructorUsedError;
-  String get objectId => throw _privateConstructorUsedError;
-
-  /// Serializes this ProviderSlimDependencyDto to a JSON map.
-  Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
-
-  /// Create a copy of ProviderSlimDependencyDto
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
-  $ProviderSlimDependencyDtoCopyWith<ProviderSlimDependencyDto> get copyWith =>
-      throw _privateConstructorUsedError;
-}
-
-/// @nodoc
-abstract class $ProviderSlimDependencyDtoCopyWith<$Res> {
-  factory $ProviderSlimDependencyDtoCopyWith(ProviderSlimDependencyDto value,
-          $Res Function(ProviderSlimDependencyDto) then) =
-      _$ProviderSlimDependencyDtoCopyWithImpl<$Res, ProviderSlimDependencyDto>;
-  @useResult
-  $Res call({String name, String objectId});
-}
-
-/// @nodoc
-class _$ProviderSlimDependencyDtoCopyWithImpl<$Res,
-        $Val extends ProviderSlimDependencyDto>
-    implements $ProviderSlimDependencyDtoCopyWith<$Res> {
-  _$ProviderSlimDependencyDtoCopyWithImpl(this._value, this._then);
-
-  // ignore: unused_field
-  final $Val _value;
-  // ignore: unused_field
-  final $Res Function($Val) _then;
-
-  /// Create a copy of ProviderSlimDependencyDto
-  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
-  @override
   $Res call({
     Object? name = null,
     Object? objectId = null,
+    Object? isolateId = null,
+    Object? stateObjectId = freezed,
+    Object? dependencies = null,
   }) {
-    return _then(_value.copyWith(
+    return _then(_ProviderDto(
       name: null == name
-          ? _value.name
+          ? _self.name
           : name // ignore: cast_nullable_to_non_nullable
               as String,
       objectId: null == objectId
-          ? _value.objectId
+          ? _self.objectId
           : objectId // ignore: cast_nullable_to_non_nullable
               as String,
-    ) as $Val);
-  }
-}
-
-/// @nodoc
-abstract class _$$ProviderSlimDependencyDtoImplCopyWith<$Res>
-    implements $ProviderSlimDependencyDtoCopyWith<$Res> {
-  factory _$$ProviderSlimDependencyDtoImplCopyWith(
-          _$ProviderSlimDependencyDtoImpl value,
-          $Res Function(_$ProviderSlimDependencyDtoImpl) then) =
-      __$$ProviderSlimDependencyDtoImplCopyWithImpl<$Res>;
-  @override
-  @useResult
-  $Res call({String name, String objectId});
-}
-
-/// @nodoc
-class __$$ProviderSlimDependencyDtoImplCopyWithImpl<$Res>
-    extends _$ProviderSlimDependencyDtoCopyWithImpl<$Res,
-        _$ProviderSlimDependencyDtoImpl>
-    implements _$$ProviderSlimDependencyDtoImplCopyWith<$Res> {
-  __$$ProviderSlimDependencyDtoImplCopyWithImpl(
-      _$ProviderSlimDependencyDtoImpl _value,
-      $Res Function(_$ProviderSlimDependencyDtoImpl) _then)
-      : super(_value, _then);
-
-  /// Create a copy of ProviderSlimDependencyDto
-  /// with the given fields replaced by the non-null parameter values.
-  @pragma('vm:prefer-inline')
-  @override
-  $Res call({
-    Object? name = null,
-    Object? objectId = null,
-  }) {
-    return _then(_$ProviderSlimDependencyDtoImpl(
-      name: null == name
-          ? _value.name
-          : name // ignore: cast_nullable_to_non_nullable
+      isolateId: null == isolateId
+          ? _self.isolateId
+          : isolateId // ignore: cast_nullable_to_non_nullable
               as String,
-      objectId: null == objectId
-          ? _value.objectId
-          : objectId // ignore: cast_nullable_to_non_nullable
-              as String,
+      stateObjectId: freezed == stateObjectId
+          ? _self.stateObjectId
+          : stateObjectId // ignore: cast_nullable_to_non_nullable
+              as String?,
+      dependencies: null == dependencies
+          ? _self._dependencies
+          : dependencies // ignore: cast_nullable_to_non_nullable
+              as Set<ProviderSlimDependencyDto>,
     ));
   }
 }
 
 /// @nodoc
-@JsonSerializable()
-class _$ProviderSlimDependencyDtoImpl implements _ProviderSlimDependencyDto {
-  const _$ProviderSlimDependencyDtoImpl(
-      {required this.name, required this.objectId});
+mixin _$ProviderSlimDependencyDto {
+  String get name;
+  String get objectId;
 
-  factory _$ProviderSlimDependencyDtoImpl.fromJson(Map<String, dynamic> json) =>
-      _$$ProviderSlimDependencyDtoImplFromJson(json);
+  /// Create a copy of ProviderSlimDependencyDto
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  @pragma('vm:prefer-inline')
+  $ProviderSlimDependencyDtoCopyWith<ProviderSlimDependencyDto> get copyWith =>
+      _$ProviderSlimDependencyDtoCopyWithImpl<ProviderSlimDependencyDto>(
+          this as ProviderSlimDependencyDto, _$identity);
 
-  @override
-  final String name;
-  @override
-  final String objectId;
-
-  @override
-  String toString() {
-    return 'ProviderSlimDependencyDto(name: $name, objectId: $objectId)';
-  }
+  /// Serializes this ProviderSlimDependencyDto to a JSON map.
+  Map<String, dynamic> toJson();
 
   @override
   bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$ProviderSlimDependencyDtoImpl &&
+            other is ProviderSlimDependencyDto &&
             (identical(other.name, name) || other.name == name) &&
             (identical(other.objectId, objectId) ||
                 other.objectId == objectId));
@@ -562,40 +433,138 @@ class _$ProviderSlimDependencyDtoImpl implements _ProviderSlimDependencyDto {
   @override
   int get hashCode => Object.hash(runtimeType, name, objectId);
 
-  /// Create a copy of ProviderSlimDependencyDto
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
-  @pragma('vm:prefer-inline')
-  _$$ProviderSlimDependencyDtoImplCopyWith<_$ProviderSlimDependencyDtoImpl>
-      get copyWith => __$$ProviderSlimDependencyDtoImplCopyWithImpl<
-          _$ProviderSlimDependencyDtoImpl>(this, _$identity);
-
-  @override
-  Map<String, dynamic> toJson() {
-    return _$$ProviderSlimDependencyDtoImplToJson(
-      this,
-    );
+  String toString() {
+    return 'ProviderSlimDependencyDto(name: $name, objectId: $objectId)';
   }
 }
 
-abstract class _ProviderSlimDependencyDto implements ProviderSlimDependencyDto {
-  const factory _ProviderSlimDependencyDto(
-      {required final String name,
-      required final String objectId}) = _$ProviderSlimDependencyDtoImpl;
+/// @nodoc
+abstract mixin class $ProviderSlimDependencyDtoCopyWith<$Res> {
+  factory $ProviderSlimDependencyDtoCopyWith(ProviderSlimDependencyDto value,
+          $Res Function(ProviderSlimDependencyDto) _then) =
+      _$ProviderSlimDependencyDtoCopyWithImpl;
+  @useResult
+  $Res call({String name, String objectId});
+}
 
-  factory _ProviderSlimDependencyDto.fromJson(Map<String, dynamic> json) =
-      _$ProviderSlimDependencyDtoImpl.fromJson;
+/// @nodoc
+class _$ProviderSlimDependencyDtoCopyWithImpl<$Res>
+    implements $ProviderSlimDependencyDtoCopyWith<$Res> {
+  _$ProviderSlimDependencyDtoCopyWithImpl(this._self, this._then);
+
+  final ProviderSlimDependencyDto _self;
+  final $Res Function(ProviderSlimDependencyDto) _then;
+
+  /// Create a copy of ProviderSlimDependencyDto
+  /// with the given fields replaced by the non-null parameter values.
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? name = null,
+    Object? objectId = null,
+  }) {
+    return _then(_self.copyWith(
+      name: null == name
+          ? _self.name
+          : name // ignore: cast_nullable_to_non_nullable
+              as String,
+      objectId: null == objectId
+          ? _self.objectId
+          : objectId // ignore: cast_nullable_to_non_nullable
+              as String,
+    ));
+  }
+}
+
+/// @nodoc
+@JsonSerializable()
+class _ProviderSlimDependencyDto implements ProviderSlimDependencyDto {
+  const _ProviderSlimDependencyDto(
+      {required this.name, required this.objectId});
+  factory _ProviderSlimDependencyDto.fromJson(Map<String, dynamic> json) =>
+      _$ProviderSlimDependencyDtoFromJson(json);
 
   @override
-  String get name;
+  final String name;
   @override
-  String get objectId;
+  final String objectId;
 
   /// Create a copy of ProviderSlimDependencyDto
   /// with the given fields replaced by the non-null parameter values.
   @override
   @JsonKey(includeFromJson: false, includeToJson: false)
-  _$$ProviderSlimDependencyDtoImplCopyWith<_$ProviderSlimDependencyDtoImpl>
-      get copyWith => throw _privateConstructorUsedError;
+  @pragma('vm:prefer-inline')
+  _$ProviderSlimDependencyDtoCopyWith<_ProviderSlimDependencyDto>
+      get copyWith =>
+          __$ProviderSlimDependencyDtoCopyWithImpl<_ProviderSlimDependencyDto>(
+              this, _$identity);
+
+  @override
+  Map<String, dynamic> toJson() {
+    return _$ProviderSlimDependencyDtoToJson(
+      this,
+    );
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _ProviderSlimDependencyDto &&
+            (identical(other.name, name) || other.name == name) &&
+            (identical(other.objectId, objectId) ||
+                other.objectId == objectId));
+  }
+
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  @override
+  int get hashCode => Object.hash(runtimeType, name, objectId);
+
+  @override
+  String toString() {
+    return 'ProviderSlimDependencyDto(name: $name, objectId: $objectId)';
+  }
 }
+
+/// @nodoc
+abstract mixin class _$ProviderSlimDependencyDtoCopyWith<$Res>
+    implements $ProviderSlimDependencyDtoCopyWith<$Res> {
+  factory _$ProviderSlimDependencyDtoCopyWith(_ProviderSlimDependencyDto value,
+          $Res Function(_ProviderSlimDependencyDto) _then) =
+      __$ProviderSlimDependencyDtoCopyWithImpl;
+  @override
+  @useResult
+  $Res call({String name, String objectId});
+}
+
+/// @nodoc
+class __$ProviderSlimDependencyDtoCopyWithImpl<$Res>
+    implements _$ProviderSlimDependencyDtoCopyWith<$Res> {
+  __$ProviderSlimDependencyDtoCopyWithImpl(this._self, this._then);
+
+  final _ProviderSlimDependencyDto _self;
+  final $Res Function(_ProviderSlimDependencyDto) _then;
+
+  /// Create a copy of ProviderSlimDependencyDto
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @pragma('vm:prefer-inline')
+  $Res call({
+    Object? name = null,
+    Object? objectId = null,
+  }) {
+    return _then(_ProviderSlimDependencyDto(
+      name: null == name
+          ? _self.name
+          : name // ignore: cast_nullable_to_non_nullable
+              as String,
+      objectId: null == objectId
+          ? _self.objectId
+          : objectId // ignore: cast_nullable_to_non_nullable
+              as String,
+    ));
+  }
+}
+
+// dart format on
