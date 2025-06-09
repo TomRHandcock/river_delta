@@ -7,7 +7,7 @@ import 'package:river_delta/src/engine/providers/models.dart';
 part 'graph_state.freezed.dart';
 
 @freezed
-class GraphState with _$GraphState {
+abstract class GraphState with _$GraphState {
   const GraphState._();
 
   const factory GraphState({
@@ -26,7 +26,7 @@ class GraphState with _$GraphState {
 }
 
 @freezed
-class GraphNode with _$GraphNode {
+abstract class GraphNode with _$GraphNode {
   const GraphNode._();
 
   const factory GraphNode({
@@ -41,7 +41,7 @@ class GraphNode with _$GraphNode {
 }
 
 @freezed
-class GraphEdge with _$GraphEdge {
+abstract class GraphEdge with _$GraphEdge {
   const GraphEdge._();
 
   const factory GraphEdge({
@@ -75,7 +75,7 @@ class GraphEdge with _$GraphEdge {
 }
 
 @freezed
-class DeltaProvider with _$DeltaProvider {
+abstract class DeltaProvider with _$DeltaProvider {
   const DeltaProvider._();
 
   const factory DeltaProvider({
@@ -151,7 +151,7 @@ class DeltaProvider with _$DeltaProvider {
 }
 
 @freezed
-class DeltaProviderDependency with _$DeltaProviderDependency {
+abstract class DeltaProviderDependency with _$DeltaProviderDependency {
   const factory DeltaProviderDependency({
     required String name,
     @Default({}) Set<String> arguments,

@@ -1,3 +1,4 @@
+// dart format width=80
 // coverage:ignore-file
 // GENERATED CODE - DO NOT MODIFY BY HAND
 // ignore_for_file: type=lint
@@ -9,82 +10,57 @@ part of 'graph_comparison.dart';
 // FreezedGenerator
 // **************************************************************************
 
+// dart format off
 T _$identity<T>(T value) => value;
-
-final _privateConstructorUsedError = UnsupportedError(
-    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#adding-getters-and-methods-to-our-models');
 
 /// @nodoc
 mixin _$NodeComparisonProps {
-  String get name => throw _privateConstructorUsedError;
-  List<String> get arguments => throw _privateConstructorUsedError;
+  String get name;
+  List<String> get arguments;
 
   /// Create a copy of _NodeComparisonProps
   /// with the given fields replaced by the non-null parameter values.
   @JsonKey(includeFromJson: false, includeToJson: false)
-  _$NodeComparisonPropsCopyWith<_NodeComparisonProps> get copyWith =>
-      throw _privateConstructorUsedError;
-}
-
-/// @nodoc
-abstract class _$NodeComparisonPropsCopyWith<$Res> {
-  factory _$NodeComparisonPropsCopyWith(_NodeComparisonProps value,
-          $Res Function(_NodeComparisonProps) then) =
-      __$NodeComparisonPropsCopyWithImpl<$Res, _NodeComparisonProps>;
-  @useResult
-  $Res call({String name, List<String> arguments});
-}
-
-/// @nodoc
-class __$NodeComparisonPropsCopyWithImpl<$Res,
-        $Val extends _NodeComparisonProps>
-    implements _$NodeComparisonPropsCopyWith<$Res> {
-  __$NodeComparisonPropsCopyWithImpl(this._value, this._then);
-
-  // ignore: unused_field
-  final $Val _value;
-  // ignore: unused_field
-  final $Res Function($Val) _then;
-
-  /// Create a copy of _NodeComparisonProps
-  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
+  _$NodeComparisonPropsCopyWith<_NodeComparisonProps> get copyWith =>
+      __$NodeComparisonPropsCopyWithImpl<_NodeComparisonProps>(
+          this as _NodeComparisonProps, _$identity);
+
   @override
-  $Res call({
-    Object? name = null,
-    Object? arguments = null,
-  }) {
-    return _then(_value.copyWith(
-      name: null == name
-          ? _value.name
-          : name // ignore: cast_nullable_to_non_nullable
-              as String,
-      arguments: null == arguments
-          ? _value.arguments
-          : arguments // ignore: cast_nullable_to_non_nullable
-              as List<String>,
-    ) as $Val);
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _NodeComparisonProps &&
+            (identical(other.name, name) || other.name == name) &&
+            const DeepCollectionEquality().equals(other.arguments, arguments));
+  }
+
+  @override
+  int get hashCode => Object.hash(
+      runtimeType, name, const DeepCollectionEquality().hash(arguments));
+
+  @override
+  String toString() {
+    return '_NodeComparisonProps(name: $name, arguments: $arguments)';
   }
 }
 
 /// @nodoc
-abstract class _$$_NodeComparisonPropsImplCopyWith<$Res>
-    implements _$NodeComparisonPropsCopyWith<$Res> {
-  factory _$$_NodeComparisonPropsImplCopyWith(_$_NodeComparisonPropsImpl value,
-          $Res Function(_$_NodeComparisonPropsImpl) then) =
-      __$$_NodeComparisonPropsImplCopyWithImpl<$Res>;
-  @override
+abstract mixin class _$NodeComparisonPropsCopyWith<$Res> {
+  factory _$NodeComparisonPropsCopyWith(_NodeComparisonProps value,
+          $Res Function(_NodeComparisonProps) _then) =
+      __$NodeComparisonPropsCopyWithImpl;
   @useResult
   $Res call({String name, List<String> arguments});
 }
 
 /// @nodoc
-class __$$_NodeComparisonPropsImplCopyWithImpl<$Res>
-    extends __$NodeComparisonPropsCopyWithImpl<$Res, _$_NodeComparisonPropsImpl>
-    implements _$$_NodeComparisonPropsImplCopyWith<$Res> {
-  __$$_NodeComparisonPropsImplCopyWithImpl(_$_NodeComparisonPropsImpl _value,
-      $Res Function(_$_NodeComparisonPropsImpl) _then)
-      : super(_value, _then);
+class __$NodeComparisonPropsCopyWithImpl<$Res>
+    implements _$NodeComparisonPropsCopyWith<$Res> {
+  __$NodeComparisonPropsCopyWithImpl(this._self, this._then);
+
+  final _NodeComparisonProps _self;
+  final $Res Function(_NodeComparisonProps) _then;
 
   /// Create a copy of _NodeComparisonProps
   /// with the given fields replaced by the non-null parameter values.
@@ -94,13 +70,13 @@ class __$$_NodeComparisonPropsImplCopyWithImpl<$Res>
     Object? name = null,
     Object? arguments = null,
   }) {
-    return _then(_$_NodeComparisonPropsImpl(
+    return _then(_self.copyWith(
       name: null == name
-          ? _value.name
+          ? _self.name
           : name // ignore: cast_nullable_to_non_nullable
               as String,
       arguments: null == arguments
-          ? _value._arguments
+          ? _self.arguments
           : arguments // ignore: cast_nullable_to_non_nullable
               as List<String>,
     ));
@@ -109,8 +85,8 @@ class __$$_NodeComparisonPropsImplCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$_NodeComparisonPropsImpl implements __NodeComparisonProps {
-  const _$_NodeComparisonPropsImpl(
+class __NodeComparisonProps implements _NodeComparisonProps {
+  const __NodeComparisonProps(
       {required this.name, required final List<String> arguments})
       : _arguments = arguments;
 
@@ -124,16 +100,20 @@ class _$_NodeComparisonPropsImpl implements __NodeComparisonProps {
     return EqualUnmodifiableListView(_arguments);
   }
 
+  /// Create a copy of _NodeComparisonProps
+  /// with the given fields replaced by the non-null parameter values.
   @override
-  String toString() {
-    return '_NodeComparisonProps(name: $name, arguments: $arguments)';
-  }
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  @pragma('vm:prefer-inline')
+  _$_NodeComparisonPropsCopyWith<__NodeComparisonProps> get copyWith =>
+      __$_NodeComparisonPropsCopyWithImpl<__NodeComparisonProps>(
+          this, _$identity);
 
   @override
   bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$_NodeComparisonPropsImpl &&
+            other is __NodeComparisonProps &&
             (identical(other.name, name) || other.name == name) &&
             const DeepCollectionEquality()
                 .equals(other._arguments, _arguments));
@@ -143,31 +123,50 @@ class _$_NodeComparisonPropsImpl implements __NodeComparisonProps {
   int get hashCode => Object.hash(
       runtimeType, name, const DeepCollectionEquality().hash(_arguments));
 
+  @override
+  String toString() {
+    return '_NodeComparisonProps(name: $name, arguments: $arguments)';
+  }
+}
+
+/// @nodoc
+abstract mixin class _$_NodeComparisonPropsCopyWith<$Res>
+    implements _$NodeComparisonPropsCopyWith<$Res> {
+  factory _$_NodeComparisonPropsCopyWith(__NodeComparisonProps value,
+          $Res Function(__NodeComparisonProps) _then) =
+      __$_NodeComparisonPropsCopyWithImpl;
+  @override
+  @useResult
+  $Res call({String name, List<String> arguments});
+}
+
+/// @nodoc
+class __$_NodeComparisonPropsCopyWithImpl<$Res>
+    implements _$_NodeComparisonPropsCopyWith<$Res> {
+  __$_NodeComparisonPropsCopyWithImpl(this._self, this._then);
+
+  final __NodeComparisonProps _self;
+  final $Res Function(__NodeComparisonProps) _then;
+
   /// Create a copy of _NodeComparisonProps
   /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
-  _$$_NodeComparisonPropsImplCopyWith<_$_NodeComparisonPropsImpl>
-      get copyWith =>
-          __$$_NodeComparisonPropsImplCopyWithImpl<_$_NodeComparisonPropsImpl>(
-              this, _$identity);
+  $Res call({
+    Object? name = null,
+    Object? arguments = null,
+  }) {
+    return _then(__NodeComparisonProps(
+      name: null == name
+          ? _self.name
+          : name // ignore: cast_nullable_to_non_nullable
+              as String,
+      arguments: null == arguments
+          ? _self._arguments
+          : arguments // ignore: cast_nullable_to_non_nullable
+              as List<String>,
+    ));
+  }
 }
 
-abstract class __NodeComparisonProps implements _NodeComparisonProps {
-  const factory __NodeComparisonProps(
-      {required final String name,
-      required final List<String> arguments}) = _$_NodeComparisonPropsImpl;
-
-  @override
-  String get name;
-  @override
-  List<String> get arguments;
-
-  /// Create a copy of _NodeComparisonProps
-  /// with the given fields replaced by the non-null parameter values.
-  @override
-  @JsonKey(includeFromJson: false, includeToJson: false)
-  _$$_NodeComparisonPropsImplCopyWith<_$_NodeComparisonPropsImpl>
-      get copyWith => throw _privateConstructorUsedError;
-}
+// dart format on

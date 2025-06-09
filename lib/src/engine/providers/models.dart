@@ -4,7 +4,7 @@ import 'package:freezed_annotation/freezed_annotation.dart';
 part 'models.freezed.dart';
 
 @freezed
-class ProviderModel with _$ProviderModel {
+sealed class ProviderModel with _$ProviderModel {
   const factory ProviderModel({
     required String name,
     @Default({}) Set<String> arguments,
@@ -14,7 +14,7 @@ class ProviderModel with _$ProviderModel {
 }
 
 @freezed
-class ProviderDependencyModel with _$ProviderDependencyModel {
+sealed class ProviderDependencyModel with _$ProviderDependencyModel {
   const factory ProviderDependencyModel({
     required String name,
     @Default({}) Set<String> arguments,
@@ -22,7 +22,7 @@ class ProviderDependencyModel with _$ProviderDependencyModel {
 }
 
 @freezed
-class ProviderState with _$ProviderState {
+sealed class ProviderState with _$ProviderState {
   const factory ProviderState({
     required String name,
     ProviderAsyncState? asyncState,
