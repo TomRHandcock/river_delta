@@ -21,7 +21,9 @@ abstract class GraphState with _$GraphState {
 
   int get depth => switch (nodes.length) {
         0 => 0,
-        _ => nodes.map((node) => node.distanceToRoot(allProviders)).max,
+        _ => nodes
+            .map((node) => node.distanceToRoot(allProviders, longest: true))
+            .max,
       };
 }
 
@@ -129,7 +131,7 @@ abstract class DeltaProvider with _$DeltaProvider {
                 longestPath: longestPath,
                 recursionDepth: recursionDepth + 1),
           )
-          .whereNotNull()
+          .nonNulls
           .toList();
       if (dependencyDistances.isEmpty) {
         return 0;
