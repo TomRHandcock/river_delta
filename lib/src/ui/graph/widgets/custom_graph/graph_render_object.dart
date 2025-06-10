@@ -46,7 +46,8 @@ class RenderCustomGraphWidget extends RenderBox
 
   List<List<GraphNode>> _buildLayeredTree(GraphState graph) {
     final allProviders = graph.nodes.map((node) => node.provider).toSet();
-    return graph.nodes.fold(List.generate(10, (_) => []), (acc, cur) {
+    return graph.nodes.fold(List.generate(graph.depth + 1, (_) => []),
+        (acc, cur) {
       final layerIndex = cur.distanceToRoot(allProviders, longest: true);
       final existingOnLayer = acc.elementAtOrNull(layerIndex) ?? [];
       final newLayer = existingOnLayer + [cur];
