@@ -1,3 +1,4 @@
+// dart format width=80
 // coverage:ignore-file
 // GENERATED CODE - DO NOT MODIFY BY HAND
 // ignore_for_file: type=lint
@@ -9,29 +10,51 @@ part of 'graph_state.dart';
 // FreezedGenerator
 // **************************************************************************
 
+// dart format off
 T _$identity<T>(T value) => value;
-
-final _privateConstructorUsedError = UnsupportedError(
-    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#adding-getters-and-methods-to-our-models');
 
 /// @nodoc
 mixin _$GraphState {
-  Set<GraphNode> get nodes => throw _privateConstructorUsedError;
-  Set<GraphEdge> get edges => throw _privateConstructorUsedError;
-  DeltaProvider? get selectedProvider => throw _privateConstructorUsedError;
+  Set<GraphNode> get nodes;
+  Set<GraphEdge> get edges;
+  DeltaProvider? get selectedProvider;
 
   /// Create a copy of GraphState
   /// with the given fields replaced by the non-null parameter values.
   @JsonKey(includeFromJson: false, includeToJson: false)
+  @pragma('vm:prefer-inline')
   $GraphStateCopyWith<GraphState> get copyWith =>
-      throw _privateConstructorUsedError;
+      _$GraphStateCopyWithImpl<GraphState>(this as GraphState, _$identity);
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is GraphState &&
+            const DeepCollectionEquality().equals(other.nodes, nodes) &&
+            const DeepCollectionEquality().equals(other.edges, edges) &&
+            (identical(other.selectedProvider, selectedProvider) ||
+                other.selectedProvider == selectedProvider));
+  }
+
+  @override
+  int get hashCode => Object.hash(
+      runtimeType,
+      const DeepCollectionEquality().hash(nodes),
+      const DeepCollectionEquality().hash(edges),
+      selectedProvider);
+
+  @override
+  String toString() {
+    return 'GraphState(nodes: $nodes, edges: $edges, selectedProvider: $selectedProvider)';
+  }
 }
 
 /// @nodoc
-abstract class $GraphStateCopyWith<$Res> {
+abstract mixin class $GraphStateCopyWith<$Res> {
   factory $GraphStateCopyWith(
-          GraphState value, $Res Function(GraphState) then) =
-      _$GraphStateCopyWithImpl<$Res, GraphState>;
+          GraphState value, $Res Function(GraphState) _then) =
+      _$GraphStateCopyWithImpl;
   @useResult
   $Res call(
       {Set<GraphNode> nodes,
@@ -42,14 +65,11 @@ abstract class $GraphStateCopyWith<$Res> {
 }
 
 /// @nodoc
-class _$GraphStateCopyWithImpl<$Res, $Val extends GraphState>
-    implements $GraphStateCopyWith<$Res> {
-  _$GraphStateCopyWithImpl(this._value, this._then);
+class _$GraphStateCopyWithImpl<$Res> implements $GraphStateCopyWith<$Res> {
+  _$GraphStateCopyWithImpl(this._self, this._then);
 
-  // ignore: unused_field
-  final $Val _value;
-  // ignore: unused_field
-  final $Res Function($Val) _then;
+  final GraphState _self;
+  final $Res Function(GraphState) _then;
 
   /// Create a copy of GraphState
   /// with the given fields replaced by the non-null parameter values.
@@ -60,20 +80,20 @@ class _$GraphStateCopyWithImpl<$Res, $Val extends GraphState>
     Object? edges = null,
     Object? selectedProvider = freezed,
   }) {
-    return _then(_value.copyWith(
+    return _then(_self.copyWith(
       nodes: null == nodes
-          ? _value.nodes
+          ? _self.nodes
           : nodes // ignore: cast_nullable_to_non_nullable
               as Set<GraphNode>,
       edges: null == edges
-          ? _value.edges
+          ? _self.edges
           : edges // ignore: cast_nullable_to_non_nullable
               as Set<GraphEdge>,
       selectedProvider: freezed == selectedProvider
-          ? _value.selectedProvider
+          ? _self.selectedProvider
           : selectedProvider // ignore: cast_nullable_to_non_nullable
               as DeltaProvider?,
-    ) as $Val);
+    ));
   }
 
   /// Create a copy of GraphState
@@ -81,71 +101,20 @@ class _$GraphStateCopyWithImpl<$Res, $Val extends GraphState>
   @override
   @pragma('vm:prefer-inline')
   $DeltaProviderCopyWith<$Res>? get selectedProvider {
-    if (_value.selectedProvider == null) {
+    if (_self.selectedProvider == null) {
       return null;
     }
 
-    return $DeltaProviderCopyWith<$Res>(_value.selectedProvider!, (value) {
-      return _then(_value.copyWith(selectedProvider: value) as $Val);
+    return $DeltaProviderCopyWith<$Res>(_self.selectedProvider!, (value) {
+      return _then(_self.copyWith(selectedProvider: value));
     });
   }
 }
 
 /// @nodoc
-abstract class _$$GraphStateImplCopyWith<$Res>
-    implements $GraphStateCopyWith<$Res> {
-  factory _$$GraphStateImplCopyWith(
-          _$GraphStateImpl value, $Res Function(_$GraphStateImpl) then) =
-      __$$GraphStateImplCopyWithImpl<$Res>;
-  @override
-  @useResult
-  $Res call(
-      {Set<GraphNode> nodes,
-      Set<GraphEdge> edges,
-      DeltaProvider? selectedProvider});
 
-  @override
-  $DeltaProviderCopyWith<$Res>? get selectedProvider;
-}
-
-/// @nodoc
-class __$$GraphStateImplCopyWithImpl<$Res>
-    extends _$GraphStateCopyWithImpl<$Res, _$GraphStateImpl>
-    implements _$$GraphStateImplCopyWith<$Res> {
-  __$$GraphStateImplCopyWithImpl(
-      _$GraphStateImpl _value, $Res Function(_$GraphStateImpl) _then)
-      : super(_value, _then);
-
-  /// Create a copy of GraphState
-  /// with the given fields replaced by the non-null parameter values.
-  @pragma('vm:prefer-inline')
-  @override
-  $Res call({
-    Object? nodes = null,
-    Object? edges = null,
-    Object? selectedProvider = freezed,
-  }) {
-    return _then(_$GraphStateImpl(
-      nodes: null == nodes
-          ? _value._nodes
-          : nodes // ignore: cast_nullable_to_non_nullable
-              as Set<GraphNode>,
-      edges: null == edges
-          ? _value._edges
-          : edges // ignore: cast_nullable_to_non_nullable
-              as Set<GraphEdge>,
-      selectedProvider: freezed == selectedProvider
-          ? _value.selectedProvider
-          : selectedProvider // ignore: cast_nullable_to_non_nullable
-              as DeltaProvider?,
-    ));
-  }
-}
-
-/// @nodoc
-
-class _$GraphStateImpl extends _GraphState {
-  const _$GraphStateImpl(
+class _GraphState extends GraphState {
+  const _GraphState(
       {required final Set<GraphNode> nodes,
       required final Set<GraphEdge> edges,
       this.selectedProvider})
@@ -172,16 +141,19 @@ class _$GraphStateImpl extends _GraphState {
   @override
   final DeltaProvider? selectedProvider;
 
+  /// Create a copy of GraphState
+  /// with the given fields replaced by the non-null parameter values.
   @override
-  String toString() {
-    return 'GraphState(nodes: $nodes, edges: $edges, selectedProvider: $selectedProvider)';
-  }
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  @pragma('vm:prefer-inline')
+  _$GraphStateCopyWith<_GraphState> get copyWith =>
+      __$GraphStateCopyWithImpl<_GraphState>(this, _$identity);
 
   @override
   bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$GraphStateImpl &&
+            other is _GraphState &&
             const DeepCollectionEquality().equals(other._nodes, _nodes) &&
             const DeepCollectionEquality().equals(other._edges, _edges) &&
             (identical(other.selectedProvider, selectedProvider) ||
@@ -195,150 +167,92 @@ class _$GraphStateImpl extends _GraphState {
       const DeepCollectionEquality().hash(_edges),
       selectedProvider);
 
-  /// Create a copy of GraphState
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
-  @pragma('vm:prefer-inline')
-  _$$GraphStateImplCopyWith<_$GraphStateImpl> get copyWith =>
-      __$$GraphStateImplCopyWithImpl<_$GraphStateImpl>(this, _$identity);
-}
-
-abstract class _GraphState extends GraphState {
-  const factory _GraphState(
-      {required final Set<GraphNode> nodes,
-      required final Set<GraphEdge> edges,
-      final DeltaProvider? selectedProvider}) = _$GraphStateImpl;
-  const _GraphState._() : super._();
-
-  @override
-  Set<GraphNode> get nodes;
-  @override
-  Set<GraphEdge> get edges;
-  @override
-  DeltaProvider? get selectedProvider;
-
-  /// Create a copy of GraphState
-  /// with the given fields replaced by the non-null parameter values.
-  @override
-  @JsonKey(includeFromJson: false, includeToJson: false)
-  _$$GraphStateImplCopyWith<_$GraphStateImpl> get copyWith =>
-      throw _privateConstructorUsedError;
+  String toString() {
+    return 'GraphState(nodes: $nodes, edges: $edges, selectedProvider: $selectedProvider)';
+  }
 }
 
 /// @nodoc
-mixin _$GraphNode {
-  DeltaProvider get provider => throw _privateConstructorUsedError;
-
-  /// Create a copy of GraphNode
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
-  $GraphNodeCopyWith<GraphNode> get copyWith =>
-      throw _privateConstructorUsedError;
-}
-
-/// @nodoc
-abstract class $GraphNodeCopyWith<$Res> {
-  factory $GraphNodeCopyWith(GraphNode value, $Res Function(GraphNode) then) =
-      _$GraphNodeCopyWithImpl<$Res, GraphNode>;
+abstract mixin class _$GraphStateCopyWith<$Res>
+    implements $GraphStateCopyWith<$Res> {
+  factory _$GraphStateCopyWith(
+          _GraphState value, $Res Function(_GraphState) _then) =
+      __$GraphStateCopyWithImpl;
+  @override
   @useResult
-  $Res call({DeltaProvider provider});
+  $Res call(
+      {Set<GraphNode> nodes,
+      Set<GraphEdge> edges,
+      DeltaProvider? selectedProvider});
 
-  $DeltaProviderCopyWith<$Res> get provider;
+  @override
+  $DeltaProviderCopyWith<$Res>? get selectedProvider;
 }
 
 /// @nodoc
-class _$GraphNodeCopyWithImpl<$Res, $Val extends GraphNode>
-    implements $GraphNodeCopyWith<$Res> {
-  _$GraphNodeCopyWithImpl(this._value, this._then);
+class __$GraphStateCopyWithImpl<$Res> implements _$GraphStateCopyWith<$Res> {
+  __$GraphStateCopyWithImpl(this._self, this._then);
 
-  // ignore: unused_field
-  final $Val _value;
-  // ignore: unused_field
-  final $Res Function($Val) _then;
+  final _GraphState _self;
+  final $Res Function(_GraphState) _then;
 
-  /// Create a copy of GraphNode
+  /// Create a copy of GraphState
   /// with the given fields replaced by the non-null parameter values.
-  @pragma('vm:prefer-inline')
   @override
+  @pragma('vm:prefer-inline')
   $Res call({
-    Object? provider = null,
+    Object? nodes = null,
+    Object? edges = null,
+    Object? selectedProvider = freezed,
   }) {
-    return _then(_value.copyWith(
-      provider: null == provider
-          ? _value.provider
-          : provider // ignore: cast_nullable_to_non_nullable
-              as DeltaProvider,
-    ) as $Val);
+    return _then(_GraphState(
+      nodes: null == nodes
+          ? _self._nodes
+          : nodes // ignore: cast_nullable_to_non_nullable
+              as Set<GraphNode>,
+      edges: null == edges
+          ? _self._edges
+          : edges // ignore: cast_nullable_to_non_nullable
+              as Set<GraphEdge>,
+      selectedProvider: freezed == selectedProvider
+          ? _self.selectedProvider
+          : selectedProvider // ignore: cast_nullable_to_non_nullable
+              as DeltaProvider?,
+    ));
   }
 
-  /// Create a copy of GraphNode
+  /// Create a copy of GraphState
   /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
-  $DeltaProviderCopyWith<$Res> get provider {
-    return $DeltaProviderCopyWith<$Res>(_value.provider, (value) {
-      return _then(_value.copyWith(provider: value) as $Val);
+  $DeltaProviderCopyWith<$Res>? get selectedProvider {
+    if (_self.selectedProvider == null) {
+      return null;
+    }
+
+    return $DeltaProviderCopyWith<$Res>(_self.selectedProvider!, (value) {
+      return _then(_self.copyWith(selectedProvider: value));
     });
   }
 }
 
 /// @nodoc
-abstract class _$$GraphNodeImplCopyWith<$Res>
-    implements $GraphNodeCopyWith<$Res> {
-  factory _$$GraphNodeImplCopyWith(
-          _$GraphNodeImpl value, $Res Function(_$GraphNodeImpl) then) =
-      __$$GraphNodeImplCopyWithImpl<$Res>;
-  @override
-  @useResult
-  $Res call({DeltaProvider provider});
-
-  @override
-  $DeltaProviderCopyWith<$Res> get provider;
-}
-
-/// @nodoc
-class __$$GraphNodeImplCopyWithImpl<$Res>
-    extends _$GraphNodeCopyWithImpl<$Res, _$GraphNodeImpl>
-    implements _$$GraphNodeImplCopyWith<$Res> {
-  __$$GraphNodeImplCopyWithImpl(
-      _$GraphNodeImpl _value, $Res Function(_$GraphNodeImpl) _then)
-      : super(_value, _then);
+mixin _$GraphNode {
+  DeltaProvider get provider;
 
   /// Create a copy of GraphNode
   /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @pragma('vm:prefer-inline')
-  @override
-  $Res call({
-    Object? provider = null,
-  }) {
-    return _then(_$GraphNodeImpl(
-      provider: null == provider
-          ? _value.provider
-          : provider // ignore: cast_nullable_to_non_nullable
-              as DeltaProvider,
-    ));
-  }
-}
-
-/// @nodoc
-
-class _$GraphNodeImpl extends _GraphNode {
-  const _$GraphNodeImpl({required this.provider}) : super._();
-
-  @override
-  final DeltaProvider provider;
-
-  @override
-  String toString() {
-    return 'GraphNode(provider: $provider)';
-  }
+  $GraphNodeCopyWith<GraphNode> get copyWith =>
+      _$GraphNodeCopyWithImpl<GraphNode>(this as GraphNode, _$identity);
 
   @override
   bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$GraphNodeImpl &&
+            other is GraphNode &&
             (identical(other.provider, provider) ||
                 other.provider == provider));
   }
@@ -346,47 +260,170 @@ class _$GraphNodeImpl extends _GraphNode {
   @override
   int get hashCode => Object.hash(runtimeType, provider);
 
-  /// Create a copy of GraphNode
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
-  @pragma('vm:prefer-inline')
-  _$$GraphNodeImplCopyWith<_$GraphNodeImpl> get copyWith =>
-      __$$GraphNodeImplCopyWithImpl<_$GraphNodeImpl>(this, _$identity);
+  String toString() {
+    return 'GraphNode(provider: $provider)';
+  }
 }
 
-abstract class _GraphNode extends GraphNode {
-  const factory _GraphNode({required final DeltaProvider provider}) =
-      _$GraphNodeImpl;
-  const _GraphNode._() : super._();
+/// @nodoc
+abstract mixin class $GraphNodeCopyWith<$Res> {
+  factory $GraphNodeCopyWith(GraphNode value, $Res Function(GraphNode) _then) =
+      _$GraphNodeCopyWithImpl;
+  @useResult
+  $Res call({DeltaProvider provider});
+
+  $DeltaProviderCopyWith<$Res> get provider;
+}
+
+/// @nodoc
+class _$GraphNodeCopyWithImpl<$Res> implements $GraphNodeCopyWith<$Res> {
+  _$GraphNodeCopyWithImpl(this._self, this._then);
+
+  final GraphNode _self;
+  final $Res Function(GraphNode) _then;
+
+  /// Create a copy of GraphNode
+  /// with the given fields replaced by the non-null parameter values.
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? provider = null,
+  }) {
+    return _then(_self.copyWith(
+      provider: null == provider
+          ? _self.provider
+          : provider // ignore: cast_nullable_to_non_nullable
+              as DeltaProvider,
+    ));
+  }
+
+  /// Create a copy of GraphNode
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @pragma('vm:prefer-inline')
+  $DeltaProviderCopyWith<$Res> get provider {
+    return $DeltaProviderCopyWith<$Res>(_self.provider, (value) {
+      return _then(_self.copyWith(provider: value));
+    });
+  }
+}
+
+/// @nodoc
+
+class _GraphNode extends GraphNode {
+  const _GraphNode({required this.provider}) : super._();
 
   @override
-  DeltaProvider get provider;
+  final DeltaProvider provider;
 
   /// Create a copy of GraphNode
   /// with the given fields replaced by the non-null parameter values.
   @override
   @JsonKey(includeFromJson: false, includeToJson: false)
-  _$$GraphNodeImplCopyWith<_$GraphNodeImpl> get copyWith =>
-      throw _privateConstructorUsedError;
+  @pragma('vm:prefer-inline')
+  _$GraphNodeCopyWith<_GraphNode> get copyWith =>
+      __$GraphNodeCopyWithImpl<_GraphNode>(this, _$identity);
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _GraphNode &&
+            (identical(other.provider, provider) ||
+                other.provider == provider));
+  }
+
+  @override
+  int get hashCode => Object.hash(runtimeType, provider);
+
+  @override
+  String toString() {
+    return 'GraphNode(provider: $provider)';
+  }
+}
+
+/// @nodoc
+abstract mixin class _$GraphNodeCopyWith<$Res>
+    implements $GraphNodeCopyWith<$Res> {
+  factory _$GraphNodeCopyWith(
+          _GraphNode value, $Res Function(_GraphNode) _then) =
+      __$GraphNodeCopyWithImpl;
+  @override
+  @useResult
+  $Res call({DeltaProvider provider});
+
+  @override
+  $DeltaProviderCopyWith<$Res> get provider;
+}
+
+/// @nodoc
+class __$GraphNodeCopyWithImpl<$Res> implements _$GraphNodeCopyWith<$Res> {
+  __$GraphNodeCopyWithImpl(this._self, this._then);
+
+  final _GraphNode _self;
+  final $Res Function(_GraphNode) _then;
+
+  /// Create a copy of GraphNode
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @pragma('vm:prefer-inline')
+  $Res call({
+    Object? provider = null,
+  }) {
+    return _then(_GraphNode(
+      provider: null == provider
+          ? _self.provider
+          : provider // ignore: cast_nullable_to_non_nullable
+              as DeltaProvider,
+    ));
+  }
+
+  /// Create a copy of GraphNode
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @pragma('vm:prefer-inline')
+  $DeltaProviderCopyWith<$Res> get provider {
+    return $DeltaProviderCopyWith<$Res>(_self.provider, (value) {
+      return _then(_self.copyWith(provider: value));
+    });
+  }
 }
 
 /// @nodoc
 mixin _$GraphEdge {
-  DeltaProvider get from => throw _privateConstructorUsedError;
-  DeltaProvider get to => throw _privateConstructorUsedError;
+  DeltaProvider get from;
+  DeltaProvider get to;
 
   /// Create a copy of GraphEdge
   /// with the given fields replaced by the non-null parameter values.
   @JsonKey(includeFromJson: false, includeToJson: false)
+  @pragma('vm:prefer-inline')
   $GraphEdgeCopyWith<GraphEdge> get copyWith =>
-      throw _privateConstructorUsedError;
+      _$GraphEdgeCopyWithImpl<GraphEdge>(this as GraphEdge, _$identity);
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is GraphEdge &&
+            (identical(other.from, from) || other.from == from) &&
+            (identical(other.to, to) || other.to == to));
+  }
+
+  @override
+  int get hashCode => Object.hash(runtimeType, from, to);
+
+  @override
+  String toString() {
+    return 'GraphEdge(from: $from, to: $to)';
+  }
 }
 
 /// @nodoc
-abstract class $GraphEdgeCopyWith<$Res> {
-  factory $GraphEdgeCopyWith(GraphEdge value, $Res Function(GraphEdge) then) =
-      _$GraphEdgeCopyWithImpl<$Res, GraphEdge>;
+abstract mixin class $GraphEdgeCopyWith<$Res> {
+  factory $GraphEdgeCopyWith(GraphEdge value, $Res Function(GraphEdge) _then) =
+      _$GraphEdgeCopyWithImpl;
   @useResult
   $Res call({DeltaProvider from, DeltaProvider to});
 
@@ -395,14 +432,11 @@ abstract class $GraphEdgeCopyWith<$Res> {
 }
 
 /// @nodoc
-class _$GraphEdgeCopyWithImpl<$Res, $Val extends GraphEdge>
-    implements $GraphEdgeCopyWith<$Res> {
-  _$GraphEdgeCopyWithImpl(this._value, this._then);
+class _$GraphEdgeCopyWithImpl<$Res> implements $GraphEdgeCopyWith<$Res> {
+  _$GraphEdgeCopyWithImpl(this._self, this._then);
 
-  // ignore: unused_field
-  final $Val _value;
-  // ignore: unused_field
-  final $Res Function($Val) _then;
+  final GraphEdge _self;
+  final $Res Function(GraphEdge) _then;
 
   /// Create a copy of GraphEdge
   /// with the given fields replaced by the non-null parameter values.
@@ -412,16 +446,16 @@ class _$GraphEdgeCopyWithImpl<$Res, $Val extends GraphEdge>
     Object? from = null,
     Object? to = null,
   }) {
-    return _then(_value.copyWith(
+    return _then(_self.copyWith(
       from: null == from
-          ? _value.from
+          ? _self.from
           : from // ignore: cast_nullable_to_non_nullable
               as DeltaProvider,
       to: null == to
-          ? _value.to
+          ? _self.to
           : to // ignore: cast_nullable_to_non_nullable
               as DeltaProvider,
-    ) as $Val);
+    ));
   }
 
   /// Create a copy of GraphEdge
@@ -429,8 +463,8 @@ class _$GraphEdgeCopyWithImpl<$Res, $Val extends GraphEdge>
   @override
   @pragma('vm:prefer-inline')
   $DeltaProviderCopyWith<$Res> get from {
-    return $DeltaProviderCopyWith<$Res>(_value.from, (value) {
-      return _then(_value.copyWith(from: value) as $Val);
+    return $DeltaProviderCopyWith<$Res>(_self.from, (value) {
+      return _then(_self.copyWith(from: value));
     });
   }
 
@@ -439,18 +473,54 @@ class _$GraphEdgeCopyWithImpl<$Res, $Val extends GraphEdge>
   @override
   @pragma('vm:prefer-inline')
   $DeltaProviderCopyWith<$Res> get to {
-    return $DeltaProviderCopyWith<$Res>(_value.to, (value) {
-      return _then(_value.copyWith(to: value) as $Val);
+    return $DeltaProviderCopyWith<$Res>(_self.to, (value) {
+      return _then(_self.copyWith(to: value));
     });
   }
 }
 
 /// @nodoc
-abstract class _$$GraphEdgeImplCopyWith<$Res>
+
+class _GraphEdge extends GraphEdge {
+  const _GraphEdge({required this.from, required this.to}) : super._();
+
+  @override
+  final DeltaProvider from;
+  @override
+  final DeltaProvider to;
+
+  /// Create a copy of GraphEdge
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  @pragma('vm:prefer-inline')
+  _$GraphEdgeCopyWith<_GraphEdge> get copyWith =>
+      __$GraphEdgeCopyWithImpl<_GraphEdge>(this, _$identity);
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _GraphEdge &&
+            (identical(other.from, from) || other.from == from) &&
+            (identical(other.to, to) || other.to == to));
+  }
+
+  @override
+  int get hashCode => Object.hash(runtimeType, from, to);
+
+  @override
+  String toString() {
+    return 'GraphEdge(from: $from, to: $to)';
+  }
+}
+
+/// @nodoc
+abstract mixin class _$GraphEdgeCopyWith<$Res>
     implements $GraphEdgeCopyWith<$Res> {
-  factory _$$GraphEdgeImplCopyWith(
-          _$GraphEdgeImpl value, $Res Function(_$GraphEdgeImpl) then) =
-      __$$GraphEdgeImplCopyWithImpl<$Res>;
+  factory _$GraphEdgeCopyWith(
+          _GraphEdge value, $Res Function(_GraphEdge) _then) =
+      __$GraphEdgeCopyWithImpl;
   @override
   @useResult
   $Res call({DeltaProvider from, DeltaProvider to});
@@ -462,109 +532,99 @@ abstract class _$$GraphEdgeImplCopyWith<$Res>
 }
 
 /// @nodoc
-class __$$GraphEdgeImplCopyWithImpl<$Res>
-    extends _$GraphEdgeCopyWithImpl<$Res, _$GraphEdgeImpl>
-    implements _$$GraphEdgeImplCopyWith<$Res> {
-  __$$GraphEdgeImplCopyWithImpl(
-      _$GraphEdgeImpl _value, $Res Function(_$GraphEdgeImpl) _then)
-      : super(_value, _then);
+class __$GraphEdgeCopyWithImpl<$Res> implements _$GraphEdgeCopyWith<$Res> {
+  __$GraphEdgeCopyWithImpl(this._self, this._then);
+
+  final _GraphEdge _self;
+  final $Res Function(_GraphEdge) _then;
 
   /// Create a copy of GraphEdge
   /// with the given fields replaced by the non-null parameter values.
-  @pragma('vm:prefer-inline')
   @override
+  @pragma('vm:prefer-inline')
   $Res call({
     Object? from = null,
     Object? to = null,
   }) {
-    return _then(_$GraphEdgeImpl(
+    return _then(_GraphEdge(
       from: null == from
-          ? _value.from
+          ? _self.from
           : from // ignore: cast_nullable_to_non_nullable
               as DeltaProvider,
       to: null == to
-          ? _value.to
+          ? _self.to
           : to // ignore: cast_nullable_to_non_nullable
               as DeltaProvider,
     ));
   }
+
+  /// Create a copy of GraphEdge
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @pragma('vm:prefer-inline')
+  $DeltaProviderCopyWith<$Res> get from {
+    return $DeltaProviderCopyWith<$Res>(_self.from, (value) {
+      return _then(_self.copyWith(from: value));
+    });
+  }
+
+  /// Create a copy of GraphEdge
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @pragma('vm:prefer-inline')
+  $DeltaProviderCopyWith<$Res> get to {
+    return $DeltaProviderCopyWith<$Res>(_self.to, (value) {
+      return _then(_self.copyWith(to: value));
+    });
+  }
 }
 
 /// @nodoc
+mixin _$DeltaProvider {
+  String get name;
+  Set<String> get arguments;
+  List<DeltaProviderDependency> get dependencies;
+  List<ProviderState> get states;
 
-class _$GraphEdgeImpl extends _GraphEdge {
-  const _$GraphEdgeImpl({required this.from, required this.to}) : super._();
-
-  @override
-  final DeltaProvider from;
-  @override
-  final DeltaProvider to;
-
-  @override
-  String toString() {
-    return 'GraphEdge(from: $from, to: $to)';
-  }
+  /// Create a copy of DeltaProvider
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  @pragma('vm:prefer-inline')
+  $DeltaProviderCopyWith<DeltaProvider> get copyWith =>
+      _$DeltaProviderCopyWithImpl<DeltaProvider>(
+          this as DeltaProvider, _$identity);
 
   @override
   bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$GraphEdgeImpl &&
-            (identical(other.from, from) || other.from == from) &&
-            (identical(other.to, to) || other.to == to));
+            other is DeltaProvider &&
+            (identical(other.name, name) || other.name == name) &&
+            const DeepCollectionEquality().equals(other.arguments, arguments) &&
+            const DeepCollectionEquality()
+                .equals(other.dependencies, dependencies) &&
+            const DeepCollectionEquality().equals(other.states, states));
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, from, to);
-
-  /// Create a copy of GraphEdge
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
-  @override
-  @pragma('vm:prefer-inline')
-  _$$GraphEdgeImplCopyWith<_$GraphEdgeImpl> get copyWith =>
-      __$$GraphEdgeImplCopyWithImpl<_$GraphEdgeImpl>(this, _$identity);
-}
-
-abstract class _GraphEdge extends GraphEdge {
-  const factory _GraphEdge(
-      {required final DeltaProvider from,
-      required final DeltaProvider to}) = _$GraphEdgeImpl;
-  const _GraphEdge._() : super._();
+  int get hashCode => Object.hash(
+      runtimeType,
+      name,
+      const DeepCollectionEquality().hash(arguments),
+      const DeepCollectionEquality().hash(dependencies),
+      const DeepCollectionEquality().hash(states));
 
   @override
-  DeltaProvider get from;
-  @override
-  DeltaProvider get to;
-
-  /// Create a copy of GraphEdge
-  /// with the given fields replaced by the non-null parameter values.
-  @override
-  @JsonKey(includeFromJson: false, includeToJson: false)
-  _$$GraphEdgeImplCopyWith<_$GraphEdgeImpl> get copyWith =>
-      throw _privateConstructorUsedError;
+  String toString() {
+    return 'DeltaProvider(name: $name, arguments: $arguments, dependencies: $dependencies, states: $states)';
+  }
 }
 
 /// @nodoc
-mixin _$DeltaProvider {
-  String get name => throw _privateConstructorUsedError;
-  Set<String> get arguments => throw _privateConstructorUsedError;
-  List<DeltaProviderDependency> get dependencies =>
-      throw _privateConstructorUsedError;
-  List<ProviderState> get states => throw _privateConstructorUsedError;
-
-  /// Create a copy of DeltaProvider
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
-  $DeltaProviderCopyWith<DeltaProvider> get copyWith =>
-      throw _privateConstructorUsedError;
-}
-
-/// @nodoc
-abstract class $DeltaProviderCopyWith<$Res> {
+abstract mixin class $DeltaProviderCopyWith<$Res> {
   factory $DeltaProviderCopyWith(
-          DeltaProvider value, $Res Function(DeltaProvider) then) =
-      _$DeltaProviderCopyWithImpl<$Res, DeltaProvider>;
+          DeltaProvider value, $Res Function(DeltaProvider) _then) =
+      _$DeltaProviderCopyWithImpl;
   @useResult
   $Res call(
       {String name,
@@ -574,14 +634,12 @@ abstract class $DeltaProviderCopyWith<$Res> {
 }
 
 /// @nodoc
-class _$DeltaProviderCopyWithImpl<$Res, $Val extends DeltaProvider>
+class _$DeltaProviderCopyWithImpl<$Res>
     implements $DeltaProviderCopyWith<$Res> {
-  _$DeltaProviderCopyWithImpl(this._value, this._then);
+  _$DeltaProviderCopyWithImpl(this._self, this._then);
 
-  // ignore: unused_field
-  final $Val _value;
-  // ignore: unused_field
-  final $Res Function($Val) _then;
+  final DeltaProvider _self;
+  final $Res Function(DeltaProvider) _then;
 
   /// Create a copy of DeltaProvider
   /// with the given fields replaced by the non-null parameter values.
@@ -593,75 +651,21 @@ class _$DeltaProviderCopyWithImpl<$Res, $Val extends DeltaProvider>
     Object? dependencies = null,
     Object? states = null,
   }) {
-    return _then(_value.copyWith(
+    return _then(_self.copyWith(
       name: null == name
-          ? _value.name
+          ? _self.name
           : name // ignore: cast_nullable_to_non_nullable
               as String,
       arguments: null == arguments
-          ? _value.arguments
+          ? _self.arguments
           : arguments // ignore: cast_nullable_to_non_nullable
               as Set<String>,
       dependencies: null == dependencies
-          ? _value.dependencies
+          ? _self.dependencies
           : dependencies // ignore: cast_nullable_to_non_nullable
               as List<DeltaProviderDependency>,
       states: null == states
-          ? _value.states
-          : states // ignore: cast_nullable_to_non_nullable
-              as List<ProviderState>,
-    ) as $Val);
-  }
-}
-
-/// @nodoc
-abstract class _$$DeltaProviderImplCopyWith<$Res>
-    implements $DeltaProviderCopyWith<$Res> {
-  factory _$$DeltaProviderImplCopyWith(
-          _$DeltaProviderImpl value, $Res Function(_$DeltaProviderImpl) then) =
-      __$$DeltaProviderImplCopyWithImpl<$Res>;
-  @override
-  @useResult
-  $Res call(
-      {String name,
-      Set<String> arguments,
-      List<DeltaProviderDependency> dependencies,
-      List<ProviderState> states});
-}
-
-/// @nodoc
-class __$$DeltaProviderImplCopyWithImpl<$Res>
-    extends _$DeltaProviderCopyWithImpl<$Res, _$DeltaProviderImpl>
-    implements _$$DeltaProviderImplCopyWith<$Res> {
-  __$$DeltaProviderImplCopyWithImpl(
-      _$DeltaProviderImpl _value, $Res Function(_$DeltaProviderImpl) _then)
-      : super(_value, _then);
-
-  /// Create a copy of DeltaProvider
-  /// with the given fields replaced by the non-null parameter values.
-  @pragma('vm:prefer-inline')
-  @override
-  $Res call({
-    Object? name = null,
-    Object? arguments = null,
-    Object? dependencies = null,
-    Object? states = null,
-  }) {
-    return _then(_$DeltaProviderImpl(
-      name: null == name
-          ? _value.name
-          : name // ignore: cast_nullable_to_non_nullable
-              as String,
-      arguments: null == arguments
-          ? _value._arguments
-          : arguments // ignore: cast_nullable_to_non_nullable
-              as Set<String>,
-      dependencies: null == dependencies
-          ? _value._dependencies
-          : dependencies // ignore: cast_nullable_to_non_nullable
-              as List<DeltaProviderDependency>,
-      states: null == states
-          ? _value._states
+          ? _self.states
           : states // ignore: cast_nullable_to_non_nullable
               as List<ProviderState>,
     ));
@@ -670,8 +674,8 @@ class __$$DeltaProviderImplCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$DeltaProviderImpl extends _DeltaProvider {
-  const _$DeltaProviderImpl(
+class _DeltaProvider extends DeltaProvider {
+  const _DeltaProvider(
       {required this.name,
       final Set<String> arguments = const {},
       final List<DeltaProviderDependency> dependencies = const [],
@@ -709,16 +713,19 @@ class _$DeltaProviderImpl extends _DeltaProvider {
     return EqualUnmodifiableListView(_states);
   }
 
+  /// Create a copy of DeltaProvider
+  /// with the given fields replaced by the non-null parameter values.
   @override
-  String toString() {
-    return 'DeltaProvider(name: $name, arguments: $arguments, dependencies: $dependencies, states: $states)';
-  }
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  @pragma('vm:prefer-inline')
+  _$DeltaProviderCopyWith<_DeltaProvider> get copyWith =>
+      __$DeltaProviderCopyWithImpl<_DeltaProvider>(this, _$identity);
 
   @override
   bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$DeltaProviderImpl &&
+            other is _DeltaProvider &&
             (identical(other.name, name) || other.name == name) &&
             const DeepCollectionEquality()
                 .equals(other._arguments, _arguments) &&
@@ -735,114 +742,114 @@ class _$DeltaProviderImpl extends _DeltaProvider {
       const DeepCollectionEquality().hash(_dependencies),
       const DeepCollectionEquality().hash(_states));
 
-  /// Create a copy of DeltaProvider
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
-  @pragma('vm:prefer-inline')
-  _$$DeltaProviderImplCopyWith<_$DeltaProviderImpl> get copyWith =>
-      __$$DeltaProviderImplCopyWithImpl<_$DeltaProviderImpl>(this, _$identity);
-}
-
-abstract class _DeltaProvider extends DeltaProvider {
-  const factory _DeltaProvider(
-      {required final String name,
-      final Set<String> arguments,
-      final List<DeltaProviderDependency> dependencies,
-      required final List<ProviderState> states}) = _$DeltaProviderImpl;
-  const _DeltaProvider._() : super._();
-
-  @override
-  String get name;
-  @override
-  Set<String> get arguments;
-  @override
-  List<DeltaProviderDependency> get dependencies;
-  @override
-  List<ProviderState> get states;
-
-  /// Create a copy of DeltaProvider
-  /// with the given fields replaced by the non-null parameter values.
-  @override
-  @JsonKey(includeFromJson: false, includeToJson: false)
-  _$$DeltaProviderImplCopyWith<_$DeltaProviderImpl> get copyWith =>
-      throw _privateConstructorUsedError;
-}
-
-/// @nodoc
-mixin _$DeltaProviderDependency {
-  String get name => throw _privateConstructorUsedError;
-  Set<String> get arguments => throw _privateConstructorUsedError;
-
-  /// Create a copy of DeltaProviderDependency
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
-  $DeltaProviderDependencyCopyWith<DeltaProviderDependency> get copyWith =>
-      throw _privateConstructorUsedError;
-}
-
-/// @nodoc
-abstract class $DeltaProviderDependencyCopyWith<$Res> {
-  factory $DeltaProviderDependencyCopyWith(DeltaProviderDependency value,
-          $Res Function(DeltaProviderDependency) then) =
-      _$DeltaProviderDependencyCopyWithImpl<$Res, DeltaProviderDependency>;
-  @useResult
-  $Res call({String name, Set<String> arguments});
-}
-
-/// @nodoc
-class _$DeltaProviderDependencyCopyWithImpl<$Res,
-        $Val extends DeltaProviderDependency>
-    implements $DeltaProviderDependencyCopyWith<$Res> {
-  _$DeltaProviderDependencyCopyWithImpl(this._value, this._then);
-
-  // ignore: unused_field
-  final $Val _value;
-  // ignore: unused_field
-  final $Res Function($Val) _then;
-
-  /// Create a copy of DeltaProviderDependency
-  /// with the given fields replaced by the non-null parameter values.
-  @pragma('vm:prefer-inline')
-  @override
-  $Res call({
-    Object? name = null,
-    Object? arguments = null,
-  }) {
-    return _then(_value.copyWith(
-      name: null == name
-          ? _value.name
-          : name // ignore: cast_nullable_to_non_nullable
-              as String,
-      arguments: null == arguments
-          ? _value.arguments
-          : arguments // ignore: cast_nullable_to_non_nullable
-              as Set<String>,
-    ) as $Val);
+  String toString() {
+    return 'DeltaProvider(name: $name, arguments: $arguments, dependencies: $dependencies, states: $states)';
   }
 }
 
 /// @nodoc
-abstract class _$$DeltaProviderDependencyImplCopyWith<$Res>
-    implements $DeltaProviderDependencyCopyWith<$Res> {
-  factory _$$DeltaProviderDependencyImplCopyWith(
-          _$DeltaProviderDependencyImpl value,
-          $Res Function(_$DeltaProviderDependencyImpl) then) =
-      __$$DeltaProviderDependencyImplCopyWithImpl<$Res>;
+abstract mixin class _$DeltaProviderCopyWith<$Res>
+    implements $DeltaProviderCopyWith<$Res> {
+  factory _$DeltaProviderCopyWith(
+          _DeltaProvider value, $Res Function(_DeltaProvider) _then) =
+      __$DeltaProviderCopyWithImpl;
   @override
+  @useResult
+  $Res call(
+      {String name,
+      Set<String> arguments,
+      List<DeltaProviderDependency> dependencies,
+      List<ProviderState> states});
+}
+
+/// @nodoc
+class __$DeltaProviderCopyWithImpl<$Res>
+    implements _$DeltaProviderCopyWith<$Res> {
+  __$DeltaProviderCopyWithImpl(this._self, this._then);
+
+  final _DeltaProvider _self;
+  final $Res Function(_DeltaProvider) _then;
+
+  /// Create a copy of DeltaProvider
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @pragma('vm:prefer-inline')
+  $Res call({
+    Object? name = null,
+    Object? arguments = null,
+    Object? dependencies = null,
+    Object? states = null,
+  }) {
+    return _then(_DeltaProvider(
+      name: null == name
+          ? _self.name
+          : name // ignore: cast_nullable_to_non_nullable
+              as String,
+      arguments: null == arguments
+          ? _self._arguments
+          : arguments // ignore: cast_nullable_to_non_nullable
+              as Set<String>,
+      dependencies: null == dependencies
+          ? _self._dependencies
+          : dependencies // ignore: cast_nullable_to_non_nullable
+              as List<DeltaProviderDependency>,
+      states: null == states
+          ? _self._states
+          : states // ignore: cast_nullable_to_non_nullable
+              as List<ProviderState>,
+    ));
+  }
+}
+
+/// @nodoc
+mixin _$DeltaProviderDependency {
+  String get name;
+  Set<String> get arguments;
+
+  /// Create a copy of DeltaProviderDependency
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  @pragma('vm:prefer-inline')
+  $DeltaProviderDependencyCopyWith<DeltaProviderDependency> get copyWith =>
+      _$DeltaProviderDependencyCopyWithImpl<DeltaProviderDependency>(
+          this as DeltaProviderDependency, _$identity);
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is DeltaProviderDependency &&
+            (identical(other.name, name) || other.name == name) &&
+            const DeepCollectionEquality().equals(other.arguments, arguments));
+  }
+
+  @override
+  int get hashCode => Object.hash(
+      runtimeType, name, const DeepCollectionEquality().hash(arguments));
+
+  @override
+  String toString() {
+    return 'DeltaProviderDependency(name: $name, arguments: $arguments)';
+  }
+}
+
+/// @nodoc
+abstract mixin class $DeltaProviderDependencyCopyWith<$Res> {
+  factory $DeltaProviderDependencyCopyWith(DeltaProviderDependency value,
+          $Res Function(DeltaProviderDependency) _then) =
+      _$DeltaProviderDependencyCopyWithImpl;
   @useResult
   $Res call({String name, Set<String> arguments});
 }
 
 /// @nodoc
-class __$$DeltaProviderDependencyImplCopyWithImpl<$Res>
-    extends _$DeltaProviderDependencyCopyWithImpl<$Res,
-        _$DeltaProviderDependencyImpl>
-    implements _$$DeltaProviderDependencyImplCopyWith<$Res> {
-  __$$DeltaProviderDependencyImplCopyWithImpl(
-      _$DeltaProviderDependencyImpl _value,
-      $Res Function(_$DeltaProviderDependencyImpl) _then)
-      : super(_value, _then);
+class _$DeltaProviderDependencyCopyWithImpl<$Res>
+    implements $DeltaProviderDependencyCopyWith<$Res> {
+  _$DeltaProviderDependencyCopyWithImpl(this._self, this._then);
+
+  final DeltaProviderDependency _self;
+  final $Res Function(DeltaProviderDependency) _then;
 
   /// Create a copy of DeltaProviderDependency
   /// with the given fields replaced by the non-null parameter values.
@@ -852,13 +859,13 @@ class __$$DeltaProviderDependencyImplCopyWithImpl<$Res>
     Object? name = null,
     Object? arguments = null,
   }) {
-    return _then(_$DeltaProviderDependencyImpl(
+    return _then(_self.copyWith(
       name: null == name
-          ? _value.name
+          ? _self.name
           : name // ignore: cast_nullable_to_non_nullable
               as String,
       arguments: null == arguments
-          ? _value._arguments
+          ? _self.arguments
           : arguments // ignore: cast_nullable_to_non_nullable
               as Set<String>,
     ));
@@ -867,8 +874,8 @@ class __$$DeltaProviderDependencyImplCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$DeltaProviderDependencyImpl implements _DeltaProviderDependency {
-  const _$DeltaProviderDependencyImpl(
+class _DeltaProviderDependency implements DeltaProviderDependency {
+  const _DeltaProviderDependency(
       {required this.name, final Set<String> arguments = const {}})
       : _arguments = arguments;
 
@@ -883,16 +890,20 @@ class _$DeltaProviderDependencyImpl implements _DeltaProviderDependency {
     return EqualUnmodifiableSetView(_arguments);
   }
 
+  /// Create a copy of DeltaProviderDependency
+  /// with the given fields replaced by the non-null parameter values.
   @override
-  String toString() {
-    return 'DeltaProviderDependency(name: $name, arguments: $arguments)';
-  }
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  @pragma('vm:prefer-inline')
+  _$DeltaProviderDependencyCopyWith<_DeltaProviderDependency> get copyWith =>
+      __$DeltaProviderDependencyCopyWithImpl<_DeltaProviderDependency>(
+          this, _$identity);
 
   @override
   bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$DeltaProviderDependencyImpl &&
+            other is _DeltaProviderDependency &&
             (identical(other.name, name) || other.name == name) &&
             const DeepCollectionEquality()
                 .equals(other._arguments, _arguments));
@@ -902,30 +913,50 @@ class _$DeltaProviderDependencyImpl implements _DeltaProviderDependency {
   int get hashCode => Object.hash(
       runtimeType, name, const DeepCollectionEquality().hash(_arguments));
 
+  @override
+  String toString() {
+    return 'DeltaProviderDependency(name: $name, arguments: $arguments)';
+  }
+}
+
+/// @nodoc
+abstract mixin class _$DeltaProviderDependencyCopyWith<$Res>
+    implements $DeltaProviderDependencyCopyWith<$Res> {
+  factory _$DeltaProviderDependencyCopyWith(_DeltaProviderDependency value,
+          $Res Function(_DeltaProviderDependency) _then) =
+      __$DeltaProviderDependencyCopyWithImpl;
+  @override
+  @useResult
+  $Res call({String name, Set<String> arguments});
+}
+
+/// @nodoc
+class __$DeltaProviderDependencyCopyWithImpl<$Res>
+    implements _$DeltaProviderDependencyCopyWith<$Res> {
+  __$DeltaProviderDependencyCopyWithImpl(this._self, this._then);
+
+  final _DeltaProviderDependency _self;
+  final $Res Function(_DeltaProviderDependency) _then;
+
   /// Create a copy of DeltaProviderDependency
   /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
-  _$$DeltaProviderDependencyImplCopyWith<_$DeltaProviderDependencyImpl>
-      get copyWith => __$$DeltaProviderDependencyImplCopyWithImpl<
-          _$DeltaProviderDependencyImpl>(this, _$identity);
+  $Res call({
+    Object? name = null,
+    Object? arguments = null,
+  }) {
+    return _then(_DeltaProviderDependency(
+      name: null == name
+          ? _self.name
+          : name // ignore: cast_nullable_to_non_nullable
+              as String,
+      arguments: null == arguments
+          ? _self._arguments
+          : arguments // ignore: cast_nullable_to_non_nullable
+              as Set<String>,
+    ));
+  }
 }
 
-abstract class _DeltaProviderDependency implements DeltaProviderDependency {
-  const factory _DeltaProviderDependency(
-      {required final String name,
-      final Set<String> arguments}) = _$DeltaProviderDependencyImpl;
-
-  @override
-  String get name;
-  @override
-  Set<String> get arguments;
-
-  /// Create a copy of DeltaProviderDependency
-  /// with the given fields replaced by the non-null parameter values.
-  @override
-  @JsonKey(includeFromJson: false, includeToJson: false)
-  _$$DeltaProviderDependencyImplCopyWith<_$DeltaProviderDependencyImpl>
-      get copyWith => throw _privateConstructorUsedError;
-}
+// dart format on

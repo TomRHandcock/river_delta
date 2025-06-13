@@ -1,3 +1,4 @@
+// dart format width=80
 // coverage:ignore-file
 // GENERATED CODE - DO NOT MODIFY BY HAND
 // ignore_for_file: type=lint
@@ -9,75 +10,53 @@ part of 'logical_error.dart';
 // FreezedGenerator
 // **************************************************************************
 
+// dart format off
 T _$identity<T>(T value) => value;
-
-final _privateConstructorUsedError = UnsupportedError(
-    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#adding-getters-and-methods-to-our-models');
 
 /// @nodoc
 mixin _$LogicalError {
-  LogicalErrorCode get code => throw _privateConstructorUsedError;
+  LogicalErrorCode get code;
 
   /// Create a copy of LogicalError
   /// with the given fields replaced by the non-null parameter values.
   @JsonKey(includeFromJson: false, includeToJson: false)
-  $LogicalErrorCopyWith<LogicalError> get copyWith =>
-      throw _privateConstructorUsedError;
-}
-
-/// @nodoc
-abstract class $LogicalErrorCopyWith<$Res> {
-  factory $LogicalErrorCopyWith(
-          LogicalError value, $Res Function(LogicalError) then) =
-      _$LogicalErrorCopyWithImpl<$Res, LogicalError>;
-  @useResult
-  $Res call({LogicalErrorCode code});
-}
-
-/// @nodoc
-class _$LogicalErrorCopyWithImpl<$Res, $Val extends LogicalError>
-    implements $LogicalErrorCopyWith<$Res> {
-  _$LogicalErrorCopyWithImpl(this._value, this._then);
-
-  // ignore: unused_field
-  final $Val _value;
-  // ignore: unused_field
-  final $Res Function($Val) _then;
-
-  /// Create a copy of LogicalError
-  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
+  $LogicalErrorCopyWith<LogicalError> get copyWith =>
+      _$LogicalErrorCopyWithImpl<LogicalError>(
+          this as LogicalError, _$identity);
+
   @override
-  $Res call({
-    Object? code = null,
-  }) {
-    return _then(_value.copyWith(
-      code: null == code
-          ? _value.code
-          : code // ignore: cast_nullable_to_non_nullable
-              as LogicalErrorCode,
-    ) as $Val);
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is LogicalError &&
+            (identical(other.code, code) || other.code == code));
+  }
+
+  @override
+  int get hashCode => Object.hash(runtimeType, code);
+
+  @override
+  String toString() {
+    return 'LogicalError(code: $code)';
   }
 }
 
 /// @nodoc
-abstract class _$$LogicalErrorImplCopyWith<$Res>
-    implements $LogicalErrorCopyWith<$Res> {
-  factory _$$LogicalErrorImplCopyWith(
-          _$LogicalErrorImpl value, $Res Function(_$LogicalErrorImpl) then) =
-      __$$LogicalErrorImplCopyWithImpl<$Res>;
-  @override
+abstract mixin class $LogicalErrorCopyWith<$Res> {
+  factory $LogicalErrorCopyWith(
+          LogicalError value, $Res Function(LogicalError) _then) =
+      _$LogicalErrorCopyWithImpl;
   @useResult
   $Res call({LogicalErrorCode code});
 }
 
 /// @nodoc
-class __$$LogicalErrorImplCopyWithImpl<$Res>
-    extends _$LogicalErrorCopyWithImpl<$Res, _$LogicalErrorImpl>
-    implements _$$LogicalErrorImplCopyWith<$Res> {
-  __$$LogicalErrorImplCopyWithImpl(
-      _$LogicalErrorImpl _value, $Res Function(_$LogicalErrorImpl) _then)
-      : super(_value, _then);
+class _$LogicalErrorCopyWithImpl<$Res> implements $LogicalErrorCopyWith<$Res> {
+  _$LogicalErrorCopyWithImpl(this._self, this._then);
+
+  final LogicalError _self;
+  final $Res Function(LogicalError) _then;
 
   /// Create a copy of LogicalError
   /// with the given fields replaced by the non-null parameter values.
@@ -86,9 +65,9 @@ class __$$LogicalErrorImplCopyWithImpl<$Res>
   $Res call({
     Object? code = null,
   }) {
-    return _then(_$LogicalErrorImpl(
+    return _then(_self.copyWith(
       code: null == code
-          ? _value.code
+          ? _self.code
           : code // ignore: cast_nullable_to_non_nullable
               as LogicalErrorCode,
     ));
@@ -97,49 +76,70 @@ class __$$LogicalErrorImplCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$LogicalErrorImpl extends _LogicalError {
-  const _$LogicalErrorImpl({required this.code}) : super._();
+class _LogicalError extends LogicalError implements RiverDeltaError {
+  const _LogicalError({required this.code}) : super._();
 
   @override
   final LogicalErrorCode code;
 
+  /// Create a copy of LogicalError
+  /// with the given fields replaced by the non-null parameter values.
   @override
-  String toString() {
-    return 'LogicalError(code: $code)';
-  }
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  @pragma('vm:prefer-inline')
+  _$LogicalErrorCopyWith<_LogicalError> get copyWith =>
+      __$LogicalErrorCopyWithImpl<_LogicalError>(this, _$identity);
 
   @override
   bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$LogicalErrorImpl &&
+            other is _LogicalError &&
             (identical(other.code, code) || other.code == code));
   }
 
   @override
   int get hashCode => Object.hash(runtimeType, code);
 
+  @override
+  String toString() {
+    return 'LogicalError(code: $code)';
+  }
+}
+
+/// @nodoc
+abstract mixin class _$LogicalErrorCopyWith<$Res>
+    implements $LogicalErrorCopyWith<$Res> {
+  factory _$LogicalErrorCopyWith(
+          _LogicalError value, $Res Function(_LogicalError) _then) =
+      __$LogicalErrorCopyWithImpl;
+  @override
+  @useResult
+  $Res call({LogicalErrorCode code});
+}
+
+/// @nodoc
+class __$LogicalErrorCopyWithImpl<$Res>
+    implements _$LogicalErrorCopyWith<$Res> {
+  __$LogicalErrorCopyWithImpl(this._self, this._then);
+
+  final _LogicalError _self;
+  final $Res Function(_LogicalError) _then;
+
   /// Create a copy of LogicalError
   /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
-  _$$LogicalErrorImplCopyWith<_$LogicalErrorImpl> get copyWith =>
-      __$$LogicalErrorImplCopyWithImpl<_$LogicalErrorImpl>(this, _$identity);
+  $Res call({
+    Object? code = null,
+  }) {
+    return _then(_LogicalError(
+      code: null == code
+          ? _self.code
+          : code // ignore: cast_nullable_to_non_nullable
+              as LogicalErrorCode,
+    ));
+  }
 }
 
-abstract class _LogicalError extends LogicalError implements RiverDeltaError {
-  const factory _LogicalError({required final LogicalErrorCode code}) =
-      _$LogicalErrorImpl;
-  const _LogicalError._() : super._();
-
-  @override
-  LogicalErrorCode get code;
-
-  /// Create a copy of LogicalError
-  /// with the given fields replaced by the non-null parameter values.
-  @override
-  @JsonKey(includeFromJson: false, includeToJson: false)
-  _$$LogicalErrorImplCopyWith<_$LogicalErrorImpl> get copyWith =>
-      throw _privateConstructorUsedError;
-}
+// dart format on

@@ -5,7 +5,7 @@ import 'package:river_delta/src/ui/graph/viewmodel/graph_state.dart';
 part 'graph_comparison.freezed.dart';
 
 @freezed
-class _NodeComparisonProps with _$NodeComparisonProps {
+abstract class _NodeComparisonProps with _$NodeComparisonProps {
   const factory _NodeComparisonProps({
     required String name,
     required List<String> arguments,

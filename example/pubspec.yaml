@@ -20,10 +20,10 @@ dependencies:
   # Models
   json_annotation: ^4.9.0
 
-  freezed_annotation: ^2.4.1
+  freezed_annotation: ^3.0.0
   # Navigation
 
-  auto_route: ^9.2.0
+  auto_route: ^10.1.0+1
   # Debugging
   river_delta:
     path: ../
@@ -43,12 +43,12 @@ dev_dependencies:
   # Code generation
   build_runner: ^2.4.11
   riverpod_generator: ^2.4.0
-  freezed: ^2.5.2
-  auto_route_generator: ^9.0.0
+  freezed: ^3.0.6
+  auto_route_generator: ^10.2.3
   json_serializable: ^6.9.0
 
   # Linting
-  flutter_lints: ^5.0.0
+  flutter_lints: ^6.0.0
   custom_lint: ^0.7.3
   riverpod_lint: ^2.3.10
   retrofit_generator: ^9.1.9

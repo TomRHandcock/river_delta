@@ -1,3 +1,4 @@
+// dart format width=80
 // coverage:ignore-file
 // GENERATED CODE - DO NOT MODIFY BY HAND
 // ignore_for_file: type=lint
@@ -9,31 +10,55 @@ part of 'models.dart';
 // FreezedGenerator
 // **************************************************************************
 
+// dart format off
 T _$identity<T>(T value) => value;
-
-final _privateConstructorUsedError = UnsupportedError(
-    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#adding-getters-and-methods-to-our-models');
 
 /// @nodoc
 mixin _$ProviderModel {
-  String get name => throw _privateConstructorUsedError;
-  Set<String> get arguments => throw _privateConstructorUsedError;
-  Set<ProviderDependencyModel> get dependencies =>
-      throw _privateConstructorUsedError;
-  ProviderState? get state => throw _privateConstructorUsedError;
+  String get name;
+  Set<String> get arguments;
+  Set<ProviderDependencyModel> get dependencies;
+  ProviderState? get state;
 
   /// Create a copy of ProviderModel
   /// with the given fields replaced by the non-null parameter values.
   @JsonKey(includeFromJson: false, includeToJson: false)
+  @pragma('vm:prefer-inline')
   $ProviderModelCopyWith<ProviderModel> get copyWith =>
-      throw _privateConstructorUsedError;
+      _$ProviderModelCopyWithImpl<ProviderModel>(
+          this as ProviderModel, _$identity);
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is ProviderModel &&
+            (identical(other.name, name) || other.name == name) &&
+            const DeepCollectionEquality().equals(other.arguments, arguments) &&
+            const DeepCollectionEquality()
+                .equals(other.dependencies, dependencies) &&
+            (identical(other.state, state) || other.state == state));
+  }
+
+  @override
+  int get hashCode => Object.hash(
+      runtimeType,
+      name,
+      const DeepCollectionEquality().hash(arguments),
+      const DeepCollectionEquality().hash(dependencies),
+      state);
+
+  @override
+  String toString() {
+    return 'ProviderModel(name: $name, arguments: $arguments, dependencies: $dependencies, state: $state)';
+  }
 }
 
 /// @nodoc
-abstract class $ProviderModelCopyWith<$Res> {
+abstract mixin class $ProviderModelCopyWith<$Res> {
   factory $ProviderModelCopyWith(
-          ProviderModel value, $Res Function(ProviderModel) then) =
-      _$ProviderModelCopyWithImpl<$Res, ProviderModel>;
+          ProviderModel value, $Res Function(ProviderModel) _then) =
+      _$ProviderModelCopyWithImpl;
   @useResult
   $Res call(
       {String name,
@@ -45,14 +70,12 @@ abstract class $ProviderModelCopyWith<$Res> {
 }
 
 /// @nodoc
-class _$ProviderModelCopyWithImpl<$Res, $Val extends ProviderModel>
+class _$ProviderModelCopyWithImpl<$Res>
     implements $ProviderModelCopyWith<$Res> {
-  _$ProviderModelCopyWithImpl(this._value, this._then);
+  _$ProviderModelCopyWithImpl(this._self, this._then);
 
-  // ignore: unused_field
-  final $Val _value;
-  // ignore: unused_field
-  final $Res Function($Val) _then;
+  final ProviderModel _self;
+  final $Res Function(ProviderModel) _then;
 
   /// Create a copy of ProviderModel
   /// with the given fields replaced by the non-null parameter values.
@@ -64,24 +87,24 @@ class _$ProviderModelCopyWithImpl<$Res, $Val extends ProviderModel>
     Object? dependencies = null,
     Object? state = freezed,
   }) {
-    return _then(_value.copyWith(
+    return _then(_self.copyWith(
       name: null == name
-          ? _value.name
+          ? _self.name
           : name // ignore: cast_nullable_to_non_nullable
               as String,
       arguments: null == arguments
-          ? _value.arguments
+          ? _self.arguments
           : arguments // ignore: cast_nullable_to_non_nullable
               as Set<String>,
       dependencies: null == dependencies
-          ? _value.dependencies
+          ? _self.dependencies
           : dependencies // ignore: cast_nullable_to_non_nullable
               as Set<ProviderDependencyModel>,
       state: freezed == state
-          ? _value.state
+          ? _self.state
           : state // ignore: cast_nullable_to_non_nullable
               as ProviderState?,
-    ) as $Val);
+    ));
   }
 
   /// Create a copy of ProviderModel
@@ -89,77 +112,20 @@ class _$ProviderModelCopyWithImpl<$Res, $Val extends ProviderModel>
   @override
   @pragma('vm:prefer-inline')
   $ProviderStateCopyWith<$Res>? get state {
-    if (_value.state == null) {
+    if (_self.state == null) {
       return null;
     }
 
-    return $ProviderStateCopyWith<$Res>(_value.state!, (value) {
-      return _then(_value.copyWith(state: value) as $Val);
+    return $ProviderStateCopyWith<$Res>(_self.state!, (value) {
+      return _then(_self.copyWith(state: value));
     });
   }
 }
 
 /// @nodoc
-abstract class _$$ProviderModelImplCopyWith<$Res>
-    implements $ProviderModelCopyWith<$Res> {
-  factory _$$ProviderModelImplCopyWith(
-          _$ProviderModelImpl value, $Res Function(_$ProviderModelImpl) then) =
-      __$$ProviderModelImplCopyWithImpl<$Res>;
-  @override
-  @useResult
-  $Res call(
-      {String name,
-      Set<String> arguments,
-      Set<ProviderDependencyModel> dependencies,
-      ProviderState? state});
 
-  @override
-  $ProviderStateCopyWith<$Res>? get state;
-}
-
-/// @nodoc
-class __$$ProviderModelImplCopyWithImpl<$Res>
-    extends _$ProviderModelCopyWithImpl<$Res, _$ProviderModelImpl>
-    implements _$$ProviderModelImplCopyWith<$Res> {
-  __$$ProviderModelImplCopyWithImpl(
-      _$ProviderModelImpl _value, $Res Function(_$ProviderModelImpl) _then)
-      : super(_value, _then);
-
-  /// Create a copy of ProviderModel
-  /// with the given fields replaced by the non-null parameter values.
-  @pragma('vm:prefer-inline')
-  @override
-  $Res call({
-    Object? name = null,
-    Object? arguments = null,
-    Object? dependencies = null,
-    Object? state = freezed,
-  }) {
-    return _then(_$ProviderModelImpl(
-      name: null == name
-          ? _value.name
-          : name // ignore: cast_nullable_to_non_nullable
-              as String,
-      arguments: null == arguments
-          ? _value._arguments
-          : arguments // ignore: cast_nullable_to_non_nullable
-              as Set<String>,
-      dependencies: null == dependencies
-          ? _value._dependencies
-          : dependencies // ignore: cast_nullable_to_non_nullable
-              as Set<ProviderDependencyModel>,
-      state: freezed == state
-          ? _value.state
-          : state // ignore: cast_nullable_to_non_nullable
-              as ProviderState?,
-    ));
-  }
-}
-
-/// @nodoc
-
-class _$ProviderModelImpl implements _ProviderModel {
-  const _$ProviderModelImpl(
+class _ProviderModel implements ProviderModel {
+  const _ProviderModel(
       {required this.name,
       final Set<String> arguments = const {},
       final Set<ProviderDependencyModel> dependencies = const {},
@@ -190,16 +156,19 @@ class _$ProviderModelImpl implements _ProviderModel {
   @override
   final ProviderState? state;
 
+  /// Create a copy of ProviderModel
+  /// with the given fields replaced by the non-null parameter values.
   @override
-  String toString() {
-    return 'ProviderModel(name: $name, arguments: $arguments, dependencies: $dependencies, state: $state)';
-  }
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  @pragma('vm:prefer-inline')
+  _$ProviderModelCopyWith<_ProviderModel> get copyWith =>
+      __$ProviderModelCopyWithImpl<_ProviderModel>(this, _$identity);
 
   @override
   bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$ProviderModelImpl &&
+            other is _ProviderModel &&
             (identical(other.name, name) || other.name == name) &&
             const DeepCollectionEquality()
                 .equals(other._arguments, _arguments) &&
@@ -216,113 +185,131 @@ class _$ProviderModelImpl implements _ProviderModel {
       const DeepCollectionEquality().hash(_dependencies),
       state);
 
-  /// Create a copy of ProviderModel
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
-  @pragma('vm:prefer-inline')
-  _$$ProviderModelImplCopyWith<_$ProviderModelImpl> get copyWith =>
-      __$$ProviderModelImplCopyWithImpl<_$ProviderModelImpl>(this, _$identity);
-}
-
-abstract class _ProviderModel implements ProviderModel {
-  const factory _ProviderModel(
-      {required final String name,
-      final Set<String> arguments,
-      final Set<ProviderDependencyModel> dependencies,
-      final ProviderState? state}) = _$ProviderModelImpl;
-
-  @override
-  String get name;
-  @override
-  Set<String> get arguments;
-  @override
-  Set<ProviderDependencyModel> get dependencies;
-  @override
-  ProviderState? get state;
-
-  /// Create a copy of ProviderModel
-  /// with the given fields replaced by the non-null parameter values.
-  @override
-  @JsonKey(includeFromJson: false, includeToJson: false)
-  _$$ProviderModelImplCopyWith<_$ProviderModelImpl> get copyWith =>
-      throw _privateConstructorUsedError;
-}
-
-/// @nodoc
-mixin _$ProviderDependencyModel {
-  String get name => throw _privateConstructorUsedError;
-  Set<String> get arguments => throw _privateConstructorUsedError;
-
-  /// Create a copy of ProviderDependencyModel
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
-  $ProviderDependencyModelCopyWith<ProviderDependencyModel> get copyWith =>
-      throw _privateConstructorUsedError;
-}
-
-/// @nodoc
-abstract class $ProviderDependencyModelCopyWith<$Res> {
-  factory $ProviderDependencyModelCopyWith(ProviderDependencyModel value,
-          $Res Function(ProviderDependencyModel) then) =
-      _$ProviderDependencyModelCopyWithImpl<$Res, ProviderDependencyModel>;
-  @useResult
-  $Res call({String name, Set<String> arguments});
-}
-
-/// @nodoc
-class _$ProviderDependencyModelCopyWithImpl<$Res,
-        $Val extends ProviderDependencyModel>
-    implements $ProviderDependencyModelCopyWith<$Res> {
-  _$ProviderDependencyModelCopyWithImpl(this._value, this._then);
-
-  // ignore: unused_field
-  final $Val _value;
-  // ignore: unused_field
-  final $Res Function($Val) _then;
-
-  /// Create a copy of ProviderDependencyModel
-  /// with the given fields replaced by the non-null parameter values.
-  @pragma('vm:prefer-inline')
-  @override
-  $Res call({
-    Object? name = null,
-    Object? arguments = null,
-  }) {
-    return _then(_value.copyWith(
-      name: null == name
-          ? _value.name
-          : name // ignore: cast_nullable_to_non_nullable
-              as String,
-      arguments: null == arguments
-          ? _value.arguments
-          : arguments // ignore: cast_nullable_to_non_nullable
-              as Set<String>,
-    ) as $Val);
+  String toString() {
+    return 'ProviderModel(name: $name, arguments: $arguments, dependencies: $dependencies, state: $state)';
   }
 }
 
 /// @nodoc
-abstract class _$$ProviderDependencyModelImplCopyWith<$Res>
-    implements $ProviderDependencyModelCopyWith<$Res> {
-  factory _$$ProviderDependencyModelImplCopyWith(
-          _$ProviderDependencyModelImpl value,
-          $Res Function(_$ProviderDependencyModelImpl) then) =
-      __$$ProviderDependencyModelImplCopyWithImpl<$Res>;
+abstract mixin class _$ProviderModelCopyWith<$Res>
+    implements $ProviderModelCopyWith<$Res> {
+  factory _$ProviderModelCopyWith(
+          _ProviderModel value, $Res Function(_ProviderModel) _then) =
+      __$ProviderModelCopyWithImpl;
   @override
+  @useResult
+  $Res call(
+      {String name,
+      Set<String> arguments,
+      Set<ProviderDependencyModel> dependencies,
+      ProviderState? state});
+
+  @override
+  $ProviderStateCopyWith<$Res>? get state;
+}
+
+/// @nodoc
+class __$ProviderModelCopyWithImpl<$Res>
+    implements _$ProviderModelCopyWith<$Res> {
+  __$ProviderModelCopyWithImpl(this._self, this._then);
+
+  final _ProviderModel _self;
+  final $Res Function(_ProviderModel) _then;
+
+  /// Create a copy of ProviderModel
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @pragma('vm:prefer-inline')
+  $Res call({
+    Object? name = null,
+    Object? arguments = null,
+    Object? dependencies = null,
+    Object? state = freezed,
+  }) {
+    return _then(_ProviderModel(
+      name: null == name
+          ? _self.name
+          : name // ignore: cast_nullable_to_non_nullable
+              as String,
+      arguments: null == arguments
+          ? _self._arguments
+          : arguments // ignore: cast_nullable_to_non_nullable
+              as Set<String>,
+      dependencies: null == dependencies
+          ? _self._dependencies
+          : dependencies // ignore: cast_nullable_to_non_nullable
+              as Set<ProviderDependencyModel>,
+      state: freezed == state
+          ? _self.state
+          : state // ignore: cast_nullable_to_non_nullable
+              as ProviderState?,
+    ));
+  }
+
+  /// Create a copy of ProviderModel
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @pragma('vm:prefer-inline')
+  $ProviderStateCopyWith<$Res>? get state {
+    if (_self.state == null) {
+      return null;
+    }
+
+    return $ProviderStateCopyWith<$Res>(_self.state!, (value) {
+      return _then(_self.copyWith(state: value));
+    });
+  }
+}
+
+/// @nodoc
+mixin _$ProviderDependencyModel {
+  String get name;
+  Set<String> get arguments;
+
+  /// Create a copy of ProviderDependencyModel
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  @pragma('vm:prefer-inline')
+  $ProviderDependencyModelCopyWith<ProviderDependencyModel> get copyWith =>
+      _$ProviderDependencyModelCopyWithImpl<ProviderDependencyModel>(
+          this as ProviderDependencyModel, _$identity);
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is ProviderDependencyModel &&
+            (identical(other.name, name) || other.name == name) &&
+            const DeepCollectionEquality().equals(other.arguments, arguments));
+  }
+
+  @override
+  int get hashCode => Object.hash(
+      runtimeType, name, const DeepCollectionEquality().hash(arguments));
+
+  @override
+  String toString() {
+    return 'ProviderDependencyModel(name: $name, arguments: $arguments)';
+  }
+}
+
+/// @nodoc
+abstract mixin class $ProviderDependencyModelCopyWith<$Res> {
+  factory $ProviderDependencyModelCopyWith(ProviderDependencyModel value,
+          $Res Function(ProviderDependencyModel) _then) =
+      _$ProviderDependencyModelCopyWithImpl;
   @useResult
   $Res call({String name, Set<String> arguments});
 }
 
 /// @nodoc
-class __$$ProviderDependencyModelImplCopyWithImpl<$Res>
-    extends _$ProviderDependencyModelCopyWithImpl<$Res,
-        _$ProviderDependencyModelImpl>
-    implements _$$ProviderDependencyModelImplCopyWith<$Res> {
-  __$$ProviderDependencyModelImplCopyWithImpl(
-      _$ProviderDependencyModelImpl _value,
-      $Res Function(_$ProviderDependencyModelImpl) _then)
-      : super(_value, _then);
+class _$ProviderDependencyModelCopyWithImpl<$Res>
+    implements $ProviderDependencyModelCopyWith<$Res> {
+  _$ProviderDependencyModelCopyWithImpl(this._self, this._then);
+
+  final ProviderDependencyModel _self;
+  final $Res Function(ProviderDependencyModel) _then;
 
   /// Create a copy of ProviderDependencyModel
   /// with the given fields replaced by the non-null parameter values.
@@ -332,13 +319,13 @@ class __$$ProviderDependencyModelImplCopyWithImpl<$Res>
     Object? name = null,
     Object? arguments = null,
   }) {
-    return _then(_$ProviderDependencyModelImpl(
+    return _then(_self.copyWith(
       name: null == name
-          ? _value.name
+          ? _self.name
           : name // ignore: cast_nullable_to_non_nullable
               as String,
       arguments: null == arguments
-          ? _value._arguments
+          ? _self.arguments
           : arguments // ignore: cast_nullable_to_non_nullable
               as Set<String>,
     ));
@@ -347,8 +334,8 @@ class __$$ProviderDependencyModelImplCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$ProviderDependencyModelImpl implements _ProviderDependencyModel {
-  const _$ProviderDependencyModelImpl(
+class _ProviderDependencyModel implements ProviderDependencyModel {
+  const _ProviderDependencyModel(
       {required this.name, final Set<String> arguments = const {}})
       : _arguments = arguments;
 
@@ -363,16 +350,20 @@ class _$ProviderDependencyModelImpl implements _ProviderDependencyModel {
     return EqualUnmodifiableSetView(_arguments);
   }
 
+  /// Create a copy of ProviderDependencyModel
+  /// with the given fields replaced by the non-null parameter values.
   @override
-  String toString() {
-    return 'ProviderDependencyModel(name: $name, arguments: $arguments)';
-  }
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  @pragma('vm:prefer-inline')
+  _$ProviderDependencyModelCopyWith<_ProviderDependencyModel> get copyWith =>
+      __$ProviderDependencyModelCopyWithImpl<_ProviderDependencyModel>(
+          this, _$identity);
 
   @override
   bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$ProviderDependencyModelImpl &&
+            other is _ProviderDependencyModel &&
             (identical(other.name, name) || other.name == name) &&
             const DeepCollectionEquality()
                 .equals(other._arguments, _arguments));
@@ -382,109 +373,95 @@ class _$ProviderDependencyModelImpl implements _ProviderDependencyModel {
   int get hashCode => Object.hash(
       runtimeType, name, const DeepCollectionEquality().hash(_arguments));
 
-  /// Create a copy of ProviderDependencyModel
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
-  @pragma('vm:prefer-inline')
-  _$$ProviderDependencyModelImplCopyWith<_$ProviderDependencyModelImpl>
-      get copyWith => __$$ProviderDependencyModelImplCopyWithImpl<
-          _$ProviderDependencyModelImpl>(this, _$identity);
-}
-
-abstract class _ProviderDependencyModel implements ProviderDependencyModel {
-  const factory _ProviderDependencyModel(
-      {required final String name,
-      final Set<String> arguments}) = _$ProviderDependencyModelImpl;
-
-  @override
-  String get name;
-  @override
-  Set<String> get arguments;
-
-  /// Create a copy of ProviderDependencyModel
-  /// with the given fields replaced by the non-null parameter values.
-  @override
-  @JsonKey(includeFromJson: false, includeToJson: false)
-  _$$ProviderDependencyModelImplCopyWith<_$ProviderDependencyModelImpl>
-      get copyWith => throw _privateConstructorUsedError;
-}
-
-/// @nodoc
-mixin _$ProviderState {
-  String get name => throw _privateConstructorUsedError;
-  ProviderAsyncState? get asyncState => throw _privateConstructorUsedError;
-  Map<String?, String?> get fields => throw _privateConstructorUsedError;
-  DateTime get timestamp => throw _privateConstructorUsedError;
-
-  /// Create a copy of ProviderState
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
-  $ProviderStateCopyWith<ProviderState> get copyWith =>
-      throw _privateConstructorUsedError;
-}
-
-/// @nodoc
-abstract class $ProviderStateCopyWith<$Res> {
-  factory $ProviderStateCopyWith(
-          ProviderState value, $Res Function(ProviderState) then) =
-      _$ProviderStateCopyWithImpl<$Res, ProviderState>;
-  @useResult
-  $Res call(
-      {String name,
-      ProviderAsyncState? asyncState,
-      Map<String?, String?> fields,
-      DateTime timestamp});
-}
-
-/// @nodoc
-class _$ProviderStateCopyWithImpl<$Res, $Val extends ProviderState>
-    implements $ProviderStateCopyWith<$Res> {
-  _$ProviderStateCopyWithImpl(this._value, this._then);
-
-  // ignore: unused_field
-  final $Val _value;
-  // ignore: unused_field
-  final $Res Function($Val) _then;
-
-  /// Create a copy of ProviderState
-  /// with the given fields replaced by the non-null parameter values.
-  @pragma('vm:prefer-inline')
-  @override
-  $Res call({
-    Object? name = null,
-    Object? asyncState = freezed,
-    Object? fields = null,
-    Object? timestamp = null,
-  }) {
-    return _then(_value.copyWith(
-      name: null == name
-          ? _value.name
-          : name // ignore: cast_nullable_to_non_nullable
-              as String,
-      asyncState: freezed == asyncState
-          ? _value.asyncState
-          : asyncState // ignore: cast_nullable_to_non_nullable
-              as ProviderAsyncState?,
-      fields: null == fields
-          ? _value.fields
-          : fields // ignore: cast_nullable_to_non_nullable
-              as Map<String?, String?>,
-      timestamp: null == timestamp
-          ? _value.timestamp
-          : timestamp // ignore: cast_nullable_to_non_nullable
-              as DateTime,
-    ) as $Val);
+  String toString() {
+    return 'ProviderDependencyModel(name: $name, arguments: $arguments)';
   }
 }
 
 /// @nodoc
-abstract class _$$ProviderStateImplCopyWith<$Res>
-    implements $ProviderStateCopyWith<$Res> {
-  factory _$$ProviderStateImplCopyWith(
-          _$ProviderStateImpl value, $Res Function(_$ProviderStateImpl) then) =
-      __$$ProviderStateImplCopyWithImpl<$Res>;
+abstract mixin class _$ProviderDependencyModelCopyWith<$Res>
+    implements $ProviderDependencyModelCopyWith<$Res> {
+  factory _$ProviderDependencyModelCopyWith(_ProviderDependencyModel value,
+          $Res Function(_ProviderDependencyModel) _then) =
+      __$ProviderDependencyModelCopyWithImpl;
   @override
+  @useResult
+  $Res call({String name, Set<String> arguments});
+}
+
+/// @nodoc
+class __$ProviderDependencyModelCopyWithImpl<$Res>
+    implements _$ProviderDependencyModelCopyWith<$Res> {
+  __$ProviderDependencyModelCopyWithImpl(this._self, this._then);
+
+  final _ProviderDependencyModel _self;
+  final $Res Function(_ProviderDependencyModel) _then;
+
+  /// Create a copy of ProviderDependencyModel
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @pragma('vm:prefer-inline')
+  $Res call({
+    Object? name = null,
+    Object? arguments = null,
+  }) {
+    return _then(_ProviderDependencyModel(
+      name: null == name
+          ? _self.name
+          : name // ignore: cast_nullable_to_non_nullable
+              as String,
+      arguments: null == arguments
+          ? _self._arguments
+          : arguments // ignore: cast_nullable_to_non_nullable
+              as Set<String>,
+    ));
+  }
+}
+
+/// @nodoc
+mixin _$ProviderState {
+  String get name;
+  ProviderAsyncState? get asyncState;
+  Map<String?, String?> get fields;
+  DateTime get timestamp;
+
+  /// Create a copy of ProviderState
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  @pragma('vm:prefer-inline')
+  $ProviderStateCopyWith<ProviderState> get copyWith =>
+      _$ProviderStateCopyWithImpl<ProviderState>(
+          this as ProviderState, _$identity);
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is ProviderState &&
+            (identical(other.name, name) || other.name == name) &&
+            (identical(other.asyncState, asyncState) ||
+                other.asyncState == asyncState) &&
+            const DeepCollectionEquality().equals(other.fields, fields) &&
+            (identical(other.timestamp, timestamp) ||
+                other.timestamp == timestamp));
+  }
+
+  @override
+  int get hashCode => Object.hash(runtimeType, name, asyncState,
+      const DeepCollectionEquality().hash(fields), timestamp);
+
+  @override
+  String toString() {
+    return 'ProviderState(name: $name, asyncState: $asyncState, fields: $fields, timestamp: $timestamp)';
+  }
+}
+
+/// @nodoc
+abstract mixin class $ProviderStateCopyWith<$Res> {
+  factory $ProviderStateCopyWith(
+          ProviderState value, $Res Function(ProviderState) _then) =
+      _$ProviderStateCopyWithImpl;
   @useResult
   $Res call(
       {String name,
@@ -494,12 +471,12 @@ abstract class _$$ProviderStateImplCopyWith<$Res>
 }
 
 /// @nodoc
-class __$$ProviderStateImplCopyWithImpl<$Res>
-    extends _$ProviderStateCopyWithImpl<$Res, _$ProviderStateImpl>
-    implements _$$ProviderStateImplCopyWith<$Res> {
-  __$$ProviderStateImplCopyWithImpl(
-      _$ProviderStateImpl _value, $Res Function(_$ProviderStateImpl) _then)
-      : super(_value, _then);
+class _$ProviderStateCopyWithImpl<$Res>
+    implements $ProviderStateCopyWith<$Res> {
+  _$ProviderStateCopyWithImpl(this._self, this._then);
+
+  final ProviderState _self;
+  final $Res Function(ProviderState) _then;
 
   /// Create a copy of ProviderState
   /// with the given fields replaced by the non-null parameter values.
@@ -511,21 +488,21 @@ class __$$ProviderStateImplCopyWithImpl<$Res>
     Object? fields = null,
     Object? timestamp = null,
   }) {
-    return _then(_$ProviderStateImpl(
+    return _then(_self.copyWith(
       name: null == name
-          ? _value.name
+          ? _self.name
           : name // ignore: cast_nullable_to_non_nullable
               as String,
       asyncState: freezed == asyncState
-          ? _value.asyncState
+          ? _self.asyncState
           : asyncState // ignore: cast_nullable_to_non_nullable
               as ProviderAsyncState?,
       fields: null == fields
-          ? _value._fields
+          ? _self.fields
           : fields // ignore: cast_nullable_to_non_nullable
               as Map<String?, String?>,
       timestamp: null == timestamp
-          ? _value.timestamp
+          ? _self.timestamp
           : timestamp // ignore: cast_nullable_to_non_nullable
               as DateTime,
     ));
@@ -534,8 +511,8 @@ class __$$ProviderStateImplCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$ProviderStateImpl implements _ProviderState {
-  const _$ProviderStateImpl(
+class _ProviderState implements ProviderState {
+  const _ProviderState(
       {required this.name,
       this.asyncState,
       required final Map<String?, String?> fields,
@@ -557,16 +534,19 @@ class _$ProviderStateImpl implements _ProviderState {
   @override
   final DateTime timestamp;
 
+  /// Create a copy of ProviderState
+  /// with the given fields replaced by the non-null parameter values.
   @override
-  String toString() {
-    return 'ProviderState(name: $name, asyncState: $asyncState, fields: $fields, timestamp: $timestamp)';
-  }
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  @pragma('vm:prefer-inline')
+  _$ProviderStateCopyWith<_ProviderState> get copyWith =>
+      __$ProviderStateCopyWithImpl<_ProviderState>(this, _$identity);
 
   @override
   bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$ProviderStateImpl &&
+            other is _ProviderState &&
             (identical(other.name, name) || other.name == name) &&
             (identical(other.asyncState, asyncState) ||
                 other.asyncState == asyncState) &&
@@ -579,35 +559,64 @@ class _$ProviderStateImpl implements _ProviderState {
   int get hashCode => Object.hash(runtimeType, name, asyncState,
       const DeepCollectionEquality().hash(_fields), timestamp);
 
+  @override
+  String toString() {
+    return 'ProviderState(name: $name, asyncState: $asyncState, fields: $fields, timestamp: $timestamp)';
+  }
+}
+
+/// @nodoc
+abstract mixin class _$ProviderStateCopyWith<$Res>
+    implements $ProviderStateCopyWith<$Res> {
+  factory _$ProviderStateCopyWith(
+          _ProviderState value, $Res Function(_ProviderState) _then) =
+      __$ProviderStateCopyWithImpl;
+  @override
+  @useResult
+  $Res call(
+      {String name,
+      ProviderAsyncState? asyncState,
+      Map<String?, String?> fields,
+      DateTime timestamp});
+}
+
+/// @nodoc
+class __$ProviderStateCopyWithImpl<$Res>
+    implements _$ProviderStateCopyWith<$Res> {
+  __$ProviderStateCopyWithImpl(this._self, this._then);
+
+  final _ProviderState _self;
+  final $Res Function(_ProviderState) _then;
+
   /// Create a copy of ProviderState
   /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
-  _$$ProviderStateImplCopyWith<_$ProviderStateImpl> get copyWith =>
-      __$$ProviderStateImplCopyWithImpl<_$ProviderStateImpl>(this, _$identity);
+  $Res call({
+    Object? name = null,
+    Object? asyncState = freezed,
+    Object? fields = null,
+    Object? timestamp = null,
+  }) {
+    return _then(_ProviderState(
+      name: null == name
+          ? _self.name
+          : name // ignore: cast_nullable_to_non_nullable
+              as String,
+      asyncState: freezed == asyncState
+          ? _self.asyncState
+          : asyncState // ignore: cast_nullable_to_non_nullable
+              as ProviderAsyncState?,
+      fields: null == fields
+          ? _self._fields
+          : fields // ignore: cast_nullable_to_non_nullable
+              as Map<String?, String?>,
+      timestamp: null == timestamp
+          ? _self.timestamp
+          : timestamp // ignore: cast_nullable_to_non_nullable
+              as DateTime,
+    ));
+  }
 }
 
-abstract class _ProviderState implements ProviderState {
-  const factory _ProviderState(
-      {required final String name,
-      final ProviderAsyncState? asyncState,
-      required final Map<String?, String?> fields,
-      required final DateTime timestamp}) = _$ProviderStateImpl;
-
-  @override
-  String get name;
-  @override
-  ProviderAsyncState? get asyncState;
-  @override
-  Map<String?, String?> get fields;
-  @override
-  DateTime get timestamp;
-
-  /// Create a copy of ProviderState
-  /// with the given fields replaced by the non-null parameter values.
-  @override
-  @JsonKey(includeFromJson: false, includeToJson: false)
-  _$$ProviderStateImplCopyWith<_$ProviderStateImpl> get copyWith =>
-      throw _privateConstructorUsedError;
-}
+// dart format on

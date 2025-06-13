@@ -13,7 +13,7 @@ enum LogicalErrorCode {
 }
 
 @freezed
-class LogicalError with _$LogicalError implements RiverDeltaError {
+abstract class LogicalError with _$LogicalError implements RiverDeltaError {
   const LogicalError._();
 
   @Implements<RiverDeltaError>()
