@@ -46,7 +46,7 @@ class RenderCustomGraphWidget extends RenderBox
 
   List<List<GraphNode>> _buildLayeredTree(GraphState graph) {
     final allProviders = graph.nodes.map((node) => node.provider).toSet();
-    return graph.nodes.fold(List.generate(graph.depth + 1, (_) => []),
+    return graph.nodes.fold(List.generate(graph.depth + 2, (_) => []),
         (acc, cur) {
       final layerIndex = cur.distanceToRoot(allProviders, longest: true);
       final existingOnLayer = acc.elementAtOrNull(layerIndex) ?? [];
@@ -56,10 +56,14 @@ class RenderCustomGraphWidget extends RenderBox
     });
   }
 
-  ({int y, int x}) _getPositionForNode(
+  ({int y, int x})? _getPositionForNode(
       GraphNode node, Set<DeltaProvider> allProviders) {
     final y = node.distanceToRoot(allProviders, longest: true);
-    final x = _layeredTree[y].indexOf(node);
+    final x = _layeredTree[y]
+        .indexWhere((element) => node.provider.shallowEquals(element.provider));
+    if (y == -1 || x == -1) {
+      return null;
+    }
     return (y: y, x: x);
   }
 
@@ -119,7 +123,7 @@ class RenderCustomGraphWidget extends RenderBox
       child.layout(const BoxConstraints(), parentUsesSize: true);
 
       // Use the child's size the update the dimensions of the specific row.
-      if (parentData != null) {
+      if (parentData != null && parentData.position != null) {
         parentData.size = child.size;
         sizes[parentData.position!.y][parentData.position!.x] = child.size;
       }

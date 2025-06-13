@@ -98,8 +98,13 @@ abstract class DeltaProvider with _$DeltaProvider {
     return allProviders.firstWhereOrNull(
       (provider) =>
           provider.name == name &&
-          setEquality.equals(provider.arguments.toSet(), arguments?.toSet()),
+          setEquality.equals(provider.arguments.toSet(), arguments.toSet()),
     );
+  }
+
+  bool shallowEquals(DeltaProvider other) {
+    final setEquality = SetEquality();
+    return name == other.name && setEquality.equals(arguments, other.arguments);
   }
 
   int distanceToRoot({
