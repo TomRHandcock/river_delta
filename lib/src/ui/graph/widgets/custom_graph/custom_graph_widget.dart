@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:river_delta/src/ui/graph/viewmodel/graph_state.dart';
+import 'package:river_delta/src/ui/graph/widgets/graph_node_widget.dart';
 
 import 'graph_render_object.dart';
 
@@ -17,34 +18,12 @@ class CustomGraphWidget extends MultiChildRenderObjectWidget {
 
   @override
   List<Widget> get children => graph.nodes.map((node) {
-        final localArguments = node.provider.arguments;
-        return CustomGraphParentDataWidget(
+        return GraphNodeWidget(
           node: node,
-          child: Material(
-            child: InkWell(
-              onTap: () {
-                onProviderSelected?.call(node.provider);
-              },
-              child: Container(
-                decoration: BoxDecoration(
-                  border: Border.all(
-                    color: Colors.greenAccent,
-                  ),
-                  borderRadius: BorderRadius.circular(8),
-                  color: backgroundColor,
-                ),
-                padding: const EdgeInsets.all(8),
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.center,
-                  mainAxisSize: MainAxisSize.min,
-                  children: [
-                    Text(node.provider.name),
-                    Text(localArguments.toString())
-                  ],
-                ),
-              ),
-            ),
-          ),
+          isSelected:
+              graph.selectedProvider?.shallowEquals(node.provider) == true,
+          onSelected: (provider) => onProviderSelected?.call(provider),
+          backgroundColor: backgroundColor,
         );
       }).toList();
 
