@@ -36,7 +36,10 @@ class RenderCustomGraphWidget extends RenderBox
 
   set graph(GraphState value) {
     final shapesEqual = GraphComparison.isShapeEqual(_graph, value);
-    if (shapesEqual) {
+    final selectedProviderEqual = _graph.selectedProvider?.let((incumbent) =>
+            value.selectedProvider?.shallowEquals(incumbent) ?? false) ??
+        false;
+    if (shapesEqual && selectedProviderEqual) {
       return;
     }
     _graph = value;
@@ -185,13 +188,21 @@ class RenderCustomGraphWidget extends RenderBox
     // Paint graph edges.
     final canvas = context.canvas;
     final edgePaint = Paint()
-      ..color = Colors.lightBlueAccent
       ..strokeWidth = 2
       ..style = PaintingStyle.stroke;
     for (final edge in _graph.edges) {
       final startNode =
           _graph.nodes.firstWhere((it) => it.provider == edge.from);
       final endNode = _graph.nodes.firstWhere((it) => it.provider == edge.to);
+      final startNodeSelected =
+          _graph.selectedProvider?.shallowEquals(startNode.provider) ?? false;
+      final endNodeSelected =
+          _graph.selectedProvider?.shallowEquals(endNode.provider) ?? false;
+      if (startNodeSelected || endNodeSelected) {
+        edgePaint.color = Colors.deepPurpleAccent;
+      } else {
+        edgePaint.color = Colors.lightBlueAccent;
+      }
       final startOffset = childRects[startNode]?.center ?? Offset.zero;
       final endOffset = childRects[endNode]?.center ?? Offset.zero;
       final edgeRect = Rect.fromPoints(startOffset, endOffset);

@@ -29,9 +29,10 @@ class CustomGraphWidget extends MultiChildRenderObjectWidget {
               child: Container(
                 decoration: BoxDecoration(
                   border: Border.all(
-                    color: switch (graph.selectedProvider == node.provider) {
+                    color: switch (
+                        graph.selectedProvider?.shallowEquals(node.provider)) {
                       true => Colors.deepPurpleAccent,
-                      false => Colors.greenAccent
+                      null || false => Colors.greenAccent
                     },
                   ),
                   borderRadius: BorderRadius.circular(8),
