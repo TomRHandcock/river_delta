@@ -172,10 +172,35 @@ class RenderCustomGraphWidget extends RenderBox
     final paddedSize = Size(contentSize.width + _padding.horizontal,
         contentSize.height + _padding.vertical);
     size = Size.square(paddedSize.longestSide);
+
+    // Compute row offsets to centre children.
+    child = firstChild;
+    // Cache rects for all children.
+    Map<GraphNode, CustomGraphWidgetParentData> childParentData = {};
+    while (child != null) {
+      final parentData = child.parentData as CustomGraphWidgetParentData;
+      childParentData[parentData.node] = parentData;
+      child = childAfter(child);
+    }
+
+    final rowOffsets = List.generate(_layeredTree.length, (int yPos) {
+      final rowWidth = _computeRowWidth(yPos, childParentData.values.toList());
+      return (size.width - rowWidth) / 2;
+    });
+    childParentData.forEach((node, parentData) {
+      parentData.rect =
+          parentData.rect!.translate(rowOffsets[parentData.position!.y], 0);
+    });
   }
 
   @override
   void paint(PaintingContext context, Offset offset) {
+    _paintEdges(context);
+
+    _paintChildren(context);
+  }
+
+  void _paintEdges(PaintingContext context) {
     RenderBox? child = firstChild;
     // Cache rects for all children.
     Map<GraphNode, Rect> childRects = {};
@@ -185,7 +210,6 @@ class RenderCustomGraphWidget extends RenderBox
       child = childAfter(child);
     }
 
-    // Paint graph edges.
     final canvas = context.canvas;
     final edgePaint = Paint()
       ..strokeWidth = 2
@@ -240,15 +264,23 @@ class RenderCustomGraphWidget extends RenderBox
       };
       canvas.drawPath(edgePath, edgePaint);
     }
+  }
 
-    // Paint children.
-    child = firstChild;
+  void _paintChildren(PaintingContext context) {
+    RenderBox? child = firstChild;
     while (child != null) {
       final parentData = child.parentData as CustomGraphWidgetParentData;
-      final graphNode = parentData.node;
-      final offset = childRects[graphNode]?.topLeft ?? Offset.zero;
+      final offset = parentData.rect?.topLeft ?? Offset.zero;
       context.paintChild(child, offset);
       child = childAfter(child);
     }
+  }
+
+  double _computeRowWidth(
+      int yPos, List<CustomGraphWidgetParentData> children) {
+    final childrenOnRow =
+        children.where((child) => child.position?.y == yPos).toList();
+    return childrenOnRow.map((child) => child.size?.width ?? 0).sum +
+        (childrenOnRow.length - 1) * _horizontalSpacing;
   }
 }
