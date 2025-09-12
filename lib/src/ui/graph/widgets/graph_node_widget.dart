@@ -1,9 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:river_delta/src/ui/components/animation/glow_transformer.dart';
 import 'package:river_delta/src/ui/graph/viewmodel/graph_state.dart';
 
 import 'custom_graph/custom_graph_widget.dart';
 
-class GraphNodeWidget extends StatelessWidget {
+class GraphNodeWidget extends StatefulWidget {
   final GraphNode node;
   final bool isSelected;
   final Function(DeltaProvider provider) onSelected;
@@ -18,36 +19,72 @@ class GraphNodeWidget extends StatelessWidget {
   });
 
   @override
+  State<GraphNodeWidget> createState() => _GraphNodeWidgetState();
+}
+
+class _GraphNodeWidgetState extends State<GraphNodeWidget>
+    with SingleTickerProviderStateMixin {
+  late final AnimationController _stateUpdateAnimationController;
+  late final GlowTransformer _glowTransformer;
+
+  @override
+  void initState() {
+    super.initState();
+    _stateUpdateAnimationController =
+        AnimationController(vsync: this, duration: Duration(milliseconds: 800));
+    _glowTransformer = GlowTransformer();
+  }
+
+  @override
+  void didUpdateWidget(covariant GraphNodeWidget oldWidget) {
+    super.didUpdateWidget(oldWidget);
+    final oldStates = oldWidget.node.provider.states;
+    final newStates = widget.node.provider.states;
+    if (newStates.length > oldStates.length) {
+      _stateUpdateAnimationController.reset();
+      _stateUpdateAnimationController.animateTo(1.0);
+    }
+  }
+
+  @override
   Widget build(BuildContext context) {
-    final localArguments = node.provider.arguments;
+    final localArguments = widget.node.provider.arguments;
     return CustomGraphParentDataWidget(
-      node: node,
+      node: widget.node,
       child: _AnimatedSelectionRing(
-        isSelected: isSelected,
+        isSelected: widget.isSelected,
         child: Material(
           child: InkWell(
             borderRadius: BorderRadius.circular(8),
             onTap: () {
-              onSelected.call(node.provider);
+              widget.onSelected.call(widget.node.provider);
             },
-            child: Container(
-              decoration: BoxDecoration(
-                border: Border.all(
-                  color: switch (isSelected) {
-                    true => Colors.deepPurpleAccent,
-                    false => Colors.greenAccent
-                  },
+            child: AnimatedBuilder(
+              animation: _stateUpdateAnimationController,
+              builder: (context, child) => Container(
+                decoration: BoxDecoration(
+                  border: Border.all(
+                    color: switch (widget.isSelected) {
+                      true => Colors.deepPurpleAccent,
+                      false => Colors.greenAccent
+                    },
+                  ),
+                  borderRadius: BorderRadius.circular(8),
+                  color: Color.lerp(
+                      widget.backgroundColor,
+                      Colors.amber,
+                      _glowTransformer
+                          .transform(_stateUpdateAnimationController.value)),
                 ),
-                borderRadius: BorderRadius.circular(8),
-                color: backgroundColor,
+                padding: const EdgeInsets.all(8),
+                child: child,
               ),
-              padding: const EdgeInsets.all(8),
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.center,
                 mainAxisSize: MainAxisSize.min,
                 children: [
-                  Text(node.provider.name),
-                  Text(localArguments.toString())
+                  Text(widget.node.provider.name),
+                  Text(localArguments.toString()),
                 ],
               ),
             ),
@@ -55,6 +92,12 @@ class GraphNodeWidget extends StatelessWidget {
         ),
       ),
     );
+  }
+
+  @override
+  void dispose() {
+    _stateUpdateAnimationController.dispose();
+    super.dispose();
   }
 }
 
