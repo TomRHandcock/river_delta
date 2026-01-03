@@ -3,11 +3,13 @@ import 'dart:isolate';
 
 import 'package:collection/collection.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:flutter_riverpod/misc.dart';
 import 'package:river_delta/src/engine/utils/utils.dart';
+import 'package:riverpod/src/framework.dart';
 
 import 'dto_models.dart';
 
-class DeltaObserver extends ProviderObserver {
+base class DeltaObserver extends ProviderObserver {
   const DeltaObserver._();
 
   static DeltaObserver? _instance;
@@ -25,7 +27,7 @@ class DeltaObserver extends ProviderObserver {
     ProviderBase<Object?> provider,
     ProviderContainer container,
   ) async {
-    final dependencies = <ProviderElementBase>{};
+    final dependencies = <ProviderElement>{};
     // Use a microtask to read provider ancestors after synchronous code has
     // run in the event loop. If we didn't do this, the provider element won't
     // be found in the container.
@@ -56,8 +58,9 @@ class DeltaObserver extends ProviderObserver {
   }
 
   @override
-  void didAddProvider(ProviderBase<Object?> provider, Object? value,
-      ProviderContainer container) async {
+  void didAddProvider(ProviderObserverContext context, Object? value) async {
+    final container = context.container;
+    final provider = context.provider;
     final dependencies =
         await _fetchDependenciesForProvider(provider, container);
     final providerDto = _resolveProvider(provider, dependencies.toSet(), value);
@@ -65,31 +68,32 @@ class DeltaObserver extends ProviderObserver {
       return;
     }
     postEvent("ext.river_delta.add", providerDto.toJson());
-    super.didAddProvider(provider, value, container);
+    super.didAddProvider(context, value);
   }
 
   @override
   void didUpdateProvider(
-    ProviderBase<Object?> provider,
+    ProviderObserverContext context,
     Object? previousValue,
     Object? newValue,
-    ProviderContainer container,
   ) async {
+    final container = context.container;
+    final provider = context.provider;
     final dependencies =
         await _fetchDependenciesForProvider(provider, container);
-    final providerDto = _resolveProvider(provider, dependencies.toSet(), newValue);
+    final providerDto =
+        _resolveProvider(provider, dependencies.toSet(), newValue);
     if (providerDto == null) {
       return;
     }
     postEvent("ext.river_delta.update", providerDto.toJson());
-    super.didUpdateProvider(provider, previousValue, newValue, container);
+    super.didUpdateProvider(context, previousValue, newValue);
   }
 
   @override
-  void didDisposeProvider(
-    ProviderBase<Object?> provider,
-    ProviderContainer container,
-  ) async {
+  void didDisposeProvider(ProviderObserverContext context) async {
+    final container = context.container;
+    final provider = context.provider;
     final dependencies =
         await _fetchDependenciesForProvider(provider, container);
     final providerDto = _resolveProvider(provider, dependencies.toSet(), null);
@@ -97,13 +101,13 @@ class DeltaObserver extends ProviderObserver {
       return;
     }
     postEvent("ext.river_delta.dispose", providerDto.toJson());
-    super.didDisposeProvider(provider, container);
+    super.didDisposeProvider(context);
   }
 
   ProviderDto? _resolveProvider(
     ProviderBase<Object?> provider,
     Set<ProviderSlimDependencyDto> dependencies,
-      Object? state,
+    Object? state,
   ) {
     final name = provider.name;
     final objectId = Service.getObjectId(provider);
