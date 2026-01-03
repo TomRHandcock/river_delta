@@ -48,7 +48,7 @@ class DeltaContent extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return switch (state) {
-      AsyncValue(:final GraphState valueOrNull?, hasError: false) => SplitPane(
+      AsyncValue(:final GraphState value?, hasError: false) => SplitPane(
           axis: Axis.horizontal,
           initialFractions: [
             0.7,
@@ -64,19 +64,19 @@ class DeltaContent extends StatelessWidget {
                     constrained: false,
                     minScale: 0.1,
                     child: CustomGraphWidget(
-                      graph: valueOrNull,
+                      graph: value,
                       backgroundColor:
                           Theme.of(context).scaffoldBackgroundColor,
                       onProviderSelected: onProviderSelected,
                     ),
                   ),
                 ),
-                Text("Number of known providers: ${valueOrNull.nodes.length}"),
-                Text("Number of edges: ${valueOrNull.edges.length}")
+                Text("Number of known providers: ${value.nodes.length}"),
+                Text("Number of edges: ${value.edges.length}")
               ],
             ),
             _ProviderDetailsPane(
-              selectedProvider: state.valueOrNull?.selectedProvider,
+              selectedProvider: state.value?.selectedProvider,
             )
           ],
         ),

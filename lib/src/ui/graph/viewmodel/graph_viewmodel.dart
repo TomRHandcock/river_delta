@@ -45,7 +45,7 @@ class GraphViewmodel extends _$GraphViewmodel {
     return GraphState(
       nodes: nodes,
       edges: edges,
-      selectedProvider: state.valueOrNull?.selectedProvider,
+      selectedProvider: state.value?.selectedProvider,
     );
   }
 
@@ -76,7 +76,7 @@ class GraphViewmodel extends _$GraphViewmodel {
   }
 
   DeltaProvider? _findIncumbentProvider(String name, Set<String> arguments) {
-    final current = state.valueOrNull;
+    final current = state.value;
     if (current == null) {
       return null;
     }
@@ -88,7 +88,7 @@ class GraphViewmodel extends _$GraphViewmodel {
   }
 
   void selectProvider(DeltaProvider provider) {
-    final current = state.valueOrNull;
+    final current = state.value;
     if (current == null) {
       return;
     }

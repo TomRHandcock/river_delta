@@ -6,21 +6,47 @@ part of 'graph_viewmodel.dart';
 // RiverpodGenerator
 // **************************************************************************
 
+// GENERATED CODE - DO NOT MODIFY BY HAND
+// ignore_for_file: type=lint, type=warning
+
+@ProviderFor(GraphViewmodel)
+const graphViewmodelProvider = GraphViewmodelProvider._();
+
+final class GraphViewmodelProvider
+    extends $AsyncNotifierProvider<GraphViewmodel, GraphState> {
+  const GraphViewmodelProvider._()
+      : super(
+          from: null,
+          argument: null,
+          retry: null,
+          name: r'graphViewmodelProvider',
+          isAutoDispose: true,
+          dependencies: null,
+          $allTransitiveDependencies: null,
+        );
+
+  @override
+  String debugGetCreateSourceHash() => _$graphViewmodelHash();
+
+  @$internal
+  @override
+  GraphViewmodel create() => GraphViewmodel();
+}
+
 String _$graphViewmodelHash() => r'550795f4b374d1f090a0fc508b6efae48033efb9';
 
-/// See also [GraphViewmodel].
-@ProviderFor(GraphViewmodel)
-final graphViewmodelProvider =
-    AutoDisposeAsyncNotifierProvider<GraphViewmodel, GraphState>.internal(
-  GraphViewmodel.new,
-  name: r'graphViewmodelProvider',
-  debugGetCreateSourceHash: const bool.fromEnvironment('dart.vm.product')
-      ? null
-      : _$graphViewmodelHash,
-  dependencies: null,
-  allTransitiveDependencies: null,
-);
-
-typedef _$GraphViewmodel = AutoDisposeAsyncNotifier<GraphState>;
-// ignore_for_file: type=lint
-// ignore_for_file: subtype_of_sealed_class, invalid_use_of_internal_member, invalid_use_of_visible_for_testing_member, deprecated_member_use_from_same_package
+abstract class _$GraphViewmodel extends $AsyncNotifier<GraphState> {
+  FutureOr<GraphState> build();
+  @$mustCallSuper
+  @override
+  void runBuild() {
+    final created = build();
+    final ref = this.ref as $Ref<AsyncValue<GraphState>, GraphState>;
+    final element = ref.element as $ClassProviderElement<
+        AnyNotifier<AsyncValue<GraphState>, GraphState>,
+        AsyncValue<GraphState>,
+        Object?,
+        Object?>;
+    element.handleValue(ref, created);
+  }
+}

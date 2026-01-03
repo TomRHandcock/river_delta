@@ -5,9 +5,5 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:river_delta/src/extension.dart';
 
 void main() {
-  runApp(
-    const ProviderScope(
-      child: RiverDeltaExtension(),
-    ),
-  );
+  runApp(ProviderScope(retry: (_, _) => null, child: RiverDeltaExtension()));
 }
