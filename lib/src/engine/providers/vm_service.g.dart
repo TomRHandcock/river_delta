@@ -6,21 +6,38 @@ part of 'vm_service.dart';
 // RiverpodGenerator
 // **************************************************************************
 
-String _$vmServiceHash() => r'4fe43856bd5956134546eb27cf1415d0eacb531f';
+// GENERATED CODE - DO NOT MODIFY BY HAND
+// ignore_for_file: type=lint, type=warning
 
-/// See also [vmService].
 @ProviderFor(vmService)
-final vmServiceProvider = AutoDisposeFutureProvider<VmService>.internal(
-  vmService,
-  name: r'vmServiceProvider',
-  debugGetCreateSourceHash:
-      const bool.fromEnvironment('dart.vm.product') ? null : _$vmServiceHash,
-  dependencies: null,
-  allTransitiveDependencies: null,
-);
+const vmServiceProvider = VmServiceProvider._();
 
-@Deprecated('Will be removed in 3.0. Use Ref instead')
-// ignore: unused_element
-typedef VmServiceRef = AutoDisposeFutureProviderRef<VmService>;
-// ignore_for_file: type=lint
-// ignore_for_file: subtype_of_sealed_class, invalid_use_of_internal_member, invalid_use_of_visible_for_testing_member, deprecated_member_use_from_same_package
+final class VmServiceProvider extends $FunctionalProvider<AsyncValue<VmService>,
+        VmService, FutureOr<VmService>>
+    with $FutureModifier<VmService>, $FutureProvider<VmService> {
+  const VmServiceProvider._()
+      : super(
+          from: null,
+          argument: null,
+          retry: null,
+          name: r'vmServiceProvider',
+          isAutoDispose: true,
+          dependencies: null,
+          $allTransitiveDependencies: null,
+        );
+
+  @override
+  String debugGetCreateSourceHash() => _$vmServiceHash();
+
+  @$internal
+  @override
+  $FutureProviderElement<VmService> $createElement($ProviderPointer pointer) =>
+      $FutureProviderElement(pointer);
+
+  @override
+  FutureOr<VmService> create(Ref ref) {
+    return vmService(ref);
+  }
+}
+
+String _$vmServiceHash() => r'4fe43856bd5956134546eb27cf1415d0eacb531f';
