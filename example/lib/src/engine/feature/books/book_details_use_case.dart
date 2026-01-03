@@ -18,11 +18,11 @@ class BookDetailsUseCase extends _$BookDetailsUseCase {
 
   void toggleFavorite(bool isFavorite) {
     final repository = ref.read(favoritesRepositoryProvider.notifier);
-    final book = state.valueOrNull;
-    if(book == null) {
+    final book = state.value;
+    if (book == null) {
       return;
     }
-    if(isFavorite) {
+    if (isFavorite) {
       repository.addFavorite(id);
     } else {
       repository.removeFavourite(id);

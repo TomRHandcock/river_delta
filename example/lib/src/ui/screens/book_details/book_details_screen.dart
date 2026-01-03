@@ -47,7 +47,7 @@ class BookDetailsContent extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final isFavorite = state.valueOrNull?.book.favorite;
+    final isFavorite = state.value?.book.favorite;
     return Scaffold(
       appBar: AppBar(
         title: const Text("Book details"),
