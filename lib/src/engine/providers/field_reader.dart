@@ -23,7 +23,7 @@ class FieldReader {
   static const _asyncValueClassNames = {
     "AsyncLoading",
     "AsyncError",
-    "AsyncData"
+    "AsyncData",
   };
   static const _asyncValuePackage = "riverpod";
 
@@ -34,8 +34,11 @@ class FieldReader {
     if (stateObjectId == null) {
       return null;
     }
-    final object = (await vmService.evaluate(isolateId, stateObjectId, "this"))
-        .asOrNull<InstanceRef>();
+    final object = (await vmService.evaluate(
+      isolateId,
+      stateObjectId,
+      "this",
+    )).asOrNull<InstanceRef>();
     if (object == null) {
       return null;
     }
@@ -51,7 +54,7 @@ class FieldReader {
     final classRef = instanceRef.classRef;
     final classNameMatches =
         classRef?.name?.let((name) => _asyncValueClassNames.contains(name)) ??
-            false;
+        false;
     final classPackageMatches =
         classRef?.library?.uri?.contains(_asyncValuePackage) ?? false;
     return classNameMatches && classPackageMatches;
@@ -59,20 +62,24 @@ class FieldReader {
 
   @visibleForTesting
   Future<ProviderState> extractAsyncState(
-      String isolateId, InstanceRef instanceRef) async {
+    String isolateId,
+    InstanceRef instanceRef,
+  ) async {
     final asyncState = switch (instanceRef.classRef?.name) {
       "AsyncLoading" => ProviderAsyncState.loading,
       "AsyncError" => ProviderAsyncState.error,
       "AsyncData" => ProviderAsyncState.data,
-      _ => null
+      _ => null,
     };
     final valueObjectId = instanceRef.id;
     if (valueObjectId == null) {
       throw LogicalError(code: LogicalErrorCode.failedToReadAsyncState);
     }
-    final value =
-        (await vmService.evaluate(isolateId, valueObjectId, "this.valueOrNull"))
-            .asOrNull<InstanceRef>();
+    final value = (await vmService.evaluate(
+      isolateId,
+      valueObjectId,
+      "this.value",
+    )).asOrNull<InstanceRef>();
     if (value == null) {
       throw LogicalError(code: LogicalErrorCode.failedToReadAsyncState);
     }
@@ -80,8 +87,10 @@ class FieldReader {
     if (valueClassId == null) {
       throw LogicalError(code: LogicalErrorCode.failedToReadAsyncState);
     }
-    final clazz =
-        (await vmService.getObject(isolateId, valueClassId)).asOrNull<Class>();
+    final clazz = (await vmService.getObject(
+      isolateId,
+      valueClassId,
+    )).asOrNull<Class>();
     if (clazz == null) {
       throw LogicalError(code: LogicalErrorCode.failedToReadAsyncState);
     }
@@ -95,12 +104,17 @@ class FieldReader {
 
   @visibleForTesting
   Future<ProviderState> extractSyncState(
-      String isolateId, InstanceRef instanceRef) async {
+    String isolateId,
+    InstanceRef instanceRef,
+  ) async {
     final clazz = instanceRef.classRef;
     if (clazz == null) {
       throw LogicalError(code: LogicalErrorCode.failedToReadState);
     }
     return ProviderState(
-        name: clazz.name ?? "Unknown", fields: {}, timestamp: DateTime.now());
+      name: clazz.name ?? "Unknown",
+      fields: {},
+      timestamp: DateTime.now(),
+    );
   }
 }
