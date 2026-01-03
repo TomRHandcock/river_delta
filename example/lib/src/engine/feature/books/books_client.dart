@@ -1,7 +1,6 @@
 import 'package:dio/dio.dart';
 import 'package:example/src/engine/feature/books/models.dart';
 import 'package:example/src/engine/network/dio.dart';
-import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:retrofit/retrofit.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 
